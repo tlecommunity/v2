@@ -3,6 +3,7 @@ import {
   ShipyardViewBuildQueueParams,
   ShipyardGetBuildableParams,
   ShipyardBuildFleetParams,
+  ShipyardSubsidizeBuildQueueParams,
 } from 'app/interfaces/shipyard';
 
 class SpacePortService extends ServiceBase {
@@ -16,6 +17,10 @@ class SpacePortService extends ServiceBase {
 
   buildFleet(params: ShipyardBuildFleetParams) {
     return this.call('shipyard', 'build_fleet', params);
+  }
+
+  subsidizeBuildQueue(params: ShipyardSubsidizeBuildQueueParams) {
+    return this.call('shipyard', 'subsidize_build_queue', params);
   }
 }
 

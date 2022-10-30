@@ -44,6 +44,8 @@ import {
   ShipyardGetBuildableResponse,
   ShipyardBuildFleetParams,
   ShipyardBuildFleetResponse,
+  ShipyardSubsidizeBuildQueueParams,
+  ShipyardSubsidizeBuildQueueResponse,
 } from 'app/interfaces/shipyard';
 
 class ServiceBase {
@@ -144,6 +146,13 @@ class ServiceBase {
     params: ShipyardGetBuildableParams,
     addSession?: boolean
   ): Promise<ShipyardGetBuildableResponse>;
+
+  call(
+    module: 'shipyard',
+    method: 'subsidize_build_queue',
+    params: ShipyardSubsidizeBuildQueueParams,
+    addSession?: boolean
+  ): Promise<ShipyardSubsidizeBuildQueueResponse>;
 
   call(
     module: 'spaceport',

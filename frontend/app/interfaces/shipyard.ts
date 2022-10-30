@@ -74,3 +74,9 @@ export interface ShipyardBuildFleetParams {
 }
 
 export interface ShipyardBuildFleetResponse extends ShipyardViewBuildQueueResponse {}
+
+export interface ShipyardSubsidizeBuildQueueParams {
+  building_id: number;
+}
+
+export interface ShipyardSubsidizeBuildQueueResponse extends ShipyardViewBuildQueueResponse {}

@@ -26,7 +26,24 @@ class BuildQueueTab extends React.Component<Props, State> {
 
   async componentDidMount() {
     const data = await Shipyard.viewBuildQueue({ building_id: this.props.building.id });
-    this.setState({ data });
+    this.setState({
+      data: {
+        number_of_fleets: data.number_of_fleets,
+        cost_to_subsidize: data.cost_to_subsidize,
+        fleets_building: data.fleets_building,
+      },
+    });
+  }
+
+  async onSubsidizeClick() {
+    const res = await Shipyard.subsidizeBuildQueue({ building_id: this.props.building.id });
+    this.setState({
+      data: {
+        number_of_fleets: res.number_of_fleets,
+        cost_to_subsidize: res.cost_to_subsidize,
+        fleets_building: res.fleets_building,
+      },
+    });
   }
 
   render() {
@@ -47,9 +64,21 @@ class BuildQueueTab extends React.Component<Props, State> {
 
     return (
       <div>
-        <div>
-          You may subsidize the whole build queue for {this.state.data.cost_to_subsidize} Essentia
-        </div>
+        {fleetItems.length > 0 ? (
+          <div>
+            You may subsidize the whole build queue for {this.state.data.cost_to_subsidize}{' '}
+            Essentia.{' '}
+            <button
+              type='button'
+              className='ui mini green button'
+              onClick={() => this.onSubsidizeClick()}
+            >
+              Subsidize
+            </button>
+          </div>
+        ) : (
+          ''
+        )}
 
         <div className='ui sixteen column grid'>
           <div className='row'>
