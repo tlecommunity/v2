@@ -1,0 +1,40 @@
+# config-file-type: JSON 1
+{
+   "description" : "Welcome back to a new Special Edition episode of Intergalatic Garbage Heap Challenge.  This shows challenge is to build a Cargo Ship from the remains of some dories and whatever you can scrounge from the mighty Heap.   Good luck contestants.",
+   "max_university_level" : "8",
+   "mission_objective" : {
+      "resources" : {
+         "burger" : 100,
+         "cider" : 100
+      },
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 4,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "dory"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "5",
+            "combat" : "0",
+            "hold_size" : "75000",
+            "name" : "Garbage Heap Cargo",
+            "quantity" : 1,
+            "speed" : "1500",
+            "stealth" : "10",
+            "type" : "cargo_ship"
+         }
+      ]
+   },
+   "name" : "Intergalatic Garbage Challenge",
+   "network_19_completion" : "%s wins this seasons Intergalatic Garbage Heap Challenge show.",
+   "network_19_headline" : "A new episode of Intergalatic Garbage Heap Challenge is due to start soon."
+}

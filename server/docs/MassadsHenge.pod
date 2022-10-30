@@ -1,0 +1,7 @@
+=head1 Massad's Henge Methods
+
+Massad's Henge is accessible via the URL C</massadshenge>.
+
+The list of methods below represents changes and additions to the methods that all L<Buildings> share.
+
+=cut

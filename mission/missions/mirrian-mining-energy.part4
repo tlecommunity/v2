@@ -1,0 +1,64 @@
+# config-file-type: JSON 1
+{
+   "description" : "The current series of disasters appears to be caused by a radical shift in the planet's orbit. Our scientists are working frantically to resolve what could have caused this change. We have decided that to remain would be too costly and have decided to abandon the planet and all facilities. We are looking for a way to transport our miners and their families off world for relocation.\n\nPlease provide us with Colony ships and we will cede control of all facilities on the planet to you.",
+   "max_university_level" : "15",
+   "mission_objective" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 2,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "colony_ship"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "plans" : [
+         {
+            "classname" : "Lacuna::DB::Result::Building::Food::Algae",
+            "extra_build_level" : "5",
+            "level" : "1",
+            "quantity" : 1
+         },
+         {
+            "classname" : "Lacuna::DB::Result::Building::Food::Reserve",
+            "extra_build_level" : "5",
+            "level" : "1",
+            "quantity" : 1
+         },
+         {
+            "classname" : "Lacuna::DB::Result::Building::Ore::Mine",
+            "extra_build_level" : "5",
+            "level" : "1",
+            "quantity" : 2
+         },
+         {
+            "classname" : "Lacuna::DB::Result::Building::Ore::Refinery",
+            "extra_build_level" : "5",
+            "level" : "1",
+            "quantity" : 1
+         },
+         {
+            "classname" : "Lacuna::DB::Result::Building::Water::Production",
+            "extra_build_level" : "5",
+            "level" : "1",
+            "quantity" : 1
+         }
+      ],
+      "resources" : {
+         "anthracite" : 13568,
+         "chalcopyrite" : 3526,
+         "goethite" : 12345,
+         "methane" : 34555,
+         "zircon" : 12010
+      },
+      "ships" : []
+   },
+   "name" : "Mirrian Mining Energy 4",
+   "network_19_completion" : "%s helps Mirrian Mining Evacuate Planet!",
+   "network_19_headline" : "Mirrian Mining Prepares to Abandon Planet!"
+}

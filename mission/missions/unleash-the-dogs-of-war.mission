@@ -1,0 +1,36 @@
+# config-file-type: JSON 1
+{
+   "description" : "We want to be left alone, but our neighbors keep on probing our systems.  The only way to end these intrusions is by destroying all neighboring empires.  As you are far enough away from us, we doubt that you will probe this far out into space.  \n\nIf you do, you will face the same fate.",
+   "max_university_level" : "30",
+   "mission_objective" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 4,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "snark"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "TerraCotta",
+            "quantity" : 1,
+            "speed" : "1000",
+            "stealth" : "0",
+            "type" : "terraforming_platform_ship"
+         }
+      ]
+   },
+   "name" : "Unleash The Dogs Of War",
+   "network_19_completion" : "%s helps exterminate empire in nearby sector.",
+   "network_19_headline" : "Xenophobic empire asks for help eradicating life in the Expanse."
+}

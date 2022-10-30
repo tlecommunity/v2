@@ -1,0 +1,34 @@
+# config-file-type: JSON 1
+{
+   "description" : "From The Desk Of:  Hugario Tr'Kylik, Headminister of Astrometrics, Oungivai System\nTo whomever it may concern,\nOur local astronomers have chanced upon a rare sighting of a wide-orbit comet making its way toward the inner sphere of a star system near your empire!  Your cooperation would be most welcome if you could assist us in our research of this magnificent phenomenon.\nSend a probe to the aforementioned system, and send us any data you can collect on it.  In return, I can reward you with a pair of old probes we have stored in our Star Port.",
+   "max_university_level" : "7",
+   "mission_objective" : {
+      "fleet_movement" : [
+         {
+            "ship_type" : "probe",
+            "target" : {
+               "color" : "any",
+               "in_zone" : 1,
+               "type" : "star"
+            }
+         }
+      ]
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "Starter Probe",
+            "quantity" : 2,
+            "speed" : "6000",
+            "stealth" : "0",
+            "type" : "probe"
+         }
+      ]
+   },
+   "name" : "Comets, Anyone?",
+   "network_19_completion" : "Thanks To %s, Comet's Secrets Revealed!",
+   "network_19_headline" : "Comet Sighting Excites Science-Types."
+}

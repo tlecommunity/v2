@@ -1,0 +1,26 @@
+# config-file-type: JSON 1
+{
+   "description" : "Please help us.  We colonized this planet we thought was ideal for our purposes, but it turns out there are just thousands of nests around.  If you get us minerals and some denton root, we can put together some nests for your own purposes and clear a little bit of ground for ourselves.",
+   "max_university_level" : "30",
+   "mission_objective" : {
+      "resources" : {
+         "bauxite" : 95000,
+         "goethite" : 95000,
+         "root" : 150000,
+         "sulfur" : 75000
+      }
+   },
+   "mission_reward" : {
+      "plans" : [
+         {
+            "classname" : "Lacuna::DB::Result::Building::Permanent::BeeldebanNest",
+            "extra_build_level" : "0",
+            "level" : "1",
+            "quantity" : 2
+         }
+      ]
+   },
+   "name" : "Beeldeban Infestation",
+   "network_19_completion" : "%s has adopted a couple nests of Beeldebans!",
+   "network_19_headline" : "Splanford Six overrun by Beeldebans!"
+}

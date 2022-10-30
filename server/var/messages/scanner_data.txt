@@ -1,0 +1,7 @@
+%s Results
+~~~
+Our %s named %s captured the attached map of {Starmap %s %s %s}.
+
+Regards,
+
+Your Humble Assistant

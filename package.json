@@ -1,0 +1,14 @@
+{
+  "name": "tlecommunity-v2",
+  "version": "1.0.0",
+  "description": "The new community version of The Lacuna Expanse, now using a monorepo!",
+  "private": true,
+  "scripts": {
+    "lint": "prettier --check **/*.{ts,tsx,md,js,jsx,css,scss,yml}",
+    "lint:fix": "prettier --write **/*.{ts,tsx,md,js,jsx,css,scss,yml}"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^2.7.1"
+  }
+}

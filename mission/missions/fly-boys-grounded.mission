@@ -1,0 +1,27 @@
+# config-file-type: JSON 1
+{
+   "description" : "Military leaders would like to beef up the defensive capabilities of Slee Ozatt 3 but lack the gold required to adorn the very stylish pilot wannabees. If you would be willing to supply them with enough gold to get the pretty boys going they will give you the first fighter off the line.",
+   "max_university_level" : "10",
+   "mission_objective" : {
+      "resources" : {
+         "gold" : 20000
+      }
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "9000",
+            "hold_size" : "0",
+            "name" : "Slee Ozatt Fighter",
+            "quantity" : 1,
+            "speed" : "5000",
+            "stealth" : "0",
+            "type" : "fighter"
+         }
+      ]
+   },
+   "name" : "Fly Boys Grounded",
+   "network_19_completion" : "Jets are once again seen in skies of Slee Ozatt.",
+   "network_19_headline" : "Pilots from Slee Ozatt 4 can't get training, instead film strange shirtless volleyball scenes."
+}

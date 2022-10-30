@@ -1,0 +1,12 @@
+%s
+~~~
+I propose a parliamentary vote has on a proposition titled *%s*. My specific proposal is as follows:
+
+%s
+
+
+Do you agree to this proposition?
+
+{VoteYes %s %s %s} {VoteNo %s %s %s}
+
+This proposition will automatically pass without a majority vote 72 hours from now.

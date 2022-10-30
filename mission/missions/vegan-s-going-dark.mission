@@ -1,0 +1,21 @@
+# config-file-type: JSON 1
+{
+   "description" : "The Vegan Recyclers Corp is running out of waste to run their plants. Their whole planet has gone green and is run on waste; thus, they have no more waste. They need to import massive quantities of waste before a total planet-wide shut down happens. 500k waste is needed. In return, they will give you a gold medal and a Gold Glyph.",
+   "max_university_level" : "18",
+   "mission_objective" : {
+      "resources" : {
+         "waste" : 500000
+      }
+   },
+   "mission_reward" : {
+      "glyphs" : [
+         {
+            "quantity" : 1,
+            "type" : "gold"
+         }
+      ]
+   },
+   "name" : "Vegan's Going Dark",
+   "network_19_completion" : "Vegan energy grid has been saved.",
+   "network_19_headline" : "Vegan power plants shutting down!"
+}

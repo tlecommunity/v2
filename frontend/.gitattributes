@@ -1,0 +1,4 @@
+# CRLF to LF line endings
+* text=auto
+
+app/vendor/** linguist-vendored

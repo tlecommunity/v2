@@ -1,0 +1,58 @@
+# config-file-type: JSON 1
+{
+   "description" : "The eccentric dictator Kennius Gee of Geeworld (population 3 plus a cat) has decided that he needs to form a powerful space fleet.  The problem?  Geeworld is actually a Y-class moon whose surface consists only of coarse regolith, so his options are limited. Kennius proposes to trade the sand from his world to anybody who provides him a ship.  He's starting small - just a few ships - but he'll give you enough sand to form a beach on your world.",
+   "max_university_level" : "10",
+   "mission_objective" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 1,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "dory"
+         },
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 1,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "probe"
+         },
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 1,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "scanner"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "plans" : [
+         {
+            "classname" : "Lacuna::DB::Result::Building::Permanent::Beach10",
+            "extra_build_level" : "0",
+            "level" : "1",
+            "quantity" : 1
+         },
+         {
+            "classname" : "Lacuna::DB::Result::Building::Permanent::Sand",
+            "extra_build_level" : "0",
+            "level" : "1",
+            "quantity" : 1
+         }
+      ]
+   },
+   "name" : "To Beach His Own",
+   "network_19_completion" : "Ships-for-sand program a success!  %s now owns enough sand to form a new beach!",
+   "network_19_headline" : "Eccentric dictator seeks to trade beaches for spacecraft."
+}

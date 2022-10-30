@@ -1,0 +1,8 @@
+Wormhole Opens!
+~~~
+A Wormhole opened up on {Starmap %s %s %s}, %s and %s!
+
+
+Regards,
+
+Your Humble Assistant

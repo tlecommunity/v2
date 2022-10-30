@@ -1,0 +1,57 @@
+{
+  "name": "le-serf",
+  "version": "2.0.4",
+  "description": "Your trusty assistant in your Lacuna Expanse misadventures!",
+  "main": "index.js",
+  "author": "Nathan McCallum <me@1vasari.xyz> (https://github.com/1vasari)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/1vasari/le-serf"
+  },
+  "scripts": {
+    "test": "node test/scripts/lacuna-test.js && mocha && snazzy",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "bin": {
+    "le-serf": "bin/le-serf.js"
+  },
+  "dependencies": {
+    "bluebird": "3.1.1",
+    "browser-request": "0.3.3",
+    "camelize": "1.0.0",
+    "cli-table": "0.3.1",
+    "colors": "1.1.2",
+    "commander": "2.9.0",
+    "inquirer": "0.11.3",
+    "is-there": "4.3.1",
+    "lodash": "3.10.x",
+    "memory-cache": "0.1.4",
+    "moment": "2.11.1",
+    "moment-duration-format": "1.3.0",
+    "moment-range": "2.1.0",
+    "pluralize": "1.2.1",
+    "request": "2.67.0",
+    "user-home": "2.0.0"
+  },
+  "devDependencies": {
+    "chai": "3.4.1",
+    "del": "2.2.0",
+    "history": "1.17.0",
+    "mocha": "2.3.4",
+    "react": "0.14.6",
+    "react-dom": "0.14.6",
+    "react-gravatar": "2.3.0",
+    "react-router": "1.0.3",
+    "reflux": "0.3.0",
+    "snazzy": "2.0.1",
+    "standard": "5.4.1",
+    "store": "1.3.20",
+    "vite": "^3.1.8"
+  }
+}

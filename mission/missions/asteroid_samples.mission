@@ -1,0 +1,37 @@
+# config-file-type: JSON 1
+{
+   "description" : "We may have found a new source of energy, but we need a mineral compound we think can only be found on what we've designated, Asteroid X.  Send a mining platform to it, and we will  just need some samples obtained from there.  Do this for us, and we'll provide a ship based on the new tech.",
+   "max_university_level" : "30",
+   "mission_objective" : {
+      "fleet_movement" : [
+         {
+            "ship_type" : "mining_platform_ship",
+            "target" : {
+               "in_zone" : 1,
+               "size" : [
+                  1,
+                  10
+               ],
+               "type" : "asteroid"
+            }
+         }
+      ]
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "10",
+            "combat" : "0",
+            "hold_size" : "250000",
+            "name" : "Mining Galleon",
+            "quantity" : 1,
+            "speed" : "4500",
+            "stealth" : "0",
+            "type" : "galleon"
+         }
+      ]
+   },
+   "name" : "Asteroid Samples",
+   "network_19_completion" : "%s has supplied the ore from Asteroid X.",
+   "network_19_headline" : "Firm needs mineral found only on a certain asteroid."
+}

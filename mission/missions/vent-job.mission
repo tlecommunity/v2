@@ -1,0 +1,33 @@
+# config-file-type: JSON 1
+{
+   "description" : "The great inventor race D'Knu on K'm have developed plans for a modified excavator with the goal of creating geo-thermal vents. Due to safety concerns, the D'Knu K'm Foundation is looking for a species willing to volunteer to test the design. The first race to provide five excavators will receive a geo-thermal vent.",
+   "max_university_level" : "16",
+   "mission_objective" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 5,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "excavator"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "plans" : [
+         {
+            "classname" : "Lacuna::DB::Result::Building::Permanent::GeoThermalVent",
+            "extra_build_level" : "0",
+            "level" : "1",
+            "quantity" : 1
+         }
+      ],
+      "ships" : []
+   },
+   "name" : "Vent Job",
+   "network_19_completion" : "%s's Geo-thermal excavator worked!  Tragedy struck later the same day! Dark matter experiment kills all on K'm!",
+   "network_19_headline" : "D'Knu K'm foundation needs volunteers to Beta Test new excavator design."
+}

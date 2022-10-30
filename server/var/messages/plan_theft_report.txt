@@ -1,0 +1,8 @@
+Appropriation Report
+~~~
+I have just acquired %s.
+
+More to come,
+
+%s of {Planet %s %s}
+

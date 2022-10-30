@@ -1,0 +1,41 @@
+# config-file-type: JSON 1
+{
+   "description" : "The Lacuna Rebels are trying to infiltrate the Lacuna Expanse Corp and gain valuable intelligence. The rebels are in desperate need of spy pods and spy shuttles to accomplish this. They are asking for 3 spy pods and 3 spy shuttles to be delivered to a secret location. In return, you will receive a Galena Glyph and our eternal thanks.",
+   "max_university_level" : "18",
+   "mission_objective" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 3,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "spy_pod"
+         },
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 3,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "spy_shuttle"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "glyphs" : [
+         {
+            "quantity" : 1,
+            "type" : "galena"
+         }
+      ],
+      "ships" : []
+   },
+   "name" : "Help the Rebels Spy",
+   "network_19_completion" : "%s has delivered spy craft to the Lacuna Rebels.",
+   "network_19_headline" : "Rebels in need of spy pods for mission."
+}

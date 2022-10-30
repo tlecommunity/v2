@@ -1,0 +1,36 @@
+# config-file-type: JSON 1
+{
+   "description" : "Our delivery schedule is getting too hectic for just one slow freighter. We need a group of ships to get our delivery times down.  If we can get someone to provide eight faster Dories, we can turn over this oversized freighter.   Please excuse the garish paint job.",
+   "max_university_level" : "25",
+   "mission_objective" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "10000",
+            "name" : "",
+            "quantity" : 8,
+            "speed" : "2000",
+            "stealth" : "0",
+            "type" : "dory"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "250000",
+            "name" : "Alpha Zeta Freighter",
+            "quantity" : 1,
+            "speed" : "1750",
+            "stealth" : "0",
+            "type" : "freighter"
+         }
+      ]
+   },
+   "name" : "Delivery Fleet Needed",
+   "network_19_completion" : "%s gets delivery vehicle contract!",
+   "network_19_headline" : "Alpha-Zeta Corp needs more ships."
+}

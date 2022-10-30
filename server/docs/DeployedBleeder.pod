@@ -1,0 +1,7 @@
+=head1 Deployed Bleeder Methods
+
+Deployed Bleeder is accessible via the URL C</deployedbleeder>.
+
+The list of methods below represents changes and additions to the methods that all L<Buildings> share.
+
+=cut

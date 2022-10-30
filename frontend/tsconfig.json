@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "ES2020",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmitOnError": false,
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "app/*": ["app/*"]
+    },
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node"
+  }
+}

@@ -1,0 +1,15 @@
+Shipyard
+~~~
+Now that you've got the Space Port you can start on the Shipyard. Your Shipyard will allow you to build ships so that you can explore the Expanse and even colonize other planets. Build the Shipyard now and we'll soon have you scouring the galaxy for more resources.
+
+I've just sent some more resources to you. They should arrive by the time your Shipyard is complete.
+
+By the way, have you been keeping tabs on the number of plots {plots} you're using to build all this stuff? Planets don't have infinite amounts of space. You can see the number of plots you have versus how many you've used in the Planet details of the Planetary Command Center.
+
+Regards,
+
+Tou Re Ell
+Lacuna Expanse Corp
+
+Task: Build a Shipyard.
+Reward: Free resources.

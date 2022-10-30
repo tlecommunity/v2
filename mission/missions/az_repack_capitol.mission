@@ -1,0 +1,51 @@
+# config-file-type: JSON 1
+{
+   "description" : "Just Kidding, you might get a hold of a capitol plan via a mission, but spies just can't get a capitol plan, since they can't steal plans from a capitol planet.  So how about instead, you find us some unique plans. Perhaps some of those excavator found plans.",
+   "max_university_level" : "30",
+   "mission_objective" : {
+      "plans" : [
+         {
+            "classname" : "Lacuna::DB::Result::Building::Permanent::Crater",
+            "extra_build_level" : "3",
+            "level" : "1",
+            "quantity" : 1
+         },
+         {
+            "classname" : "Lacuna::DB::Result::Building::Permanent::Grove",
+            "extra_build_level" : "3",
+            "level" : "1",
+            "quantity" : 1
+         },
+         {
+            "classname" : "Lacuna::DB::Result::Building::Permanent::Lagoon",
+            "extra_build_level" : "3",
+            "level" : "1",
+            "quantity" : 1
+         },
+         {
+            "classname" : "Lacuna::DB::Result::Building::Permanent::Lake",
+            "extra_build_level" : "3",
+            "level" : "1",
+            "quantity" : 1
+         },
+         {
+            "classname" : "Lacuna::DB::Result::Building::Permanent::Ravine",
+            "extra_build_level" : "3",
+            "level" : "1",
+            "quantity" : 1
+         },
+         {
+            "classname" : "Lacuna::DB::Result::Building::Permanent::Sand",
+            "extra_build_level" : "3",
+            "level" : "1",
+            "quantity" : 1
+         }
+      ]
+   },
+   "mission_reward" : {
+      "happiness" : "6000000"
+   },
+   "name" : "Plan stripping - Capitol",
+   "network_19_completion" : "%s turned some worthless plans into a source of happiness!",
+   "network_19_headline" : "Turn a Capitol Plan into a source of pride!"
+}

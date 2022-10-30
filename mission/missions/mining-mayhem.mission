@@ -1,0 +1,39 @@
+# config-file-type: JSON 1
+{
+   "description" : "Hello there.  Its so simple a beeldeban could do it.  Send a detonator at the listed asteroid and we'll give you some mining ships.  Sound good?",
+   "max_university_level" : "30",
+   "mission_objective" : {
+      "fleet_movement" : [
+         {
+            "ship_type" : "detonator",
+            "target" : {
+               "in_zone" : 1,
+               "inhabited" : 0,
+               "isolationist" : 0,
+               "size" : [
+                  1,
+                  10
+               ],
+               "type" : "asteroid"
+            }
+         }
+      ]
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "Mayhem Miner",
+            "quantity" : 2,
+            "speed" : "600",
+            "stealth" : "0",
+            "type" : "mining_platform_ship"
+         }
+      ]
+   },
+   "name" : "Mining Mayhem",
+   "network_19_completion" : "Is %s a mining mercenary?",
+   "network_19_headline" : "Lacuna Mining Inter-galactic offers ships for revenge."
+}

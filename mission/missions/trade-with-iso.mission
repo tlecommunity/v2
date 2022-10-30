@@ -1,0 +1,36 @@
+# config-file-type: JSON 1
+{
+   "description" : "Cautious planet, who wish to remain anonymous, seeks new energy trading partner for discrete mission. Offering a goethite glyph to the first new trade partner to make delivery. Have 50k energy on hand, contact planet, and send a diplomatic courier (a spy) to target planet via cargo ship. After arrival of spy, transaction can be completed.",
+   "max_university_level" : "30",
+   "mission_objective" : {
+      "fleet_movement" : [
+         {
+            "ship_type" : "cargo_ship",
+            "target" : {
+               "in_zone" : 1,
+               "inhabited" : 1,
+               "isolationist" : 0,
+               "size" : [
+                  30,
+                  60
+               ],
+               "type" : "habitable"
+            }
+         }
+      ],
+      "resources" : {
+         "energy" : 50000
+      }
+   },
+   "mission_reward" : {
+      "glyphs" : [
+         {
+            "quantity" : 1,
+            "type" : "goethite"
+         }
+      ]
+   },
+   "name" : "Setup a trade mission",
+   "network_19_completion" : "%s established trading links with anonymous planet.",
+   "network_19_headline" : "Cautious planet desires trade."
+}

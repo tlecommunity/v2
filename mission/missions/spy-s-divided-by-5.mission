@@ -1,0 +1,36 @@
+# config-file-type: JSON 1
+{
+   "description" : "We are currently at war. We need to send spies to 5 different enemy planets. However we only have 3 spy shuttles. We will give you these 3 shuttles for 5 pods. We must invade and conquer all colonies!",
+   "max_university_level" : "15",
+   "mission_objective" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 5,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "spy_pod"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "Empire Shuttle",
+            "quantity" : 3,
+            "speed" : "2500",
+            "stealth" : "12000",
+            "type" : "spy_shuttle"
+         }
+      ]
+   },
+   "name" : "Spy's Divided By 5 ",
+   "network_19_completion" : "Spy Pods Sent To Empire.",
+   "network_19_headline" : "Empire Requesting Spy Pods."
+}

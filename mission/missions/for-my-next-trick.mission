@@ -1,0 +1,36 @@
+# config-file-type: JSON 1
+{
+   "description" : "A great opportunity has appeared for you can have the great magician Zevon perform his famous disappearing glyph act!\nAll you need to do is gather your populace and supply a couple semi-valuable glyphs with a suitable ship.\nThen just sit back and watch the show.",
+   "max_university_level" : "30",
+   "mission_objective" : {
+      "glyphs" : [
+         {
+            "quantity" : 1,
+            "type" : "gold"
+         },
+         {
+            "quantity" : 1,
+            "type" : "zircon"
+         }
+      ],
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 1,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "dory"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "happiness" : "200000",
+      "ships" : []
+   },
+   "name" : "For my next trick",
+   "network_19_completion" : "Among charges of fraud, a carnival atmosphere is found at %s.",
+   "network_19_headline" : "Magician Zevon tours the expanse!"
+}

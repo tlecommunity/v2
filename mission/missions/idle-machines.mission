@@ -1,0 +1,27 @@
+# config-file-type: JSON 1
+{
+   "description" : "Harry's Landscaping and Earth Removal company has seen jobs drop 50% in the last year. Harry can only keep two of his four excavators running and two of his four kids fed. Not wanting to lose future laborers to malnutrition Harry is willing to sacrifice his two idle machines for some bread.",
+   "max_university_level" : "30",
+   "mission_objective" : {
+      "resources" : {
+         "bread" : 20000
+      }
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "Breaded Excavator",
+            "quantity" : 2,
+            "speed" : "7500",
+            "stealth" : "0",
+            "type" : "excavator"
+         }
+      ]
+   },
+   "name" : "Idle Machines",
+   "network_19_completion" : "Harry's Landscaping and Earth Removal now looking to rent empty garages.",
+   "network_19_headline" : "Harry Callahan can't keep his crews busy."
+}

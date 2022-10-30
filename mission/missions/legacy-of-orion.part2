@@ -1,0 +1,42 @@
+# config-file-type: JSON 1
+{
+   "description" : "The map that lead to the old Orion system, gave us a few clues to another old system of theirs.  -That shady dealer helped us figure it out for a cost. If we could get a scanner there we might be able to incorporate even more of their technology into our Planetary Control Center.",
+   "max_university_level" : "30",
+   "mission_objective" : {
+      "fleet_movement" : [
+         {
+            "ship_type" : "scanner",
+            "target" : {
+               "in_zone" : 1,
+               "inhabited" : 0,
+               "isolationist" : 0,
+               "size" : [
+                  1,
+                  121
+               ],
+               "type" : "habitable"
+            }
+         }
+      ],
+      "resources" : {
+         "beetle" : 23000000,
+         "energy" : 23000000,
+         "halite" : 11500000,
+         "magnetite" : 11500000,
+         "water" : 23000000
+      }
+   },
+   "mission_reward" : {
+      "plans" : [
+         {
+            "classname" : "Lacuna::DB::Result::Building::PlanetaryCommand",
+            "extra_build_level" : "0",
+            "level" : "22",
+            "quantity" : 1
+         }
+      ]
+   },
+   "name" : "Legacy of Orion 2",
+   "network_19_completion" : "%s got a good glimpse of the ancient Orion technology, when they scanned one of the ancient Orion's old system.",
+   "network_19_headline" : "The race to uncover the ancients' secrets continue. Map holds clues to ancients!"
+}

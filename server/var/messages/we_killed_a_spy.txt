@@ -1,0 +1,8 @@
+Enemy Killed
+~~~
+We killed an enemy agent on {Starmap %s %s %s}. Unfortunately, with the agent dead no other information could be gathered.
+
+Regards,
+
+%s
+

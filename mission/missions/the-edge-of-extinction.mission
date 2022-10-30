@@ -1,0 +1,32 @@
+# config-file-type: JSON 1
+{
+   "description" : "Recently we were trying out the new class of spies on a neighboring planet but they were caught.  Our neighbors were nice enough to return our spies, however they were tied to Snarks that have devastated our planet.\n\nWe need it all.  Water, Energy, Ore, and Food.  If you can supply this you can have the rest of our spy pods, we're done with that game.  Besides, all of our spies have quit!",
+   "max_university_level" : "15",
+   "mission_objective" : {
+      "resources" : {
+         "algae" : 10000,
+         "energy" : 10000,
+         "fungus" : 10000,
+         "sulfur" : 10000,
+         "uraninite" : 10000,
+         "water" : 10000
+      }
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "Junk Pod",
+            "quantity" : 6,
+            "speed" : "5000",
+            "stealth" : "5000",
+            "type" : "spy_pod"
+         }
+      ]
+   },
+   "name" : "The Edge of Extinction",
+   "network_19_completion" : "%s Helps bring local race from being wiped from the Expanse.",
+   "network_19_headline" : "Zeti Phi Oornu dealt a devastating blow."
+}

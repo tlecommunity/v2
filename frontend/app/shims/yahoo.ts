@@ -1,0 +1,37 @@
+import 'app/vendor/yui2/build/yuiloader/yuiloader';
+import 'app/vendor/yui-reset.css';
+import 'app/vendor/yui2/build/fonts/fonts.css';
+import 'app/vendor/yui2/build/base/base.css';
+import 'app/vendor/yui2/build/assets/skins/sam/skin.css';
+import 'app/vendor/yui2/build/event/event';
+import 'app/vendor/yui2/build/dom/dom';
+import 'app/vendor/yui2/build/animation/animation';
+import 'app/vendor/yui2/build/datasource/datasource';
+import 'app/vendor/yui2/build/autocomplete/autocomplete';
+import 'app/vendor/yui2/build/connection/connection';
+import 'app/vendor/yui2/build/container/container';
+import 'app/vendor/yui2/build/container/assets/container-core.css';
+import 'app/vendor/yui2/build/cookie/cookie';
+import 'app/vendor/yui2/build/element/element';
+import 'app/vendor/yui2/build/datatable/datatable';
+import 'app/vendor/yui2/build/dragdrop/dragdrop';
+import 'app/vendor/yui2/build/event-delegate/event-delegate';
+import 'app/vendor/yui2/build/event-mouseenter/event-mouseenter';
+import 'app/vendor/yui2/build/get/get';
+import 'app/vendor/yui2/build/json/json';
+import 'app/vendor/yui2/build/logger/logger';
+import 'app/vendor/yui2/build/menu/menu';
+import 'app/vendor/yui2/build/menu/assets/menu.css';
+import 'app/vendor/yui2/build/menu/assets/menu-core.css';
+import 'app/vendor/yui2/build/paginator/paginator';
+import 'app/vendor/yui2/build/selector/selector';
+import 'app/vendor/yui2/build/slider/slider';
+import 'app/vendor/yui2/build/tabview/tabview';
+import 'app/vendor/yui2/build/tabview/assets/tabview.css';
+import 'app/vendor/yui2/build/grids/grids.css';
+import 'app/vendor/yui2/build/reset-fonts-grids/reset-fonts-grids.css';
+import 'app/vendor/yui2/build/yahoo/yahoo';
+
+//@ts-expect-error
+const { YAHOO } = window;
+export default YAHOO;

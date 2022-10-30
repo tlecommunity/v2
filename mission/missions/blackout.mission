@@ -1,0 +1,28 @@
+# config-file-type: JSON 1
+{
+   "description" : "A massive power failure on Oed Kalimar 3 has left the main colony without any form of power.  Your help is needed to help restore primary functions and any food aid you can supply will be of great help to the aid services.  We will reward you with 2 of our now inactive drones.",
+   "max_university_level" : "8",
+   "mission_objective" : {
+      "resources" : {
+         "energy" : 10000,
+         "milk" : 5000
+      }
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "20000",
+            "hold_size" : "0",
+            "name" : "Oed Drone",
+            "quantity" : 2,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "drone"
+         }
+      ]
+   },
+   "name" : "Blackout",
+   "network_19_completion" : "Power has been restored on Oed Kalimar 3 thanks to help from %s.",
+   "network_19_headline" : "Massive blackout strikes Oed Kalimar 3."
+}

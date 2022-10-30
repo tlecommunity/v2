@@ -1,0 +1,8 @@
+=head1 Halls Of Vrbansk Methods
+
+Halls Of Vrbansk is accessible via the URL C</hallsofvrbansk>.
+
+The list of methods below represents changes and additions to the methods that all L<Buildings> share.
+
+=cut
+

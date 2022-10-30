@@ -1,0 +1,30 @@
+# config-file-type: JSON 1
+{
+   "description" : "The Snubnosian race of the Pretilian empire despises one thing above all others: nosy neighbors. They have made it the great cause of their race to deter spying eyes. In exchange for food, water, and energy, the Pretilians are offering to provide Observatory Seekers.",
+   "max_university_level" : "30",
+   "mission_objective" : {
+      "resources" : {
+         "algae" : 100000,
+         "energy" : 100000,
+         "fungus" : 100000,
+         "water" : 100000
+      }
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "5000",
+            "hold_size" : "0",
+            "name" : "Punch in the Nose",
+            "quantity" : 1,
+            "speed" : "4000",
+            "stealth" : "1000",
+            "type" : "observatory_seeker"
+         }
+      ]
+   },
+   "name" : "Nosy Neighbors",
+   "network_19_completion" : "Nosy neighbors beware: %s is packing a snubnose observatory seeker!",
+   "network_19_headline" : "Pretilian empire offers cure for nosy neighbors."
+}

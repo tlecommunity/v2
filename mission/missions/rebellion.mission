@@ -1,0 +1,36 @@
+# config-file-type: JSON 1
+{
+   "description" : "Hello? Who are you? I don't know who you are. But we are rebelling here! They never pay us anything here! We live like slaves. We have just taken over the governments communication system and we are requesting fighters. We should be able to take over the rest of the planet but holding it will be the problem. However if you supply us with 3 fighters we will be able to hold off until we can build our own. Will you help us?",
+   "max_university_level" : "25",
+   "mission_objective" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "5500",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 3,
+            "speed" : "2500",
+            "stealth" : "0",
+            "type" : "fighter"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "glyphs" : [
+         {
+            "quantity" : 1,
+            "type" : "sulfur"
+         }
+      ],
+      "resources" : {
+         "gold" : 10000,
+         "pie" : 10000,
+         "water" : 25000
+      },
+      "ships" : []
+   },
+   "name" : "Rebellion",
+   "network_19_completion" : "You Have Sent Ships To Supply The Rebellion!",
+   "network_19_headline" : "Rebellion Requests Assistance!"
+}

@@ -1,0 +1,7 @@
+=head1 Malcud Field Methods
+
+Malcud Field is accessible via the URL C</malcudfield>.
+
+The list of methods below represents changes and additions to the methods that all L<Buildings> share.
+
+=cut

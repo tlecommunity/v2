@@ -1,0 +1,27 @@
+# config-file-type: JSON 1
+{
+   "description" : "Andre is a spy kid who wants to give up spying to become an artist. He would like to trade his spy pod for goethite so he can make paints. Do you have 6000 goethite for a spy pod?",
+   "max_university_level" : "14",
+   "mission_objective" : {
+      "resources" : {
+         "goethite" : 6000
+      }
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "Mini Spy Pod",
+            "quantity" : 1,
+            "speed" : "4000",
+            "stealth" : "15000",
+            "type" : "spy_pod"
+         }
+      ]
+   },
+   "name" : "Spy Kid Gives Up Spying",
+   "network_19_completion" : "%s Just Got a New Spy Pod. -So Watch Out!",
+   "network_19_headline" : "Do You Need a Spy Pod?"
+}

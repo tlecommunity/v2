@@ -1,0 +1,46 @@
+# config-file-type: JSON 1
+{
+   "description" : "Sick of seeing the same 121 plots?  Want to go see what a p15 looks like?  See the goats of the sea?  Book a holiday with us and see the expanse!  You'll be much happier!\nJust send a probe to our suggested destination, pack some colonists into a spare colony ship, get the luggage into some dories and off you go for an adventure!",
+   "max_university_level" : "30",
+   "mission_objective" : {
+      "fleet_movement" : [
+         {
+            "ship_type" : "probe",
+            "target" : {
+               "color" : "any",
+               "in_zone" : 1,
+               "type" : "star"
+            }
+         }
+      ],
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 1,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "colony_ship"
+         },
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 4,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "dory"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "happiness" : "50000",
+      "ships" : []
+   },
+   "name" : "Holiday in Wee Eafre",
+   "network_19_completion" : "%s has booked a holiday!",
+   "network_19_headline" : "Cheap travel rates across the Lacuna Expanse!"
+}

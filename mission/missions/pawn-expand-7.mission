@@ -1,0 +1,25 @@
+# config-file-type: JSON 1
+{
+   "description" : "Pawn Lacuna has become a successful enterprise fulfilling needs of its customers. We are looking to expand into a new area. Please probe this star system and get back to us. We will pay you for your troubles with these authentic Rolelux watches.",
+   "max_university_level" : "10",
+   "mission_objective" : {
+      "fleet_movement" : [
+         {
+            "ship_type" : "probe",
+            "target" : {
+               "color" : "any",
+               "in_zone" : 1,
+               "type" : "star"
+            }
+         }
+      ]
+   },
+   "mission_reward" : {
+      "resources" : {
+         "gold" : 25000
+      }
+   },
+   "name" : "Pawn Lacuna looking to expand",
+   "network_19_completion" : "Site for construction of new pawn shop determined.",
+   "network_19_headline" : "Pawn Lacuna is interested in expanding."
+}

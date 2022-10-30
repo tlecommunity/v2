@@ -1,0 +1,50 @@
+# config-file-type: JSON 1
+{
+   "description" : "Hello, Archeologist Aliyuden here. \n\nI am excited to announce that I have discovered a more effective way to use the Andecaui propulsion system within their cargo ships. I will spare you the details, but it does require energy to power the nano-bot conversion and uraninite to upgrade the engines. \n\nPlease provide me with an Andecaui Mark I smuggler ship, and another general smuggler ship. I want to convert that ship for my own personal use, as I want to enter the next Vleeslu 5000 race. I am sure I will have the fastest ship for the race!",
+   "max_university_level" : "30",
+   "mission_objective" : {
+      "resources" : {
+         "energy" : 120000,
+         "uraninite" : 80000
+      },
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 1,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "smuggler_ship"
+         },
+         {
+            "berth_level" : "1",
+            "combat" : "100",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 1,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "smuggler_ship"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "10",
+            "combat" : "200",
+            "hold_size" : "75000",
+            "name" : "Andecaui Smuggler II",
+            "quantity" : 1,
+            "speed" : "5000",
+            "stealth" : "12500",
+            "type" : "smuggler_ship"
+         }
+      ]
+   },
+   "name" : "Andecaui Mark II Smuggler Ship",
+   "network_19_completion" : "Archeologist application was denied for the Vleeslu 5000 race, on grounds of weapons present on the ship.",
+   "network_19_headline" : "Archeologist uncovers ancient method of propulsion."
+}

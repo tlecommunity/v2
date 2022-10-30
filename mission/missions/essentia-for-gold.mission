@@ -1,0 +1,21 @@
+# config-file-type: JSON 1
+{
+   "description" : "I need help. My mother recently died. She wanted more than anything to be buried with her gold jewelry. The only problem is how she died. She was getting mugged and had a heart attack. So the theif absconded with her jewelry. I'm willing to give you our family's life savings if you'll help me get the things I need to bury my mother.",
+   "max_university_level" : "2",
+   "mission_objective" : {
+      "resources" : {
+         "gold" : 50
+      }
+   },
+   "mission_reward" : {
+      "resources" : {
+         "bread" : 300,
+         "gypsum" : 300,
+         "halite" : 300,
+         "trona" : 300
+      }
+   },
+   "name" : "A Proper Funeral",
+   "network_19_completion" : "%s made local woman's funeral a joyous event rather than a sad one.",
+   "network_19_headline" : "Mourner needs help to have a proper funeral for his mother."
+}

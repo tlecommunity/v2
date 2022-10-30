@@ -1,0 +1,39 @@
+# config-file-type: JSON 1
+{
+   "description" : "Griv Fulner is a offering to integrate a modification into one of your snarks which will enhance the astrogational navigation and targeting system. If the aftermarket modification works, you're snark will be an observatory seeker. Griv insists on payment in halite.",
+   "max_university_level" : "25",
+   "mission_objective" : {
+      "resources" : {
+         "halite" : 25000
+      },
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 1,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "snark"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "2500",
+            "hold_size" : "0",
+            "name" : "Griv Special",
+            "quantity" : 1,
+            "speed" : "3000",
+            "stealth" : "5000",
+            "type" : "observatory_seeker"
+         }
+      ]
+   },
+   "name" : "Aftermarket Observatory Seeker",
+   "network_19_completion" : "%s has converted a snark to a observatory seeker. But will it work?",
+   "network_19_headline" : "Shady mechanic offering aftermarket snark to observatory seeker conversion."
+}

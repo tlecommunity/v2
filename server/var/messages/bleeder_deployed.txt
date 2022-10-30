@@ -1,0 +1,7 @@
+Bleeder Deployed
+~~~
+We deployed %s of %s bleeders on {Starmap %s %s %s}.
+
+Regards,
+
+Your Humble Assistant

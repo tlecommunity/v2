@@ -1,0 +1,29 @@
+# config-file-type: JSON 1
+{
+   "description" : "Fellow Governor,\n\nAs you may have heard, we are in Jeopardy of having our colony being culled by the Empire.\n\nIf you could provide us with a little more food (some more burgers, cheese, and chips would be enough), we have a colony ship for you.",
+   "max_university_level" : "11",
+   "mission_objective" : {
+      "resources" : {
+         "burger" : 2500,
+         "cheese" : 2500,
+         "chip" : 2500
+      }
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "1500",
+            "hold_size" : "0",
+            "name" : "Swillovian SRCS",
+            "quantity" : 1,
+            "speed" : "1100",
+            "stealth" : "0",
+            "type" : "short_range_colony_ship"
+         }
+      ]
+   },
+   "name" : "Lying to the People",
+   "network_19_completion" : "Swillovians across the Expanse rejoice at the decision to retain their Border Colony.",
+   "network_19_headline" : "Border Colony of Inner Swillovia may be abandoned by Empire."
+}

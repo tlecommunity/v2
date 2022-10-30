@@ -1,0 +1,7 @@
+Excavator Found Nothing
+~~~
+The Excavator you sent to {Starmap %s %s %s} from {Planet %s %s} found nothing interesting.
+
+Regards,
+
+Your Humble Assistant

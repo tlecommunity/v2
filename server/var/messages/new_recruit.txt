@@ -1,0 +1,8 @@
+New Recruit!
+~~~
+Good news! I have brought over a new recruit from {Empire %s %s} that goes by %s.
+
+More to come,
+
+%s of {Planet %s %s}
+

@@ -1,0 +1,32 @@
+# config-file-type: JSON 1
+{
+   "description" : "Have I got a deal for you! Come on down. Every glyph must go! Take this one for instance, I've got two beautiful glyphs right here. One made out of Methane and another made out of Goethite. If you were to offer me one made out of Chalcopyrite, and some additional materials in trade, I'd have no choice but to give you these two! People ask me, \"Lenny, how do you make any money doing 2 for 1 trades like this?\" I tell them that my secret is volume!",
+   "max_university_level" : "20",
+   "mission_objective" : {
+      "glyphs" : [
+         {
+            "quantity" : 1,
+            "type" : "chalcopyrite"
+         }
+      ],
+      "resources" : {
+         "goethite" : 50000,
+         "methane" : 50000
+      }
+   },
+   "mission_reward" : {
+      "glyphs" : [
+         {
+            "quantity" : 1,
+            "type" : "goethite"
+         },
+         {
+            "quantity" : 1,
+            "type" : "methane"
+         }
+      ]
+   },
+   "name" : "2 For 1 Glyph Sale",
+   "network_19_completion" : "Crazy Lenny of Crazy Lenny's Glyph Emporium was found dead in his store on Monday. He appears to have been trampled by shoppers.",
+   "network_19_headline" : "2 for 1 glyph sale this weekend only at Crazy Lenny's Glyph Emporium. Everything must go!"
+}

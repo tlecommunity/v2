@@ -1,0 +1,86 @@
+4.0001:
+ - KNOWN BUGS
+   - Bug: Fleet format currently shows 'Foreign' for all fleets
+
+
+ - RECENTLY FIXED BUGS
+   - Bug: build-queue does not complete.
+
+
+
+ - MAJOR REWORK
+
+ - Resource Balance
+   - Mod: Flattening of all growth rates between levels.
+   - Mod: Different growth rates for different buildings. Perms get less of a bonus per level for example.
+   - Mod: Glyph Buildings nerfed.
+   - Mod: Archeology rate reduced.
+   - Mod: Resource Level Limit removed.
+   - Mod: Stockpile now available on all planets and gives bonus to storage of normal buildings.
+   - Mod: Capitol Building gives a bonus to Happiness generation of normal buildings.
+   - Mod: Max happiness for colonies and space station reduced to reflect lower generation values.
+
+ - Major reworking of ships into fleets.
+   - Mod: Most API calls involving ships have changed, if you use external scripts these will most likely need to be modified.
+   - Mod: Most API calls now have the option of named arguments as well as supporting the existing scheme for backwards compatibility
+   - Mod: A fleet is a collection of ships all having the same attributes and task
+   - Mod: Where previously you referred to a single ship, you now refer to a fleet (and perhaps a quantity of ships)
+
+ - Shipyard changes
+   - Mod: The maximum level of Shipyard on a colony is now used in calculating a new ships attributes, not the current Shipyard
+   - Mod: You can build any number of ships in a fleet in the Shipyard, subject to available building slots, resources and free docks
+   - Fix: Added description of new ship types in Shipyard
+   - Mod: Default ship names no longer have the level of the shipyard (e.g. Probe 25)
+   - Mod: Ship stats based on the shipyard level now take the level of the highest shipyard rather than the current one. Build times depend on the current shipyard level still.
+
+ - Spaceport changes
+   - Fix: Fleets sort correctly in type/name order in Space Port view tab
+   - Mod: You can now see all details of incoming allied ships in the Space Port incoming tab.
+   - Mod: When sending a fleet you now specify the arrival date/time not the speed
+   - Mod: Spaceport, when sending spies, you can specify the arrival date/time
+   - Mod: The limit of sending no more than 20 ships in a fleet has been removed.
+   - Mod: Travelling ships not involved in a trade or an attack can be recalled
+   - Mod: Travelling ships not involved in an attack can be scuttled
+   - Fix: Travelling ships should now be sorted in arrival date order
+   - TODO: Ability to subsidize individual fleet builds on the ship build queue
+
+ - Starmap changes
+   - Mod: You can now see details of incoming allied ships on the Star Map planet/star incoming tab
+   - Mod: You can now see details (subject to the local Space Port level) of incoming foreign ships on the Star Map planet incoming tab for allied planets or Space Stations
+   - TODO: Make allied SS show as purple in star-map, not green
+   - TODO: Need to add the ability to recall orbiting ships when you view 'orbiting' at that body.
+   - TODO: If you have a probe at a star, you can now see all other 'orbiting' probes at that star
+   - TODO: When viewing 'available' or 'unavailable' fleets to send to a body, default shows current planets ships, filter allows other planets to be selected.
+
+ - Trade Ministry changes
+   - Mod: Supply chains can now be set up to allied planets
+
+ - Ship Battle changes
+   - Mod: Fleets on defence no longer have a reset after a battle.
+
+ - Other changes
+   - Mod: Removed option to skip incoming ships messages
+   - TODO: Empire.pm remove 'skip_incoming_ships' code
+   - TODO: Parliament, clicking on parliament gives 'session expired' message.
+   - TODO: Admin 'become this empire in game' gives a session expired message
+   - TODO: Specify that some ships (probe, colony, excavator, etc.) should be sent singly, not in a fleet
+   - TODO: Ability to 'delay' a fleet that is already in flight.
+   - TODO: Display the owner,body of orbiting/defending fleets
+   - TODO: Retrieve spies, should be able to specify 'own colony' spies, not retriev all 'own empire' spies
+   - TODO: Stop being able to send fighters to their home colony to 'Defend'.
+   - TODO: Make sure 'soonest' rounds up to the nearest 15 seconds.
+   - TODO: Allow for a timestring to specify the arrival time as well as the individual arguments
+   - TODO: N19 messages when ships in flight are detonated (suspect faulty engines or human error)
+ - UI : Fix screen scrolling.
+ - UI : Automatically load new captcha on failure (thanks, vortigon)
+ - UI : New buildings have level visible immediately if user wants levels always displayed.
+ - Mod: Limit shipyards to 30 days' queue.
+ - Add: Constructing added to resource bar.
+ - UI : Stop the "Trade Ministry is offline" message when repairing TM
+ - UI : Added self-destruct button back.
+ - Fix: Modify sanitize to do initialize of stored values last.
+ - UI : New buildings will get level showing if user has asked for it.
+ - UI : Fix announcement window for users as logging in.
+ - UI : Fix planet jumping from links
+
+

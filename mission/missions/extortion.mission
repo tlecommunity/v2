@@ -1,0 +1,62 @@
+# config-file-type: JSON 1
+{
+   "description" : "We are a small empire. We received a com message from a larger empire earlier today saying that we WILL accept their offer on the market or else we will accept their Snarks,Scanners,and Spies! After I woke up from fainting I contacted you. Your a large strong empire right? Will you give us some fighters,spy pods,and a snark? Of course we will be using them for \"peace\".",
+   "max_university_level" : "30",
+   "mission_objective" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 2,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "fighter"
+         },
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 1,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "snark"
+         },
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 2,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "spy_pod"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "glyphs" : [
+         {
+            "quantity" : 1,
+            "type" : "bauxite"
+         },
+         {
+            "quantity" : 1,
+            "type" : "kerogen"
+         },
+         {
+            "quantity" : 1,
+            "type" : "uraninite"
+         }
+      ],
+      "resources" : {
+         "pie" : 250000
+      },
+      "ships" : []
+   },
+   "name" : "Extortion",
+   "network_19_completion" : "The Distant Empire Is Now Well Defended And Equipped With War Ships.",
+   "network_19_headline" : "Distant Empire Is Being Extortioned!"
+}

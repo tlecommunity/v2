@@ -1,0 +1,10 @@
+{
+  "name": "le-serf",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "3.3.5",
+    "jquery": "2.1.4",
+    "css-spinners": "~2.2.0",
+    "messenger": "~1.4.2"
+  }
+}

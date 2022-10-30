@@ -1,0 +1,36 @@
+# config-file-type: JSON 1
+{
+   "description" : "We have unidentified bogies coming in from the spangled veil nebula, their ships don't match any current signatures we have on record and they're coming in fast, take a few spy pods and check it out, do be careful, the incoming ships are considered hostile and dangerous until proven otherwise.\n\nYou will be compensated handsomely upon mission completion.",
+   "max_university_level" : "14",
+   "mission_objective" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 3,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "spy_pod"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "Spangled Shuttle",
+            "quantity" : 1,
+            "speed" : "5600",
+            "stealth" : "17500",
+            "type" : "spy_shuttle"
+         }
+      ]
+   },
+   "name" : "Front lines part 1",
+   "network_19_completion" : "Enemy ships near spangled veil nebula identified by %s as the spindleweavers.",
+   "network_19_headline" : "Unidentified enemy ships detected near spangled veil nebula."
+}

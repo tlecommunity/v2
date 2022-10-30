@@ -1,0 +1,61 @@
+# config-file-type: JSON 1
+{
+   "description" : "We need hep finding our lost starship, The Star of Zeela.  We can find it if we get appropriate images of three habitable planets set far apart from each other.  The radiation signature is very unique.",
+   "max_university_level" : "30",
+   "mission_objective" : {
+      "fleet_movement" : [
+         {
+            "ship_type" : "surveyor",
+            "target" : {
+               "in_zone" : 0,
+               "inhabited" : 0,
+               "isolationist" : 0,
+               "size" : [
+                  1,
+                  121
+               ],
+               "type" : "habitable"
+            }
+         },
+         {
+            "ship_type" : "surveyor",
+            "target" : {
+               "in_zone" : 0,
+               "inhabited" : 0,
+               "isolationist" : 0,
+               "size" : [
+                  1,
+                  121
+               ],
+               "type" : "habitable"
+            }
+         },
+         {
+            "ship_type" : "surveyor",
+            "target" : {
+               "in_zone" : 0,
+               "inhabited" : 0,
+               "isolationist" : 0,
+               "size" : [
+                  1,
+                  121
+               ],
+               "type" : "habitable"
+            }
+         }
+      ]
+   },
+   "mission_reward" : {
+      "plans" : [
+         {
+            "classname" : "Lacuna::DB::Result::Building::Permanent::HallsOfVrbansk",
+            "extra_build_level" : "0",
+            "level" : "1",
+            "quantity" : 11
+         }
+      ]
+   },
+   "name" : "Orange Crush",
+   "network_19_completion" : "%s supplied the data that allowed the Star of Zeela to be found.",
+   "network_19_headline" : "Valuable Cargo lost in asteroid belts."
+}

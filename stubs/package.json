@@ -1,0 +1,31 @@
+{
+  "name": "stubs",
+  "private": true,
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Web client for the open source game Lacuna Expanse.",
+  "author": "Lacuna Expanse Corp, Lacuna Expanse Community & Open Source Contributors",
+  "contributors": [
+    "Nathan McCallum <hey@nathan-mccallum.com> (https://github.com/1vasari)"
+  ],
+  "scripts": {
+    "serve": "nodemon --config nodemon.json"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "nodemon": "^2.0.20"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/lodash": "^4.14.186",
+    "@types/node": "^16.11.65",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  }
+}

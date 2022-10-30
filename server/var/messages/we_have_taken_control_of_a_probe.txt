@@ -1,0 +1,8 @@
+Probe Seized
+~~~
+We have taken control of a probe in the {Starmap %s %s %s} system, from {Empire %s %s}. 
+
+More to come,
+
+%s
+

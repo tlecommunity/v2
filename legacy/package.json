@@ -1,0 +1,15 @@
+{
+  "name": "legacy",
+  "version": "1.0.0",
+  "description": "",
+  "priate": true,
+  "main": "index.js",
+  "author": "Nathan McCallum <hey@nathan-mccallum.com>",
+  "license": "MIT",
+  "scripts": {
+    "serve": "http-server --port 3500"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}

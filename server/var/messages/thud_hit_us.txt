@@ -1,0 +1,7 @@
+Thud Hit Us
+~~~
+Thuds, launched by {Empire %s %s}, have devastated plots on {Planet %s %s}.
+
+Regards,
+
+Your Humble Assistant

@@ -1,0 +1,23 @@
+# config-file-type: JSON 1
+{
+   "description" : "We, the children of Amalthea, are entering the final phase of our ascendancy.  Now we must build the Golden Horn ready to be filled. It must be located inside the Temple of Harvest.  Again we will reward any assistance with a glyph, for when we ascend we will not need such trinkets.",
+   "max_university_level" : "20",
+   "mission_objective" : {
+      "resources" : {
+         "energy" : 25000,
+         "gold" : 50000,
+         "water" : 25000
+      }
+   },
+   "mission_reward" : {
+      "glyphs" : [
+         {
+            "quantity" : 1,
+            "type" : "magnetite"
+         }
+      ]
+   },
+   "name" : "Cornucopia Nearly Complete",
+   "network_19_completion" : "%s has helped the Amaltheans build the Golden Horn of the legendary Cornucopia.",
+   "network_19_headline" : "The Amalthea Theocracy are nearing the end of building their holy relic."
+}

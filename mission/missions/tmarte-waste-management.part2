@@ -1,0 +1,28 @@
+# config-file-type: JSON 1
+{
+   "description" : "It's one thing to pay somebody to clean your trash up, it's another to help your own cause. In this mission, you'll gather the minerals to construct a new Waste Digester.",
+   "max_university_level" : "10",
+   "mission_objective" : {
+      "resources" : {
+         "algae" : 250,
+         "energy" : 500,
+         "fungus" : 250,
+         "gold" : 500,
+         "waste" : 10000,
+         "water" : 500
+      }
+   },
+   "mission_reward" : {
+      "plans" : [
+         {
+            "classname" : "Lacuna::DB::Result::Building::Waste::Digester",
+            "extra_build_level" : "4",
+            "level" : "1",
+            "quantity" : 1
+         }
+      ]
+   },
+   "name" : "Waste Management Part 2",
+   "network_19_completion" : "%s has learned to 3 R's, Reduce, Reuse, and Recycle!",
+   "network_19_headline" : "You know, recycling that waste can not only reduce your waste production, but will give you a steady source of ore production."
+}

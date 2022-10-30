@@ -1,0 +1,7 @@
+Excavator Uncovered Plan
+~~~
+While searching {Starmap %s %s %s} an Excavator has uncovered a plan to build a level %s %s. This is a rare and historic find which will have a profound impact on our people. The plan has been sent back to {Planet %s %s} for further study.
+
+Regards,
+
+Your Humble Assistant

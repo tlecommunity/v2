@@ -1,0 +1,30 @@
+# config-file-type: JSON 1
+{
+   "description" : "Nutlandia wants to be make friends by giving you the chance to reduce, re-use, and recycle. If you have an extra dory, then give it to us and we will recycle it for you friend.",
+   "max_university_level" : "12",
+   "mission_objective" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 1,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "dory"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "resources" : {
+         "beryl" : 5438,
+         "energy" : 3214,
+         "water" : 692
+      },
+      "ships" : []
+   },
+   "name" : "Recycling Dory",
+   "network_19_completion" : "%s Recycled a Dory. Do you Reduce, Re-use, and Recycle?",
+   "network_19_headline" : "Do You Have Extra Dories? You Can Recycle It!"
+}

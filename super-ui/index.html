@@ -1,0 +1,41 @@
+<html>
+
+  <head>
+    <title>Lacuna Super UI</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.4.1/dist/css/bootstrap.css"
+      type="text/css">
+
+    <style type="text/css">
+      /* Fix up the messenger box to look nicer. */
+      .messenger-message {
+        width: 50%;
+        margin: 0 auto;
+        text-align: center;
+      }
+    </style>
+
+    <script>
+      // Le Serf checks for this variable to determine if it's running in web or CLI.
+      window.LE_SERF_WEB = true
+    </script>
+  </head>
+
+  <body>
+    <!-- This is the main container of the app. React puts all its stuff in here. -->
+    <div id="main"></div>
+
+    <script type="text/javascript" src="https://unpkg.com/jquery@2.2.4/dist/jquery.js"></script>
+    <script type="text/javascript"
+      src="https://unpkg.com/bootstrap@3.4.1/dist/js/bootstrap.js"></script>
+    <script type="module" src="/lib/web/index.jsx"></script>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        window.LeSerfLoad();
+      });
+    </script>
+
+  </body>
+
+</html>

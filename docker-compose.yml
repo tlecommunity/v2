@@ -1,0 +1,242 @@
+version: '2'
+
+volumes:
+  node-modules-frontend:
+  node-modules-legacy:
+  node-modules-stubs:
+
+services:
+  ########################
+  ## BEANSTALKD CONSOLE ##
+  ########################
+
+  beanstalkd-console:
+    container_name: 'beanstalkd-console'
+    depends_on:
+      - 'beanstalkd'
+    image: 'schickling/beanstalkd-console'
+    ports:
+      - '2080:2080'
+
+  ################
+  ## BEANSTALKD ##
+  ################
+
+  beanstalkd:
+    container_name: 'beanstalkd'
+    image: 'schickling/beanstalkd'
+    ports:
+      - '11300:11300'
+
+  ###############
+  ## BG WORKER ##
+  ###############
+
+  bg-worker:
+    command: 'perl bg_worker.pl daemon --nodaemonize --verbose'
+    container_name: 'bg-worker'
+    build:
+      context: .
+      dockerfile: ./server.dockerfile
+    depends_on:
+      - 'server'
+    volumes:
+      - ./server/bin:/home/lacuna/server/bin
+      - ./server/docs:/home/lacuna/server/docs
+      - ./server/etc-docker:/home/lacuna/server/etc
+      - ./server/log:/home/lacuna/server/log
+      - ./server/lib:/home/lacuna/server/lib
+      - ./server/t:/home/lacuna/server/t
+      - ./server/var:/home/lacuna/server/var
+
+  ###############
+  ## MEMCACHED ##
+  ###############
+
+  memcached:
+    container_name: 'memcached'
+    image: 'memcached'
+
+  ##################
+  ## MYSQL SERVER ##
+  ##################
+
+  mysql-server:
+    container_name: 'mysql-server'
+    environment:
+      - 'MYSQL_ROOT_PASSWORD=lacuna'
+    image: 'mysql:5.5'
+    volumes:
+      - './mysql-data:/var/lib/mysql'
+    ports:
+      - '3306:3306'
+
+  ################
+  ## PHPMYADMIN ##
+  ################
+
+  phpmyadmin:
+    container_name: 'phpmyadmin'
+    image: 'phpmyadmin:5.2-apache'
+    environment:
+      - 'PMA_HOST=mysql-server'
+    ports:
+      - '8000:80'
+    depends_on:
+      - 'mysql-server'
+    links:
+      - 'mysql-server'
+
+  ###########
+  ## NGINX ##
+  ###########
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./nginx.dockerfile
+    container_name: 'nginx'
+    depends_on:
+      - 'server'
+    ports:
+      - '8080:80'
+      - '8443:443'
+    volumes:
+      - ./server/etc-docker/nginx.conf:/etc/nginx/nginx.conf
+      - ./server/etc-docker:/home/lacuna/server/etc
+      - ./server/var:/home/lacuna/server/var
+      - ./server/log:/home/lacuna/server/log
+      - ./server/captcha:/home/lacuna/server/captcha
+      - ./assets:/home/lacuna/server/var/www/public/assets
+      - ./server/var/www/public/api/api.css:/home/lacuna/server/var/www/public/api/api.css
+
+  ###########
+  ## REDIS ##
+  ###########
+
+  redis:
+    container_name: 'redis'
+    image: redis # TODO: lock this to a particular version
+    ports:
+      - '6379:6379'
+
+  ############
+  ## SERVER ##
+  ############
+
+  server:
+    build:
+      context: .
+      dockerfile: ./server.dockerfile
+    command: '/bin/bash startdev.sh'
+    container_name: 'server'
+    depends_on:
+      - 'mysql-server'
+      - 'phpmyadmin'
+      - 'redis'
+      - 'memcached'
+      - 'beanstalkd'
+    environment:
+      - 'LACUNA_NO_MIDDLEWARE=1'
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./server/bin:/home/lacuna/server/bin
+      - ./server/captcha:/home/lacuna/server/captcha
+      - ./server/docs:/home/lacuna/server/docs
+      - ./server/etc-docker:/home/lacuna/server/etc
+      - ./server/log:/home/lacuna/server/log
+      - ./server/lib:/home/lacuna/server/lib
+      - ./server/t:/home/lacuna/server/t
+      - ./server/var:/home/lacuna/server/var
+      - ./server/var/www/public/api/api.css:/home/lacuna/server/var/www/public/api/api.css
+
+  ################
+  ## WEB SOCKET ##
+  ################
+
+  # websocket:
+  #   build:
+  #     context: .
+  #     dockerfile: ./server.dockerfile
+  #   command: 'perl ws.pl'
+  #   container_name: 'websocket'
+  #   depends_on:
+  #     - 'server'
+  #   environment:
+  #     - 'LACUNA_NO_MIDDLEWARE=1'
+  #   ports:
+  #     - '8090:80'
+  #   volumes:
+  #     - ./server/bin:/home/lacuna/server/bin
+  #     - ./server/captcha:/home/lacuna/server/captcha
+  #     - ./server/docs:/home/lacuna/server/docs
+  #     - ./server/etc-docker:/home/lacuna/server/etc
+  #     - ./server/log:/home/lacuna/server/log
+  #     - ./server/lib:/home/lacuna/server/lib
+  #     - ./server/t:/home/lacuna/server/t
+  #     - ./server/var:/home/lacuna/server/var
+
+  ##############
+  ## FRONTEND ##
+  ##############
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend.dockerfile
+    command: 'npm run dev'
+    container_name: 'frontend'
+    depends_on:
+      - 'server'
+    ports:
+      - '3000:3000'
+    volumes:
+      - './frontend:/usr/src/frontend'
+      - 'node-modules-frontend:/usr/src/frontend/node_modules'
+
+  #####################
+  ## LEGACY FRONTEND ##
+  #####################
+
+  legacy:
+    build:
+      context: .
+      dockerfile: ./legacy.dockerfile
+    command: 'npm run serve'
+    container_name: 'legacy'
+    depends_on:
+      - 'server'
+    ports:
+      - '3500:3500'
+    volumes:
+      - './legacy:/usr/src/legacy'
+      - 'node-modules-legacy:/usr/src/legacy/node_modules'
+
+  ############
+  ## ASSETS ##
+  ############
+
+  assets:
+    image: 'httpd:2-alpine'
+    container_name: 'assets'
+    ports:
+      - '3002:80'
+    volumes:
+      - './assets:/usr/local/apache2/htdocs/'
+
+  ###########
+  ## STUBS ##
+  ###########
+
+  stubs:
+    build:
+      context: .
+      dockerfile: ./stubs.dockerfile
+    command: 'npm run serve'
+    container_name: 'stubs'
+    ports:
+      - '3001:3001'
+    volumes:
+      - './stubs:/usr/src/stubs'
+      - 'node-modules-stubs:/usr/src/stubs/node_modules'

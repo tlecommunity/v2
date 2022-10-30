@@ -1,0 +1,7 @@
+We Disabled A Probe
+~~~
+We just disabled a probe tasked to the {Starmap %s %s %s} system. It was under the control of {Empire %s %s}.
+
+More to come,
+
+%s

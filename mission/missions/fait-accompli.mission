@@ -1,0 +1,25 @@
+# config-file-type: JSON 1
+{
+   "description" : "If people think you're happy and complacent, they'll walk all over you.  Let's turn that smile upside down and make others fear you!",
+   "max_university_level" : "30",
+   "mission_objective" : {
+      "happiness" : "1000000"
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "8000",
+            "hold_size" : "0",
+            "name" : "Curved Security",
+            "quantity" : 5,
+            "speed" : "5000",
+            "stealth" : "1000",
+            "type" : "security_ministry_seeker"
+         }
+      ]
+   },
+   "name" : "Fait Accompli",
+   "network_19_completion" : "%s has put on a grimmer outlook!",
+   "network_19_headline" : "Happiness fuels a new weapons program!"
+}

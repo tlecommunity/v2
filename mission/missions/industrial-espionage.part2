@@ -1,0 +1,39 @@
+# config-file-type: JSON 1
+{
+   "description" : "We apologize greatly for the actions of the scientist. We had no idea he was acting on behalf of another empire when he stole your spy pod. We would like to offer compensation in the way of sharing our technology in the area of oversight and trade\n\nIn exchange, we simply ask for a look at your scanner technology since we have heard that your scanners are significantly faster than other empires. We have done extensive background checks on these scientists and assure you that they are upright Trabblxians.",
+   "max_university_level" : "11",
+   "mission_objective" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 1,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "scanner"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "plans" : [
+         {
+            "classname" : "Lacuna::DB::Result::Building::Oversight",
+            "extra_build_level" : "0",
+            "level" : "5",
+            "quantity" : 1
+         },
+         {
+            "classname" : "Lacuna::DB::Result::Building::Trade",
+            "extra_build_level" : "0",
+            "level" : "6",
+            "quantity" : 1
+         }
+      ],
+      "ships" : []
+   },
+   "name" : "Industrial Espionage",
+   "network_19_completion" : "A scanner has disappeared from %s. Agents from Tabblx suspected.",
+   "network_19_headline" : "Developing Empire Trabblx offers reparations for previous aggressions."
+}

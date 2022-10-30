@@ -1,0 +1,31 @@
+# config-file-type: JSON 1
+{
+   "description" : "The Ratcliff Rangers are looking for the Saben Homeworld. They continue to need more probes as they search. They are willing to buy 10 probes for a little prize they found on one of the outer worlds, a Beryl Glyph.",
+   "max_university_level" : "18",
+   "mission_objective" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 10,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "probe"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "glyphs" : [
+         {
+            "quantity" : 1,
+            "type" : "beryl"
+         }
+      ],
+      "ships" : []
+   },
+   "name" : "Ratcliff Rangers Search",
+   "network_19_completion" : "Ratcliff Rangers launch probes.",
+   "network_19_headline" : "Ratcliff Rangers are looking for the Saben Homeworld."
+}

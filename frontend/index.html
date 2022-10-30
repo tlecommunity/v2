@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lacuna Expanse</title>
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="icon" href="/favicon.png">
+  </head>
+
+  <body id="body" class="yui-skin-sam">
+
+    <div id="nojavascript">
+      Lacuna Expanse requires Javascript to run. Please enable and reload the page.
+    </div>
+
+    <script id="noJsScript" type="text/javascript">
+      (function () {
+        // Remove no script notice.
+        var nojs = document.getElementById('nojavascript');
+
+        if (nojs) {
+          nojs.parentNode.removeChild(nojs);
+        }
+
+        // Remove this script node as well.
+        var njs = document.getElementById('noJsScript');
+        njs.parentNode.removeChild(njs);
+      })();
+    </script>
+
+    <script type="module" src="/app/load.ts"></script>
+  </body>
+
+</html>

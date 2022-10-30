@@ -1,0 +1,8 @@
+Appropriation Report
+~~~
+I have just acquired the plans for a level %s %s.
+
+More to come,
+
+%s of {Planet %s %s}
+

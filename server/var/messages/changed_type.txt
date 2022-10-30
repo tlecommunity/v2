@@ -1,0 +1,7 @@
+Changed Type
+~~~
+Geologists are puzzled.  {Starmap %s %s %s}'s planetary classification has gone from %s to %s.
+
+Regards,
+
+Your Humble Assistant

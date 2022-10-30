@@ -1,0 +1,7 @@
+SAW Disabled
+~~~
+Our SAW on {Starmap %s %s %s} while defending {Starmap %s %s %s} was disabled following an attack from the empire of {Empire %s %s} by one of their %ss.
+
+Regards,
+
+Your Humble Assistant

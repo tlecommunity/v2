@@ -1,0 +1,6 @@
+{
+  "exec": "node --loader ts-node/esm server.ts",
+  "ext": "js,mjs,json,ts",
+  "verbose": true,
+  "watch": "src,public"
+}

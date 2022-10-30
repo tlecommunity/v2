@@ -1,0 +1,29 @@
+# config-file-type: JSON 1
+{
+   "description" : "Our favorite galactic musician Johnny Buffet is hungry and needs a Cheeseburger as soon as possible. He's so hungry he's willing to trade his ship to get his hands on some.\n\nGet Johnny 5000 Bread, 5000 Cheese, and 5000 Burger and in exchange you'll receive his tour ship.",
+   "max_university_level" : "15",
+   "mission_objective" : {
+      "resources" : {
+         "bread" : 5000,
+         "burger" : 5000,
+         "cheese" : 5000
+      }
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "5",
+            "combat" : "0",
+            "hold_size" : "150000",
+            "name" : "Buffet on the Go",
+            "quantity" : 1,
+            "speed" : "1500",
+            "stealth" : "500",
+            "type" : "cargo_ship"
+         }
+      ]
+   },
+   "name" : "Cheeseburger in Paradise",
+   "network_19_completion" : "%s has fed the galaxy famous musician and blamed it on a woman.",
+   "network_19_headline" : "Our favorite galactic musician Johnny Buffet is hungry."
+}

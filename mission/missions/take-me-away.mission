@@ -1,0 +1,72 @@
+# config-file-type: JSON 1
+{
+   "description" : "Send a snark over to the named target after scanning, so we can sneak some \"people\" in.  Distraction is the name of the game!\n\nYou'll be rewarded with a couple of top-of-the-line spy delivery ships.  Thanks in advance.",
+   "max_university_level" : "30",
+   "mission_objective" : {
+      "fleet_movement" : [
+         {
+            "ship_type" : "scanner",
+            "target" : {
+               "in_zone" : 1,
+               "inhabited" : 1,
+               "isolationist" : 0,
+               "size" : [
+                  1,
+                  121
+               ],
+               "type" : "habitable"
+            }
+         },
+         {
+            "ship_type" : "snark",
+            "target" : {
+               "in_zone" : 1,
+               "inhabited" : 1,
+               "isolationist" : 0,
+               "size" : [
+                  1,
+                  121
+               ],
+               "type" : "habitable"
+            }
+         }
+      ]
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "10",
+            "combat" : "0",
+            "hold_size" : "25000",
+            "name" : "Vera Gemini",
+            "quantity" : 1,
+            "speed" : "5000",
+            "stealth" : "12000",
+            "type" : "smuggler_ship"
+         },
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "Debbie Denise",
+            "quantity" : 1,
+            "speed" : "8000",
+            "stealth" : "20000",
+            "type" : "spy_pod"
+         },
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "Agent of Fortune",
+            "quantity" : 1,
+            "speed" : "6000",
+            "stealth" : "17500",
+            "type" : "spy_shuttle"
+         }
+      ]
+   },
+   "name" : "Take me Away",
+   "network_19_completion" : "Strange shapes light up the night.",
+   "network_19_headline" : "The men in black, their lips are sealed."
+}

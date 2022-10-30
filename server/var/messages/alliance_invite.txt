@@ -1,0 +1,7 @@
+Invitation
+~~~
+We would like to formally invite you to join {Alliance %s %s}.
+
+%s
+
+To accept, go to your Embassy, and accept the invitation. If you do not yet have an Embassy, you'll need to build one first.

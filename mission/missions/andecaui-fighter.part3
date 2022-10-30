@@ -1,0 +1,40 @@
+# config-file-type: JSON 1
+{
+   "description" : "Hello, Archeologist Aliyuden here. \n\nAfter some work, I have a grasp on how the Andecaui programed their ship-building nano-bots. I have been studying their programming, and I am confident I can reprogram the Adecaui Mark I fighters into Mark II fighters. \n\nI am guessing the Mark II fighters utilize propulsion a lot better making them faster as It also improves on the weaponry. I am working on unlocking more Andecaui technology to manufacture even a more powerful fighter. Please provide me with two Andecaui Mark I fighters. I should be able to convert them into Mark II fighters with energy and uraninite.",
+   "max_university_level" : "30",
+   "mission_objective" : {
+      "resources" : {
+         "energy" : 60000,
+         "uraninite" : 15000
+      },
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "4500",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 2,
+            "speed" : "1800",
+            "stealth" : "100",
+            "type" : "fighter"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "10000",
+            "hold_size" : "0",
+            "name" : "Andecaui Fighter",
+            "quantity" : 2,
+            "speed" : "5500",
+            "stealth" : "200",
+            "type" : "fighter"
+         }
+      ]
+   },
+   "name" : "Andecaui Mark II Fighter",
+   "network_19_completion" : "Archeologist discovers basic Adecaui fighter propulsion technology.",
+   "network_19_headline" : "Archeologist requests aid to unlock basic Andecaui propulsion technology."
+}

@@ -1,0 +1,7 @@
+Killed In Action
+~~~
+%s of {Planet %s %s} was killed in the line of duty today on {Starmap %s %s %s}.
+
+Condolences,
+
+Your Humble Assistant

@@ -1,0 +1,7 @@
+Detonator Report
+~~~
+Our Detonator has destroyed %s probes in the {Starmap %s %s %s} system.
+
+Regards,
+
+Your Humble Assistant

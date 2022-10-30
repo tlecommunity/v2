@@ -1,0 +1,32 @@
+# config-file-type: JSON 1
+{
+   "description" : "Ask me no questions and I'll tell you no lies. The opportunity to pick up a Spaceport Seeker fell into my lap. But I need to move the merchandise quickly if you know what I mean.",
+   "max_university_level" : "30",
+   "mission_objective" : {
+      "resources" : {
+         "algae" : 100000,
+         "energy" : 100000,
+         "fungus" : 100000,
+         "halite" : 50000,
+         "monazite" : 50000,
+         "water" : 100000
+      }
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "10000",
+            "hold_size" : "0",
+            "name" : "erg",
+            "quantity" : 1,
+            "speed" : "2500",
+            "stealth" : "2500",
+            "type" : "spaceport_seeker"
+         }
+      ]
+   },
+   "name" : "Black Market Space Port Seeker",
+   "network_19_completion" : "Rumor has it that %s bought some stolen merchandise.",
+   "network_19_headline" : "Shady Cargo Ship offers Space Port Seeker!"
+}

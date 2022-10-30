@@ -1,0 +1,49 @@
+=head1 Ore Storage Methods
+
+Ore Storage Tanks is accessible via the URL C</orestorage>.
+
+Ore Storage Tanks increase the amount of ore you can store on your planet.
+
+The list of methods below represents changes and additions to the methods that all L<Buildings> share.
+
+=head2 view ( session_id, building_id )
+
+This method is extended to include details about what kinds of ore are stored.
+
+ {
+    "building" : { ... },
+    "status" : { ... },
+    "ore_stored" : {
+        "bauxite" : 0,
+        "gold" : 47,
+        "trona" : 301,
+        ...
+    }
+ }
+ 
+ 
+=head2 dump ( session_id, building_id, type, amount )
+
+Converts ore into waste.
+
+ {
+    "status" : { ... }
+ }
+
+=head3 session_id
+
+A session id.
+
+=head3 building_id
+
+The unique id of the building.
+
+=head3 type
+
+Choose a type of ore convert into waste. (gold, bauxite, galena, etc)
+
+=head3 amount
+
+An integer representing the amount to dump.
+ 
+=cut

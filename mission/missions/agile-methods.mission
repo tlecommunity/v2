@@ -1,0 +1,46 @@
+# config-file-type: JSON 1
+{
+   "description" : "Pleasantries.  My name is Gruz.  I'm Chief Operations Officer for Mukata Trade Corp., and we're restructuring our trades around our core business.  We need to expand a little, our core business of shipping Malcud Burgers from the fringes to the capitol is just not as profitable as it used to be.  We'd like to obtain two cargo ships for greater trade agility.  In exchange we can send you one of our freighters, which is too large for our new business model.",
+   "max_university_level" : "25",
+   "mission_objective" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "75000",
+            "name" : "",
+            "quantity" : 1,
+            "speed" : "0",
+            "stealth" : "0",
+            "type" : "cargo_ship"
+         },
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "0",
+            "name" : "",
+            "quantity" : 1,
+            "speed" : "1200",
+            "stealth" : "0",
+            "type" : "cargo_ship"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "200000",
+            "name" : "Burger Hauler",
+            "quantity" : 1,
+            "speed" : "2000",
+            "stealth" : "0",
+            "type" : "freighter"
+         }
+      ]
+   },
+   "name" : "Agile Methods",
+   "network_19_completion" : "Mukata Trade Corp. agrees to vessel exchange with %s.",
+   "network_19_headline" : "Mukata Trade Corp. restructures along less centralized lines."
+}

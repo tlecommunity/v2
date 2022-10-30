@@ -1,0 +1,7 @@
+Scow Hit Target
+~~~
+Our scow%s just crashed into {Starmap %s %s %s} dropping %s waste in the process.
+
+Regards,
+
+Your Humble Assistant

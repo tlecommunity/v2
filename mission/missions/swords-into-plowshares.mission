@@ -1,0 +1,46 @@
+# config-file-type: JSON 1
+{
+   "description" : "The Ubbari are an old and established civilization from just outside the boundaries of the expanse. They have long been both warlike and isolationist, but recent elections have had a significant effect on their political system, causing them to ease off their militant stance. Now interested in developing profitable trade relations, they are trading away their offensive capacity, seeking merchant marine vessels in return.",
+   "max_university_level" : "21",
+   "mission_objective" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "60000",
+            "name" : "",
+            "quantity" : 5,
+            "speed" : "500",
+            "stealth" : "0",
+            "type" : "cargo_ship"
+         },
+         {
+            "berth_level" : "1",
+            "combat" : "0",
+            "hold_size" : "30000",
+            "name" : "",
+            "quantity" : 1,
+            "speed" : "100",
+            "stealth" : "0",
+            "type" : "dory"
+         }
+      ]
+   },
+   "mission_reward" : {
+      "ships" : [
+         {
+            "berth_level" : "1",
+            "combat" : "9000",
+            "hold_size" : "0",
+            "name" : "Ubbari Seeker",
+            "quantity" : 1,
+            "speed" : "1500",
+            "stealth" : "7500",
+            "type" : "security_ministry_seeker"
+         }
+      ]
+   },
+   "name" : "Swords Into Plowshares",
+   "network_19_completion" : "Help from %s paves they way for Ubbari disarmament. Thousands of citizens celebrate in the streets of Ubb city.",
+   "network_19_headline" : "Hostile Ubbari empire considers widespread demilitarization."
+}
