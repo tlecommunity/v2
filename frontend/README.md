@@ -2,13 +2,13 @@
 
 Web client for the up-and-coming community edition of The Lacuna Expanse.
 
-[![Lacuna Expanse screenshot](docs/img/screenshot.png)](https://demo.tlecommunity.com/)
+[![Lacuna Expanse screenshot](img/screenshot.png)](https://demo.tlecommunity.com/)
 
 # Ideas
 
 Got an idea? [Let us know!](https://github.com/tlecommunity/v2/issues)
 
-[![Yoda and feature requests](docs/img/feature-request.jpg)](https://github.com/tlecommunity/v2/issues)
+[![Yoda and feature requests](img/feature-request.jpg)](https://github.com/tlecommunity/v2/issues)
 
 # Hacking
 

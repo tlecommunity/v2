@@ -1,7 +1,0 @@
-=head1 Lapis Forest Methods
-
-Lapis Forest is accessible via the URL C</lapisforest>.
-
-The list of methods below represents changes and additions to the methods that all L<Buildings> share.
-
-=cut
