@@ -114,8 +114,8 @@ class ProductionTab extends React.Component<Props> {
             />
             <ResourceLine
               icon='happiness'
-              content={`${util.reduceNumber(b.food_hour)} / hr`}
-              title={util.commify(b.food_hour)}
+              content={`${util.reduceNumber(b.happiness_hour)} / hr`}
+              title={util.commify(b.happiness_hour)}
             />
           </div>
 
@@ -151,8 +151,8 @@ class ProductionTab extends React.Component<Props> {
             />
             <ResourceLine
               icon='happiness'
-              content={`${util.reduceNumber(b.upgrade.production.food_hour)} / hr`}
-              title={util.commify(b.upgrade.production.food_hour)}
+              content={`${util.reduceNumber(b.upgrade.production.happiness_hour)} / hr`}
+              title={util.commify(b.upgrade.production.happiness_hour)}
             />
           </div>
 
