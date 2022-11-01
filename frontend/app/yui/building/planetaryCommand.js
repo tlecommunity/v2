@@ -36,6 +36,7 @@ if (
       },
       _getPlanetTab: function () {
         var planet = this.result.planet;
+        var result = this.result;
         var details = function (type, imgclass) {
           var Type = Lib.capitalizeFirstLetter(type);
           var stored = planet[type + '_stored'] || planet[type];
@@ -107,34 +108,34 @@ if (
             Lib.formatNumber(planet.population),
             '</li>',
             '            <li title="',
-            Lib.formatNumber(planet.next_colony_cost),
+            Lib.formatNumber(result.next_colony_cost),
             '"><label>Next Colony Cost:</label>',
-            util.reduceNumber(planet.next_colony_cost),
+            util.reduceNumber(result.next_colony_cost),
             '<span class="smallImg"><img src="',
             Lib.AssetUrl,
             'ui/s/happiness.png" /></span></li>',
             '            <li title="',
-            Lib.formatNumber(planet.next_colony_srcs),
+            Lib.formatNumber(result.next_colony_srcs),
             '"><label>Next <span title="Short Range Colony Ship">SRCS</span> Cost:</label>',
-            util.reduceNumber(planet.next_colony_srcs),
+            util.reduceNumber(result.next_colony_srcs),
             '<span class="smallImg"><img src="',
             Lib.AssetUrl,
             'ui/s/happiness.png" /></span></li>',
-            planet.next_station_cost
+            result.next_station_cost
               ? [
                   '<li title="',
-                  Lib.formatNumber(planet.next_station_cost),
+                  Lib.formatNumber(result.next_station_cost),
                   '"><label>Next Station Cost:</label>',
-                  util.reduceNumber(planet.next_station_cost),
+                  util.reduceNumber(result.next_station_cost),
                   '<span class="smallImg"><img src="',
                   Lib.AssetUrl,
                   'ui/s/happiness.png" /></span></li>',
                 ].join('')
               : '',
             '            <li title="',
-            Lib.formatNumber(planet.insurrect_value),
+            Lib.formatNumber(result.insurrect_value),
             '"><label>Insurrect Value:</label>',
-            util.reduceNumber(planet.insurrect_value),
+            util.reduceNumber(result.insurrect_value),
             '<span class="smallImg"><img src="',
             Lib.AssetUrl,
             'ui/s/happiness.png" /></span></li>',
