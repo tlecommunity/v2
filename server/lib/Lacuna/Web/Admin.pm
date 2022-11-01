@@ -376,7 +376,7 @@ sub www_fill_resources {
     unless (defined $body) {
         confess [404, 'Body not found.'];
     }
-    $body->add_random_type($body->get_capacity('food'));
+    $body->add_random_food($body->get_capacity('food'));
     $body->add_random_ore($body->get_capacity('ore'));
     $body->add_water($body->get_capacity('water'));
     $body->add_energy($body->get_capacity('energy'));
