@@ -2079,7 +2079,7 @@ sub add_stored_limit {
 sub add_random_ore {
     my ($self, $value) = @_;
     foreach my $type (shuffle ORE_TYPES) {
-        next if $self->$type < 100;
+        next if $self->get_stored($type) < 100;
         $self->add_stored($type,$value);
         last;
     }
@@ -2159,7 +2159,7 @@ sub food_hour {
 sub add_random_food {
     my ($self, $value) = @_;
     foreach my $type (shuffle FOOD_TYPES) {
-        next if $self->$type < 100;
+        next if $self->get_stored($type) < 100;
         $self->add_stored($type, $value);
         last;
     }
