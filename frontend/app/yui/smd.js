@@ -335,18 +335,18 @@ if (typeof YAHOO.lacuna.SMD == 'undefined' || !YAHOO.lacuna.SMD) {
             get_glyphs: {
               description:
                 'Returns a list of glyphs that have been found by this archaeology ministry.',
-              parameters: [
-                {
+              parameters: {
+                session_id: {
                   name: 'session_id',
                   type: 'string',
                   optional: false,
                 },
-                {
+                building_id: {
                   name: 'building_id',
                   type: 'string',
                   optional: false,
                 },
-              ],
+              },
               returns: { type: 'object' },
             },
             assemble_glyphs: {
