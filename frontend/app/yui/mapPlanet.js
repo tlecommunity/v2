@@ -43,7 +43,6 @@ if (typeof YAHOO.lacuna.MapPlanet == 'undefined' || !YAHOO.lacuna.MapPlanet) {
       '/park': Lacuna.buildings.Park,
       '/planetarycommand': Lacuna.buildings.PlanetaryCommand,
       '/security': Lacuna.buildings.Security,
-      '/shipyard': Lacuna.buildings.Shipyard,
       '/spaceport': Lacuna.buildings.SpacePort,
       '/ssla': Lacuna.buildings.SpaceStationLab,
       '/subspacesupplydepot': Lacuna.buildings.SubspaceSupplyDepot,
