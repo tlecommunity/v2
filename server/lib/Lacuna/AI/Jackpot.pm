@@ -138,7 +138,7 @@ sub reset_stuff {
         }
     }
     print "Resetting Glyphs\n";
-    my $glyphs = $colony->glyph;
+    my $glyphs = $colony->glyphs;
     my %ghash = map {$_ => 0 } (ORE_TYPES);
     while (my $glyph = $glyphs->next) {
         $ghash{$glyph->type} += $glyph->quantity;

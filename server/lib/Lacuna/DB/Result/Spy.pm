@@ -2646,7 +2646,7 @@ sub destroy_plan {
 
 sub destroy_glyph {
     my ($self, $defender) = @_;
-    my $glyph = $self->on_body->glyph->search(undef, { order_by => 'rand()'})->first;
+    my $glyph = $self->on_body->glyphs->search(undef, { order_by => 'rand()'})->first;
     return $self->mission_objective_not_found('glyph')->id unless defined $glyph;
     $self->things_destroyed( $self->things_destroyed + 1 );
     my $stolen = $glyph->type.' glyph';
@@ -2904,7 +2904,7 @@ sub steal_glyph {
         )->first;
     return $self->ship_not_found->id unless defined $ship;
 
-    my @glyphs = $on_body->glyph;
+    my @glyphs = $on_body->glyphs;
     return $self->mission_objective_not_found('glyph')->id unless scalar @glyphs > 0;
     $ship->body($self->from_body);
     my $glyph = random_element(\@glyphs);

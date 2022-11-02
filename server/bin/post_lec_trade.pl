@@ -177,7 +177,7 @@ for my $g (@glyphs)
     $type = $choices[0];
 
     # make sure we have enough.
-    my $glyph = $body->glyph->search({type=>$type})->first;
+    my $glyph = $body->glyphs->search({type=>$type})->first;
     if ($glyph)
     {
         if ($glyph->quantity < $quantity)

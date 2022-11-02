@@ -35,7 +35,7 @@ use utf8;
 
   out(sprintf("%30s -> %30s", $body_from->name, $body_dest->name));
 
-  my $glyphs = $body_from->glyph;
+  my $glyphs = $body_from->glyphs;
   my $plans  = $body_from->plan_cache;
 
   my $ptypes = 0;
@@ -56,7 +56,7 @@ use utf8;
           $gquant += $glyph->quantity;
           $body_dest->add_glyph($glyph->type, $glyph->quantity);
       }
-      $body_from->glyph->delete;
+      $body_from->glyphs->delete;
   }
   out(sprintf("Moved %3d/%5d plan t/q; Moved %3d/%5d glyph t/q", $ptypes, $pquant, $gtypes, $gquant));
 exit;
