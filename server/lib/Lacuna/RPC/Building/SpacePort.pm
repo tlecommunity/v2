@@ -694,8 +694,6 @@ sub view_incoming_fleets {
 
     my $session     = $self->get_session(\%args);
     my $empire      = $session->current_empire;
-    my $building    = $session->current_building;
-    my $body        = $building->body;
 
     $args{task}     = 'travelling';
     $args{task_title} = 'incoming';
@@ -707,8 +705,6 @@ sub view_orbiting_fleets {
 
     my $session     = $self->get_session(\%args);
     my $empire      = $session->current_empire;
-    my $building    = $session->current_building;
-    my $body        = $building->body;
 
     $args{task}     = 'orbiting';
     $args{task_title} = 'orbiting';
