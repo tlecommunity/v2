@@ -5,8 +5,7 @@ import { int } from 'app/util';
 
 type Props = {
   building: Building;
-  autoSelect: string;
-  fleetType: string;
+  type: string;
 };
 
 type State = {
@@ -26,11 +25,11 @@ class BuildButton extends React.Component<Props, State> {
   }
 
   async buildFleet() {
-    console.log(`Building ${this.state.quantity} of ${this.props.fleetType}`);
+    console.log(`Building ${this.state.quantity} of ${this.props.type}`);
     const res = await Shipyard.buildFleet({
       building_ids: [this.props.building.id],
       quantity: int(this.state.quantity),
-      type: this.props.fleetType,
+      type: this.props.type,
       auto_select: 'this', // TODO: this is wrong
     });
     console.log(res);
@@ -38,15 +37,22 @@ class BuildButton extends React.Component<Props, State> {
 
   render() {
     return (
-      <div className='ui fluid action input'>
-        <input
-          type='number'
-          placeholder='Qty.'
-          value={this.state.quantity}
-          onChange={(e) => this.updateQuantity(e)}
-        />
-        <div className='ui green button' onClick={() => this.buildFleet()}>
-          Build
+      <div className='bulma'>
+        <div className='field is-grouped'>
+          <div className='control'>
+            <input
+              className='input'
+              type='number'
+              placeholder='Quantity'
+              onChange={(e) => this.updateQuantity(e)}
+              value={this.state.quantity}
+            />
+          </div>
+          <div className='control'>
+            <button type='button' className='button is-success' onClick={() => this.buildFleet()}>
+              Build
+            </button>
+          </div>
         </div>
       </div>
     );

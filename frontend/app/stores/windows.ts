@@ -5,7 +5,7 @@ import {
   WindowType,
   WindowOptions,
   CaptchaWindowOptions,
-  StarInfoWindowOptions,
+  StarDetailsWindowOptions,
 } from 'app/interfaces';
 
 const findWindowByType = function (windows: Window[], type: WindowType) {
@@ -41,7 +41,7 @@ class WindowsStore {
   // We only allow one window of each type (e.g. 'about' or 'building')
   //
   add(type: 'captcha', options: CaptchaWindowOptions): void;
-  add(type: 'starInfo', options: StarInfoWindowOptions): void;
+  add(type: 'starDetails', options: StarDetailsWindowOptions): void;
   add(type: WindowType, options = {}) {
     let index = this.windows.length;
 

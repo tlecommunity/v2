@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import BuildQueueItem from 'app/components/shipyard/buildQueue/item';
 import { Building } from 'app/interfaces/building';
 import { ShipyardViewBuildQueueResponse } from 'app/interfaces/shipyard';
@@ -47,51 +48,36 @@ class BuildQueueTab extends React.Component<Props, State> {
   }
 
   render() {
-    const fleetsBuilding = this.state.data.fleets_building;
-
-    const buildQueueLen = fleetsBuilding.length;
-    const fleetItems = [];
-
-    for (let i = 0; i < buildQueueLen; i++) {
-      fleetItems.push(
-        <BuildQueueItem
-          obj={fleetsBuilding[i]}
-          building={this.props.building}
-          key={fleetsBuilding[i].id}
-        />
-      );
-    }
-
     return (
-      <div>
-        {fleetItems.length > 0 ? (
-          <div>
-            You may subsidize the whole build queue for {this.state.data.cost_to_subsidize}{' '}
-            Essentia.{' '}
-            <button
-              type='button'
-              className='ui mini green button'
-              onClick={() => this.onSubsidizeClick()}
-            >
-              Subsidize
-            </button>
+      <div className='bulma'>
+        {this.state.data.fleets_building.length > 0 ? (
+          <div className='block'>
+            <div className='columns is-vcentered'>
+              <div className='column'>
+                You may subsidize the whole build queue for {this.state.data.cost_to_subsidize}{' '}
+                Essentia.{' '}
+              </div>
+
+              <div className='column is-narrow'>
+                <button
+                  type='button'
+                  className='button is-success'
+                  onClick={() => this.onSubsidizeClick()}
+                >
+                  Subsidize
+                </button>
+              </div>
+            </div>
           </div>
         ) : (
-          ''
+          <div className='block'>There are no fleets currently under construction.</div>
         )}
 
-        <div className='ui sixteen column grid'>
-          <div className='row'>
-            <div className='column three wide'>Ship Type</div>
-            <div className='column four wide'>Number of ships</div>
-            <div className='column four wide'>Time to complete</div>
-            <div className='column five wide'>Subsidize cost</div>
-          </div>
+        <div>
+          {_.map(this.state.data.fleets_building, (fleet) => (
+            <BuildQueueItem fleet={fleet} building={this.props.building} key={fleet.id} />
+          ))}
         </div>
-
-        <div className='ui divider' />
-
-        <div>{fleetItems}</div>
       </div>
     );
   }

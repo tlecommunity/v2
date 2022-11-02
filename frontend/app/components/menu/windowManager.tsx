@@ -15,14 +15,14 @@ import IntelTrainingWindow from 'app/components/intelTraining';
 import InviteWindow from 'app/components/invite';
 import LoginWindow from 'app/components/login';
 import MayhemTrainingWindow from 'app/components/mayhemTraining';
-import PlanetPanelWindow from 'app/components/planetPanel';
+import BodyDetailsWindow from 'app/components/bodyDetails';
 import PoliticsTrainingWindow from 'app/components/politicsTraining';
 import RearrangeBuildings from 'app/components/rearrangeBuildings/rearrangeBuildings';
 import RegisterWindow from 'app/components/register';
 import ServerClockWindow from 'app/components/serverClock';
 import ShipyardWindow from 'app/components/shipyard';
 import SpacePortWindow from 'app/components/spaceport';
-import StarInfoWindow from 'app/components/starInfo';
+import StarDetailsWindow from 'app/components/starDetails';
 import TheftTrainingWindow from 'app/components/theftTraining';
 
 import { WindowDefinition } from 'app/interfaces';
@@ -123,12 +123,12 @@ export const WindowMap: WindowMap = {
     },
   },
 
-  planetPanel: {
-    component: PlanetPanelWindow,
+  bodyDetails: {
+    component: BodyDetailsWindow,
     config: {
-      title: 'Planet Details',
+      title: 'Body Details',
       width: 700,
-      height: 'auto',
+      height: 420,
     },
   },
 
@@ -187,8 +187,8 @@ export const WindowMap: WindowMap = {
     },
   },
 
-  starInfo: {
-    component: StarInfoWindow,
+  starDetails: {
+    component: StarDetailsWindow,
     config: {
       title: 'Star Details',
       width: 700,

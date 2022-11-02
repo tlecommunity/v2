@@ -21,7 +21,7 @@ type State = {
   count: number;
 };
 
-class OwnFleetsTab extends React.Component<Props, State> {
+class ViewFleetsTab extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -43,10 +43,10 @@ class OwnFleetsTab extends React.Component<Props, State> {
     });
   }
 
-  handleFilterChange(e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) {
-    // TODO: why do we need ...this.state for typescript to accept this?
-    this.setState({ ...this.state, ...{ [e.target.name]: e.target.value } });
-  }
+  // handleFilterChange(e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) {
+  //   // TODO: why do we need ...this.state for typescript to accept this?
+  //   this.setState({ ...this.state, ...{ [e.target.name]: e.target.value } });
+  // }
 
   render() {
     // // Filter based on Task
@@ -69,8 +69,8 @@ class OwnFleetsTab extends React.Component<Props, State> {
     // }
 
     return (
-      <div className='ui form'>
-        <div className='equal width fields'>
+      <div>
+        {/* <div className='equal width fields'>
           <div className='field'>
             <label>Task</label>
             <select
@@ -125,11 +125,11 @@ class OwnFleetsTab extends React.Component<Props, State> {
           </div>
         </div>
 
-        <div className='ui divider' />
+        <div className='ui divider' /> */}
 
         <div>
           {_.map(this.state.fleets, (fleet) => (
-            <FleetItem fleet={fleet} />
+            <FleetItem fleet={fleet} key={fleet.id} />
           ))}
         </div>
       </div>
@@ -137,4 +137,4 @@ class OwnFleetsTab extends React.Component<Props, State> {
   }
 }
 
-export default OwnFleetsTab;
+export default ViewFleetsTab;

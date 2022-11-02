@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PlanetDetails from 'app/components/planetPanel/planetDetails';
-import PlanetOre from 'app/components/planetPanel/planetOre';
+import PlanetDetails from 'app/components/bodyDetails/planetDetails';
+import PlanetOre from 'app/components/bodyDetails/planetOre';
 
 type Props = {
   status: any;

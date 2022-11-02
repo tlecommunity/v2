@@ -10,6 +10,10 @@ class BodyService extends ClientBase {
     return this.call('body', 'get_status', [id]);
   }
 
+  getBodyStatus(id: number) {
+    return this.call('body', 'get_body_status', [id]);
+  }
+
   rearrangeBuildings(params: BodyRearrangeBuildingsParams) {
     return this.call('body', 'rearrange_buildings', params);
   }

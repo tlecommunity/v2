@@ -3,6 +3,9 @@ import {
   SpacePortViewAllFleetsParams,
   SpacePortViewTravellingFleetsParams,
   SpacePortViewAvailableFleetsParams,
+  SpacePortViewUnavailableFleetsParams,
+  SpacePortViewOrbitingFleetsParams,
+  SpacePortViewIncomingFleetsParams,
   SpacePortSendFleetParams,
 } from 'app/interfaces';
 
@@ -17,6 +20,18 @@ class SpacePortService extends ServiceBase {
 
   viewAvailableFleets(params: SpacePortViewAvailableFleetsParams) {
     return this.call('spaceport', 'view_available_fleets', params);
+  }
+
+  viewUnavailableFleets(params: SpacePortViewUnavailableFleetsParams) {
+    return this.call('spaceport', 'view_unavailable_fleets', params);
+  }
+
+  viewOrbitingFleets(params: SpacePortViewOrbitingFleetsParams) {
+    return this.call('spaceport', 'view_orbiting_fleets', params);
+  }
+
+  viewIncomingFleets(params: SpacePortViewIncomingFleetsParams) {
+    return this.call('spaceport', 'view_incoming_fleets', params);
   }
 
   sendFleet(params: SpacePortSendFleetParams) {

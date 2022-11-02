@@ -33,13 +33,13 @@ class TravellingFleetsTab extends React.Component<Props, State> {
 
   render() {
     return (
-      <div>
-        <div>
+      <div className='bulma'>
+        <div className='block'>
           Number of fleets: {this.state.fleetCount}, number of ships: {this.state.shipCount}
         </div>
         <div>
           {_.map(this.state.fleets, (fleet) => (
-            <FleetItem fleet={fleet} />
+            <FleetItem fleet={fleet} key={fleet.id} />
           ))}
         </div>
       </div>

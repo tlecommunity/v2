@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PlanetDetailLine from 'app/components/planetPanel/line';
+import PlanetDetailLine from 'app/components/bodyDetails/line';
 
 import constants from 'app/constants';
 

@@ -1,70 +1,82 @@
 import React from 'react';
 import { Fleet } from 'app/interfaces/spacePort';
-
-import ResourceAttribute from 'app/components/shipyard/resourceAttribute';
-
-import environment from 'app/environment';
+import { reduceNumber, commify } from 'app/util';
 import CountdownTimer from '../countdownTimer';
+import ShipImage from 'app/components/menu/shipImage';
 
 type Props = {
   fleet: Fleet;
-  children: React.ReactElement;
+  children?: React.ReactElement;
 };
 
 class FleetItem extends React.Component<Props> {
   render() {
-    const obj = this.props.fleet;
-    const shipImage = `${environment.getAssetsUrl()}ships/${obj.details.type}.png`;
+    const fleet = this.props.fleet;
 
     return (
-      <div>
-        <div className='ui grid'>
-          <div
-            className='two wide column'
-            style={{
-              width: 100,
-              height: 100,
-              background: `transparent url(${environment.getAssetsUrl()}star_system/field.png) no-repeat center`,
-            }}
-          >
-            <img
-              src={shipImage}
-              style={{
-                width: 100,
-                height: 100,
-              }}
-              className='shipImage'
-            />
+      <div className='bulma'>
+        <div className='columns is-vcentered'>
+          <div className='column is-narrow'>
+            <ShipImage type={fleet.details.type} name={fleet.details.type_human} />
           </div>
 
-          <div className='five wide column'>
-            <ResourceAttribute name='Quantity' attr={obj.quantity} />
-            <ResourceAttribute name='Task' attr={obj.task} />
-            {obj.task === 'Travelling' ? (
-              <>
-                <ResourceAttribute name='To' attr={`${obj.to.name} (${obj.to.x},${obj.to.y})`} />
-                <div>
-                  Arriving <CountdownTimer endDate={obj.date_arrives} />
-                </div>
-              </>
+          <div className='column'>
+            <h1 className='title is-size-5 mb-2'>
+              [{fleet.quantity} x {fleet.details.type_human}] {fleet.details.name} (ID: {fleet.id})
+            </h1>
+
+            <div className='mb-2'>
+              <span className='tag is-info'>{fleet.task}</span>
+            </div>
+
+            {fleet.task === 'Travelling' && fleet.from && fleet.to && fleet.date_arrives ? (
+              <div className='mb-2'>
+                <span className='has-text-weight-bold'>Travel: </span> From: {fleet.from.name}, To:{' '}
+                {fleet.to.name}, Arriving: <CountdownTimer endDate={fleet.date_arrives} />
+              </div>
             ) : (
               ''
             )}
-            <ResourceAttribute name='Speed' attr={obj.details.speed} />
-            <ResourceAttribute name='Berth Level' attr={obj.details.berth_level} />
-            <ResourceAttribute name='Hold Size' attr={obj.details.hold_size} />
-            <ResourceAttribute name='Max Occupants' attr={obj.details.max_occupants} />
-            <ResourceAttribute name='Combat' attr={obj.details.combat} />
-            <ResourceAttribute name='Stealth' attr={obj.details.stealth} />
-            <ResourceAttribute name='Name' attr={obj.details.name} />
-            <ResourceAttribute name='Type' attr={obj.details.type_human} />
-            <ResourceAttribute name='Marque' attr={obj.details.mark} />
-          </div>
 
-          <div className='five wide column'>{this.props.children}</div>
+            {fleet.task === 'Defend' && fleet.from ? (
+              <div className='mb-2'>
+                <span className='has-text-weight-bold'>Owner: </span> {fleet.from.empire.name}
+              </div>
+            ) : (
+              ''
+            )}
+
+            <div className='mb-2'>
+              <span className='has-text-weight-bold'>Attributes: </span> Speed:{' '}
+              <span title={commify(fleet.details.speed)}>{reduceNumber(fleet.details.speed)}</span>,{' '}
+              Hold Size:{' '}
+              <span title={commify(fleet.details.hold_size)}>
+                {reduceNumber(fleet.details.hold_size)}
+              </span>
+              , Stealth:{' '}
+              <span title={commify(fleet.details.stealth)}>
+                {reduceNumber(fleet.details.stealth)}
+              </span>{' '}
+              , Combat:{' '}
+              <span title={commify(fleet.details.combat)}>
+                {reduceNumber(fleet.details.combat)}
+              </span>{' '}
+              , Berth Level:{' '}
+              <span title={commify(fleet.details.berth_level)}>
+                {reduceNumber(fleet.details.berth_level)}
+              </span>{' '}
+              , Max Occupants:{' '}
+              <span title={commify(fleet.details.max_occupants)}>
+                {reduceNumber(fleet.details.max_occupants)}
+              </span>
+            </div>
+
+            {fleet.reason ? <div className='mb-2 has-text-danger'>{fleet.reason[1]}</div> : ''}
+            <div className='mb-2'>{this.props.children}</div>
+          </div>
         </div>
 
-        <div className='ui divider' />
+        <hr />
       </div>
     );
   }

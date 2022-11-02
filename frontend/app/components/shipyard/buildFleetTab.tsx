@@ -37,19 +37,19 @@ class BuildFleetTab extends React.Component<Props, State> {
     this.setState({ data: res });
   }
 
-  handleShowChange(e) {
+  handleShowChange(e: React.ChangeEvent<HTMLSelectElement>) {
     this.setState({
       show: e.target.value,
     });
   }
 
-  handleFilterChange(e) {
+  handleFilterChange(e: React.ChangeEvent<HTMLInputElement>) {
     this.setState({
       filter: e.target.value,
     });
   }
 
-  handleAutoSelectChange(e) {
+  handleAutoSelectChange(e: React.ChangeEvent<HTMLInputElement>) {
     this.setState({
       autoSelect: e.target.value,
     });
@@ -60,11 +60,17 @@ class BuildFleetTab extends React.Component<Props, State> {
     let fleetTypes = Object.keys(this.state.data.buildable).sort();
 
     // Filter based on buildable now or later.
-    // if (this.state.show === 'now') {
-    //   fleetTypes = _.filter(fleetTypes, (fleetType) => buildable[fleetType].can);
-    // } else if (this.state.show === 'later') {
-    //   fleetTypes = _.filter(fleetTypes, (fleetType) => !buildable[fleetType].can);
-    // }
+    if (this.state.show === 'now') {
+      fleetTypes = _.filter(
+        fleetTypes,
+        (fleetType) => this.state.data.buildable[fleetType].can === 1
+      );
+    } else if (this.state.show === 'later') {
+      fleetTypes = _.filter(
+        fleetTypes,
+        (fleetType) => this.state.data.buildable[fleetType].can === 0
+      );
+    }
 
     // // Filter based on ship type
     // if (this.state.filter !== 'all') {
@@ -74,26 +80,37 @@ class BuildFleetTab extends React.Component<Props, State> {
     //   );
     // }
 
-    // fleetTypes.sort();
+    fleetTypes.sort();
 
     for (let i = 0; i < fleetTypes.length; i++) {
-      fleetItems.push(
-        <BuildFleetItem
-          key={fleetTypes[i]}
-          fleetType={fleetTypes[i]}
-          obj={this.state.data.buildable[fleetTypes[i]]}
-          building={this.props.building}
-          autoSelect={this.state.autoSelect}
-        />
-      );
+      fleetItems.push();
     }
 
     return (
-      <div>
-        <div>
-          There are {this.state.data.docks_available} docks available for new ships. You can queue{' '}
-          {this.state.data.build_queue_max - this.state.data.build_queue_used} ships.
+      <div className='bulma'>
+        <div className='block'>
+          <div className='columns is-vcentered'>
+            <div className='column'>
+              There are {this.state.data.docks_available} docks available for new ships. You can
+              queue {this.state.data.build_queue_max - this.state.data.build_queue_used} ships.
+            </div>
+
+            <div className='column is-narrow'>
+              <div className='field'>
+                <div className='control'>
+                  <div className='select is-small'>
+                    <select value={this.state.show} onChange={(e) => this.handleShowChange(e)}>
+                      <option value='all'>All</option>
+                      <option value='now'>Now</option>
+                      <option value='later'>Later</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
         {/*
         <div className='ui grid'>
           <div className='six wide column'>
@@ -139,7 +156,16 @@ class BuildFleetTab extends React.Component<Props, State> {
 
         <div className='ui divider' /> */}
 
-        <div>{fleetItems}</div>
+        <div>
+          {_.map(fleetTypes, (type) => (
+            <BuildFleetItem
+              key={type}
+              type={type}
+              fleet={this.state.data.buildable[type]}
+              building={this.props.building}
+            />
+          ))}
+        </div>
       </div>
     );
   }

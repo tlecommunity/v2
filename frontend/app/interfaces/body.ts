@@ -135,6 +135,50 @@ export interface BodyGetStatusResponse {
   };
 }
 
+export interface BodyGetBodyStatusParams {
+  body_id: number;
+}
+
+export interface BodyGetBodyStatusResponse {
+  body: {
+    id: number;
+    x: number;
+    y: number;
+    zone: string;
+    star_id: number;
+    star_name: string;
+    orbit: number;
+    type: string;
+    name: string;
+    image: string;
+    size: number;
+    water: number;
+
+    ore: {
+      anthracite: number;
+      bauxite: number;
+      beryl: number;
+      chromite: number;
+      chalcopyrite: number;
+      fluorite: number;
+      galena: number;
+      goethite: number;
+      gold: number;
+      gypsum: number;
+      halite: number;
+      kerogen: number;
+      magnetite: number;
+      methane: number;
+      monazite: number;
+      rutile: number;
+      sulfur: number;
+      trona: number;
+      uraninite: number;
+      zircon: number;
+    };
+  };
+}
+
 export interface BodyRearrangeBuildingsParams {
   0: number;
   1: Array<{

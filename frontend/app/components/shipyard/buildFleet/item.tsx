@@ -1,102 +1,94 @@
 import React from 'react';
-
-import ResourceLine from 'app/components/shipyard/resourceLine';
-import ResourceAttribute from 'app/components/shipyard/resourceAttribute';
-import BuildButton from 'app/components/shipyard/buildFleet/button';
-
-import environment from 'app/environment';
-import { Building } from 'app/interfaces/building';
+import Icon from 'app/components/menu/icon';
+import ShipImage from 'app/components/menu/shipImage';
+import BuildFleetButton from 'app/components/shipyard/buildFleet/button';
 import { BuildableFleet } from 'app/interfaces/shipyard';
+import { commify, reduceNumber, formatTime } from 'app/util';
+import { Building } from 'app/interfaces/building';
 
 type Props = {
-  fleetType: string;
-  obj: BuildableFleet;
   building: Building;
-  autoSelect: string;
+  type: string;
+  fleet: BuildableFleet;
 };
 
-class BuildFleetItem extends React.Component<Props> {
-  handleQuantity = (o) => {};
+const BuildFleetItem: React.FC<Props> = ({ type, fleet, building }) => (
+  <div className='bulma'>
+    <div className='columns'>
+      <div className='column is-narrow'>
+        <ShipImage type={type} name={fleet.type_human} />
+      </div>
 
-  render() {
-    const starfieldStyle = {
-      width: 100,
-      height: 100,
-      background: `transparent url(${environment.getAssetsUrl()}star_system/field.png) no-repeat center`,
-    };
+      <div className='column'>
+        <h1 className='title is-size-5 mb-2'>{fleet.type_human}</h1>
 
-    const { obj } = this.props;
-    const shipImage = `${environment.getAssetsUrl()}ships/${this.props.fleetType}.png`;
-    let reason = '';
-    let canBuild = 1;
+        <div className='mb-2'>
+          <span className='has-text-weight-bold'>Cost: </span> <Icon style='food' />{' '}
+          <span title={commify(fleet.cost.food)}>{reduceNumber(fleet.cost.food)}</span>{' '}
+          <Icon style='ore' />{' '}
+          <span title={commify(fleet.cost.ore)}>{reduceNumber(fleet.cost.ore)}</span>{' '}
+          <Icon style='water' />{' '}
+          <span title={commify(fleet.cost.water)}>{reduceNumber(fleet.cost.water)}</span>{' '}
+          <Icon style='energy' />{' '}
+          <span title={commify(fleet.cost.energy)}>{reduceNumber(fleet.cost.energy)}</span>{' '}
+          <Icon style='time' /> {formatTime(fleet.cost.seconds)}
+        </div>
 
-    if (obj.reason) {
-      reason = obj.reason[1];
-      canBuild = 0;
-    }
+        <div className='mb-2'>
+          <span className='has-text-weight-bold'>Attributes: </span> Speed:{' '}
+          <span title={commify(fleet.attributes.speed)}>
+            {reduceNumber(fleet.attributes.speed)}
+          </span>
+          , Hold Size:{' '}
+          <span title={commify(fleet.attributes.hold_size)}>
+            {reduceNumber(fleet.attributes.hold_size)}
+          </span>
+          , Stealth:{' '}
+          <span title={commify(fleet.attributes.stealth)}>
+            {reduceNumber(fleet.attributes.stealth)}
+          </span>
+          , Combat:{' '}
+          <span title={commify(fleet.attributes.combat)}>
+            {reduceNumber(fleet.attributes.combat)}
+          </span>
+          , Berth Level:{' '}
+          <span title={commify(fleet.attributes.berth_level)}>
+            {reduceNumber(fleet.attributes.berth_level)}
+          </span>
+          , Max Occupants:{' '}
+          <span title={commify(fleet.attributes.max_occupants)}>
+            {reduceNumber(fleet.attributes.max_occupants)}
+          </span>
+        </div>
 
-    return (
-      <div>
-        <div className='ui grid'>
-          <div className='four wide column'>
-            <div>{obj.type_human}</div>
-            <div style={starfieldStyle}>
-              <img
-                src={shipImage}
-                style={{
-                  width: 100,
-                  height: 100,
-                }}
-                className='shipImage'
-              />
-            </div>
+        {fleet.can === 1 ? (
+          <div className='mb-2'>
+            <BuildFleetButton building={building} type={type} />
           </div>
+        ) : (
+          ''
+        )}
 
-          <div className='four wide column'>
-            <ResourceLine icon='food' cost={obj.cost.food} />
-            <ResourceLine icon='diamond' cost={obj.cost.ore} />
-            <ResourceLine icon='theme' cost={obj.cost.water} />
-            <ResourceLine icon='lightning' cost={obj.cost.energy} />
-            <ResourceLine icon='wait' cost={obj.cost.seconds} />
-          </div>
-
-          <div className='four wide column'>
-            <ResourceAttribute name='Speed' attr={obj.attributes.speed} />
-            <ResourceAttribute name='Berth Level' attr={obj.attributes.berth_level} />
-            <ResourceAttribute name='Hold Size' attr={obj.attributes.hold_size} />
-            <ResourceAttribute name='Max Occupants' attr={obj.attributes.max_occupants} />
-            <ResourceAttribute name='Combat' attr={obj.attributes.combat} />
-            <ResourceAttribute name='Stealth' attr={obj.attributes.stealth} />
-          </div>
-
-          <div className='four wide column'>
-            {canBuild === 1 ? (
-              <BuildButton
-                building={this.props.building}
-                fleetType={this.props.fleetType}
-                autoSelect={this.props.autoSelect}
-              />
-            ) : (
-              ''
-            )}
-          </div>
-
+        {fleet.can === 0 && fleet.reason ? (
           <div className='sixteen wide column'>
             <span
               style={{
                 float: 'right',
                 color: 'red',
               }}
-              title={reason}
+              title={fleet.reason[1]}
             >
-              {reason}
+              {fleet.reason[1]}
             </span>
           </div>
-        </div>
-        <div className='ui divider' />
+        ) : (
+          ''
+        )}
       </div>
-    );
-  }
-}
+    </div>
+
+    <hr />
+  </div>
+);
 
 export default BuildFleetItem;

@@ -22,6 +22,35 @@ export type Fleet = {
   task: string;
   id: number;
   quantity: number;
+  date_arrives?: ServerDate;
+  reason?: { 0: number; 1: string };
+
+  to?: {
+    name: string;
+    id: number;
+    type: string;
+    owner: string;
+    x: number;
+    y: number;
+    empire: {
+      id: number;
+      name: string;
+    };
+  };
+
+  from?: {
+    name: string;
+    id: number;
+    type: string;
+    owner: string;
+    x: number;
+    y: number;
+    empire: {
+      id: number;
+      name: string;
+    };
+  };
+
   details: {
     hold_size: number;
     combat: number;
@@ -41,6 +70,14 @@ export type Fleet = {
     payload: any;
     type_human: string;
     can_scuttle: IntBool;
+  };
+
+  earliest_arrival?: {
+    month: number;
+    day: number;
+    hour: number;
+    minute: number;
+    second: number;
   };
 };
 
@@ -78,6 +115,39 @@ export interface SpacePortViewAvailableFleetsParams {
 
 export interface SpacePortViewAvailableFleetsResponse {
   available: Fleet[];
+}
+
+export interface SpacePortViewUnavailableFleetsParams {
+  body_id: number;
+  target: Target;
+  filter?: Filter;
+  sort?: string;
+}
+
+export interface SpacePortViewUnavailableFleetsResponse {
+  unavailable: Fleet[];
+}
+
+export interface SpacePortViewOrbitingFleetsParams {
+  target: Target;
+  filter?: Filter;
+  sort?: string;
+}
+
+export interface SpacePortViewOrbitingFleetsResponse {
+  orbiting: Fleet[];
+}
+
+export interface SpacePortViewIncomingFleetsParams {
+  target: Target;
+  filter?: Filter;
+  sort?: string;
+}
+
+export interface SpacePortViewIncomingFleetsResponse {
+  incoming: Fleet[];
+  number_of_incoming_fleets: number;
+  number_of_incoming_ships: number;
 }
 
 export interface SpacePortSendFleetParams {

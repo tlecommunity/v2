@@ -4,6 +4,8 @@ import {
   BodyGetBuildingsResponse,
   BodyGetStatusParams,
   BodyGetStatusResponse,
+  BodyGetBodyStatusParams,
+  BodyGetBodyStatusResponse,
   BodyRearrangeBuildingsParams,
   BodyRearrangeBuildingsResponse,
   CaptchaFetchParams,
@@ -33,6 +35,12 @@ import {
   SpacePortViewTravellingFleetsResponse,
   SpacePortViewAvailableFleetsParams,
   SpacePortViewAvailableFleetsResponse,
+  SpacePortViewUnavailableFleetsParams,
+  SpacePortViewUnavailableFleetsResponse,
+  SpacePortViewIncomingFleetsParams,
+  SpacePortViewIncomingFleetsResponse,
+  SpacePortViewOrbitingFleetsParams,
+  SpacePortViewOrbitingFleetsResponse,
   SpacePortSendFleetParams,
   SpacePortSendFleetResponse,
 } from 'app/interfaces/spacePort';
@@ -62,6 +70,13 @@ class ServiceBase {
     params: BodyGetStatusParams,
     addSession?: boolean
   ): Promise<BodyGetStatusResponse>;
+
+  call(
+    module: 'body',
+    method: 'get_body_status',
+    params: BodyGetBodyStatusParams,
+    addSession?: boolean
+  ): Promise<BodyGetBodyStatusResponse>;
 
   call(
     module: 'body',
@@ -181,6 +196,27 @@ class ServiceBase {
     params: SpacePortViewTravellingFleetsParams,
     addSession?: boolean
   ): Promise<SpacePortViewTravellingFleetsResponse>;
+
+  call(
+    module: 'spaceport',
+    method: 'view_orbiting_fleets',
+    params: SpacePortViewOrbitingFleetsParams,
+    addSession?: boolean
+  ): Promise<SpacePortViewOrbitingFleetsResponse>;
+
+  call(
+    module: 'spaceport',
+    method: 'view_incoming_fleets',
+    params: SpacePortViewIncomingFleetsParams,
+    addSession?: boolean
+  ): Promise<SpacePortViewIncomingFleetsResponse>;
+
+  call(
+    module: 'spaceport',
+    method: 'view_unavailable_fleets',
+    params: SpacePortViewUnavailableFleetsParams,
+    addSession?: boolean
+  ): Promise<SpacePortViewUnavailableFleetsResponse>;
 
   call(
     module: 'stats',

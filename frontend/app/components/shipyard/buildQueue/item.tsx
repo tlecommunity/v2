@@ -1,69 +1,76 @@
 import React from 'react';
-
-import ResourceAttribute from 'app/components/shipyard/resourceAttribute';
-import SubsidizeButton from 'app/components/shipyard/buildQueue/subsidizeButton';
 import CountdownTimer from 'app/components/countdownTimer';
-
-import environment from 'app/environment';
+import ShipImage from 'app/components/menu/shipImage';
+import Icon from 'app/components/menu/icon';
 import { FleetBeingWorkedOn } from 'app/interfaces/shipyard';
 import { Building } from 'app/interfaces/building';
+import { commify, reduceNumber } from 'app/util';
 
 type Props = {
-  obj: FleetBeingWorkedOn;
+  fleet: FleetBeingWorkedOn;
   building: Building;
 };
 
-class BuildQueueItem extends React.Component<Props> {
-  render() {
-    const starfieldStyle = {
-      width: 100,
-      height: 100,
-      background: `transparent url(${environment.getAssetsUrl()}star_system/field.png) no-repeat center`,
-    };
+const BuildQueueItem: React.FC<Props> = ({ fleet, building }) => (
+  <div className='bulma'>
+    <div className='columns is-vcentered'>
+      <div className='column is-narrow'>
+        <ShipImage type={fleet.type} name={fleet.type_human} />
+      </div>
 
-    const { obj } = this.props;
-    const shipImage = `${environment.getAssetsUrl()}ships/${obj.type}.png`;
+      <div className='column'>
+        <h1 className='title is-size-5 mb-2'>
+          {fleet.type_human} ({fleet.quantity})
+        </h1>
 
-    return (
-      <div>
-        <div className='ui grid'>
-          <div className='three wide column'>
-            <div>{obj.type_human}</div>
-            <div style={starfieldStyle}>
-              <img
-                src={shipImage}
-                style={{
-                  width: 100,
-                  height: 100,
-                }}
-                className='shipImage'
-              />
-            </div>
-          </div>
-
-          <div className='four wide column'>
-            <ResourceAttribute name='Quantity' attr={obj.quantity} />
-            <ResourceAttribute name='Speed' attr={obj.attributes.speed} />
-            <ResourceAttribute name='Berth Level' attr={obj.attributes.berth_level} />
-            <ResourceAttribute name='Hold Size' attr={obj.attributes.hold_size} />
-            <ResourceAttribute name='Max Occupants' attr={obj.attributes.max_occupants} />
-            <ResourceAttribute name='Combat' attr={obj.attributes.combat} />
-            <ResourceAttribute name='Stealth' attr={obj.attributes.stealth} />
-          </div>
-
-          <div className='four wide column'>
-            <CountdownTimer endDate={obj.date_completed} />
-          </div>
-
-          <div className='five wide column'>
-            <SubsidizeButton obj={obj} building={this.props.building} />
-          </div>
+        <div className='mb-2'>
+          <span className='tag is-info'>Building</span>
         </div>
 
-        <div className='ui divider' />
+        <div className='mb-2'>
+          <span className='has-text-weight-bold'>Attributes: </span> Speed:{' '}
+          <span title={commify(fleet.attributes.speed)}>
+            {reduceNumber(fleet.attributes.speed)}
+          </span>
+          , Hold Size:{' '}
+          <span title={commify(fleet.attributes.hold_size)}>
+            {reduceNumber(fleet.attributes.hold_size)}
+          </span>
+          , Stealth:{' '}
+          <span title={commify(fleet.attributes.stealth)}>
+            {reduceNumber(fleet.attributes.stealth)}
+          </span>
+          , Combat:{' '}
+          <span title={commify(fleet.attributes.combat)}>
+            {reduceNumber(fleet.attributes.combat)}
+          </span>
+          , Berth Level:{' '}
+          <span title={commify(fleet.attributes.berth_level)}>
+            {reduceNumber(fleet.attributes.berth_level)}
+          </span>
+          , Max Occupants:{' '}
+          <span title={commify(fleet.attributes.max_occupants)}>
+            {reduceNumber(fleet.attributes.max_occupants)}
+          </span>
+        </div>
+
+        <div className='mb-2'>
+          <span className='has-text-weight-bold'>Remaining: </span>
+          <CountdownTimer endDate={fleet.date_completed} />
+        </div>
       </div>
-    );
-  }
-}
+
+      <div className='column is-narrow'>
+        <div className='field'>
+          <button type='button' className='button is-success'>
+            Subsidize {fleet.quantity} <Icon style='essentia' />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+  </div>
+);
 
 export default BuildQueueItem;

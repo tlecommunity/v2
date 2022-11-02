@@ -28,6 +28,12 @@
   $link-active: $white-ter;
 
   $input-color: $black;
+  $input-background-color: $white-ter;
+
+  $navbar-item-hover-color: $primary;
+  $menu-item-active-background-color: $primary;
+  $input-arrow: $primary;
+  $input-focus-border-color: $primary;
 
   @import 'bulma/bulma.sass';
 
@@ -48,5 +54,10 @@
 
   a:hover {
     text-decoration: none;
+  }
+
+  hr {
+    background-color: hsl(0deg 0% 100% / 35%);
+    height: 1px;
   }
 }

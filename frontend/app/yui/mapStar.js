@@ -724,7 +724,7 @@ if (typeof YAHOO.lacuna.MapStar == 'undefined' || !YAHOO.lacuna.MapStar) {
             if (tile.data.isStar) {
               console.log('Showing star panel', tile);
               this.ShowStar(tile);
-              WindowsStore.add('starInfo', {
+              WindowsStore.add('starDetails', {
                 color: tile.data.color,
                 id: tile.data.id,
                 name: tile.data.name,
@@ -735,7 +735,17 @@ if (typeof YAHOO.lacuna.MapStar == 'undefined' || !YAHOO.lacuna.MapStar) {
               });
             } else if (tile.data.isPlanet) {
               console.log('Showing planet panel', tile);
-              WindowsStore.add('planetPanel', tile);
+              this.ShowPlanet(tile);
+              WindowsStore.add('bodyDetails', {
+                name: tile.data.name,
+                x: tile.data.x,
+                y: tile.data.y,
+                image: tile.data.image,
+                orbit: tile.data.orbit,
+                size: tile.data.size,
+                id: tile.data.id,
+                type: tile.data.type,
+              });
             }
           }
         }

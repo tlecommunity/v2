@@ -19,7 +19,7 @@ class Icon extends React.Component<Props> {
     return (
       <img
         src={`${environment.getAssetsUrl()}ui/${size === 'large' ? 'l' : 's'}/${style}.png`}
-        style={{ maxHeight: 36, margin: 2 }}
+        style={{ maxHeight: 36, margin: 2, display: 'inline-block' }}
         className='ui image'
         title={title}
         alt={`${title} Icon`}

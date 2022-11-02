@@ -9,11 +9,11 @@ export type WindowType =
   | 'genericBuilding'
   | 'invite'
   | 'login'
-  | 'planetPanel'
+  | 'bodyDetails'
   | 'rearrangeBuildings'
   | 'register'
   | 'serverClock'
-  | 'starInfo';
+  | 'starDetails';
 
 export interface Window {
   type: WindowType;
@@ -31,7 +31,7 @@ export interface CaptchaWindowOptions {
   onCaptchaComplete(): void;
 }
 
-export interface StarInfoWindowOptions {
+export interface StarDetailsWindowOptions {
   color: string;
   id: number;
   name: string;
@@ -39,6 +39,17 @@ export interface StarInfoWindowOptions {
   y: number;
   zone: string;
   influence: number;
+}
+
+export interface BodyDetailsWindowOptions {
+  id: number;
+  image: string;
+  name: string;
+  x: number;
+  y: number;
+  orbit: number;
+  size: number;
+  type: string;
 }
 
 export interface BuildingWindowOptions {

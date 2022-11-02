@@ -1,38 +1,13 @@
 import React from 'react';
 import _ from 'lodash';
 import withBuildingTabs from 'app/hocs/withBuildingTabs';
-import OwnFleetsTab from 'app/components/spacePort/ownFleetsTab';
+import ViewFleetsTab from 'app/components/spacePort/viewFleetsTab';
 import TravellingFleetsTab from 'app/components/spacePort/travellingFleetsTab';
+import OrbitingFleetsTab from 'app/components/spacePort/orbitingFleetsTab';
+import IncomingFleetsTab from 'app/components/spacePort/incomingFleetsTab';
 
 export default withBuildingTabs({
   getTabs(building) {
-    // tabs.push(
-    //   <Tab
-    //     title='Own Fleets'
-    //     key='Own Fleets'
-    //     onSelect={_.partial(SpacePortRPCActions.requestSpacePortRPCViewAllFleets, building.id)}
-    //   >
-    //     <SpacePortOwnFleetsTab />
-    //   </Tab>
-    // );
-
-    // tabs.push(
-    //   <Tab title='Foreign Orbiting' key='Foreign Orbiting'>
-    //     <p>Not Yet Implemented</p>
-    //   </Tab>
-    // );
-    // tabs.push(
-    //   <Tab title='Battle Logs' key='Battle Logs'>
-    //     <p>Not Yet Implemented</p>
-    //   </Tab>
-    // );
-    // tabs.push(
-    //   <Tab title='Send Fleet' key='Send Fleet'>
-    //     <p>Not Yet Implemented</p>
-    //     <p>This will combine the current 'send' and 'fleet' tabs</p>
-    //   </Tab>
-    // );
-
     return [
       {
         title: 'Travelling',
@@ -40,7 +15,23 @@ export default withBuildingTabs({
       },
       {
         title: 'View',
-        component: () => <OwnFleetsTab building={building} />,
+        component: () => <ViewFleetsTab building={building} />,
+      },
+      {
+        title: 'Orbiting',
+        component: () => <OrbitingFleetsTab building={building} />,
+      },
+      {
+        title: 'Incoming',
+        component: () => <IncomingFleetsTab building={building} />,
+      },
+      {
+        title: 'Battle Logs',
+        component: () => <p>Not Yet Implemented</p>,
+      },
+      {
+        title: 'Send',
+        component: () => <p>Not Yet Implemented</p>,
       },
     ];
   },
