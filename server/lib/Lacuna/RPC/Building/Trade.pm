@@ -81,14 +81,14 @@ sub accept_from_market {
 
     my $session  = $self->get_session($args);
     my $empire   = $session->current_empire;
-    my $building    = $self->get_building($empire, $args->{building_id});
+    my $building    = $session->current_building;
     my $trade_id    = $args->{trade_id};
 
     if (not $trade_id) {
         confess [1002, 'You have not specified a trade to accept.'];
     }
     my $cache = Lacuna->cache;
-    if (! $cache->add('trade_lock', $trade_id, 1, 5)) {
+    if (! $cache->set('trade_lock', $trade_id, 1, 5)) {
         confess [1013, 'Another buyer has placed an offer on this trade. Please wait a few moments and try again.'];
     }
     my $guard = guard {
@@ -155,7 +155,7 @@ sub add_fleet_to_supply_duty {
 
     my $session  = $self->get_session($args);
     my $empire   = $session->current_empire;
-    my $building    = $self->get_building($empire, $args->{building_id});
+    my $building    = $session->current_building;
     my $fleet_id    = $args->{fleet_id};
 
     if (not defined $building) {
@@ -206,7 +206,7 @@ sub add_fleet_to_waste_duty {
 
     my $session  = $self->get_session($args);
     my $empire   = $session->current_empire;
-    my $building    = $self->get_building($empire, $args->{building_id});
+    my $building    = $session->current_building;
 
     my $fleet_id    = $args->{fleet_id};
 
@@ -259,12 +259,12 @@ sub add_to_market {
 
     my $session  = $self->get_session($args);
     my $empire   = $session->current_empire;
-    my $building    = $self->get_building($empire, $args->{building_id});
+    my $building    = $session->current_building;
     if ($building->level < 1) {
         confess [1013, 'You cannot use a trade ministry that has not yet been built.'];
     }
     my $cache = Lacuna->cache;
-    if (not $cache->add('trade_add_lock', $building->id, 1, 5)) {
+    if (not $cache->set('trade_add_lock', $building->id, 1, 5)) {
         confess [1013, 'You have a trade setup in progress.  Please wait a few moments and try again.'];
     }
     my $guard = guard {
@@ -354,20 +354,11 @@ sub create_supply_chain {
 # Get fleets that are available to transport a trade
 #
 sub get_trade_fleets {
-    my $self = shift;
-    my $args = shift;
+    my ($self, %args) = @_;
 
-    if (ref($args) ne "HASH") {
-        $args = {
-            session_id      => $args,
-            building_id     => shift,
-            target_id       => shift,
-        };
-    }
-
-    my $session  = $self->get_session($args);
+    my $session  = $self->get_session(\%args);
     my $empire   = $session->current_empire;
-    my $building    = $self->get_building($empire, $args->{building_id});
+    my $building = $session->current_building;
     if (not defined $building) {
         confess [1002, "You must specify a building."];
     }
@@ -375,7 +366,7 @@ sub get_trade_fleets {
         confess [1013, 'You cannot use a trade ministry that has not yet been built.'];
     }
 
-    my $target = Lacuna->db->resultset('Map::Body')->find($args->{target_id}) if $args->{target_id};
+    my $target = Lacuna->db->resultset('Map::Body')->find($args{target_id}) if $args{target_id};
     my @fleets;
     my $fleets = $building->trade_fleets;
     while (my $fleet = $fleets->next) {
@@ -400,7 +391,7 @@ sub get_waste_fleets {
 
     my $session  = $self->get_session($args);
     my $empire   = $session->current_empire;
-    my $building    = $self->get_building($empire, $args->{building_id});
+    my $building    = $session->current_building;
     if (not defined $building) {
         confess [1002, "You must specify a building."];
     }
@@ -434,7 +425,7 @@ sub get_supply_fleets {
 
     my $session  = $self->get_session($args);
     my $empire   = $session->current_empire;
-    my $building    = $self->get_building($empire, $args->{building_id});
+    my $building    = $session->current_building;
     if (not defined $building) {
         confess [1002, "You must specify a building."];
     }
@@ -466,7 +457,7 @@ sub view_supply_chains {
 
     my $session  = $self->get_session($args);
     my $empire   = $session->current_empire;
-    my $building    = $self->get_building($empire, $args->{building_id});
+    my $building    = $session->current_building;
 
     if (not defined $building) {
         confess [1002, "You must specify a building."];
@@ -501,7 +492,7 @@ sub view_waste_chains {
 
     my $session  = $self->get_session($args);
     my $empire   = $session->current_empire;
-    my $building    = $self->get_building($empire, $args->{building_id});
+    my $building    = $session->current_building;
 
     if (not defined $building) {
         confess [1002, "You must specify a building."];
@@ -535,7 +526,7 @@ sub delete_supply_chain {
 
     my $session  = $self->get_session($args);
     my $empire   = $session->current_empire;
-    my $building    = $self->get_building($empire, $args->{building_id});
+    my $building    = $session->current_building;
     if (not defined $building) {
         confess [1002, "You must specify a building."];
     }
@@ -566,7 +557,7 @@ sub update_supply_chain {
 
     my $session  = $self->get_session($args);
     my $empire   = $session->current_empire;
-    my $building    = $self->get_building($empire, $args->{building_id});
+    my $building    = $session->current_building;
     my $supply_chain_id = $args->{supply_chain_id};
     my $chain       = $building->supply_chains->find($supply_chain_id);
     unless ($chain) {
@@ -613,7 +604,7 @@ sub update_waste_chain {
 
     my $session  = $self->get_session($args);
     my $empire   = $session->current_empire;
-    my $building    = $self->get_building($empire, $args->{building_id});
+    my $building    = $session->current_building;
     if (not defined $building) {
         confess [1002, "You must specify a building."];
     }
@@ -658,7 +649,7 @@ sub remove_supply_fleet {
 
     my $session  = $self->get_session($args);
     my $empire   = $session->current_empire;
-    my $building    = $self->get_building($empire, $args->{building_id});
+    my $building    = $session->current_building;
     if (not defined $building) {
         confess [1002, "You must specify a building."];
     }
@@ -708,7 +699,7 @@ sub remove_waste_fleet {
 
     my $session  = $self->get_session($args);
     my $empire   = $session->current_empire;
-    my $building    = $self->get_building($empire, $args->{building_id});
+    my $building    = $session->current_building;
     if (not defined $building) {
         confess [1002, "You must specify a building."];
     }
@@ -752,17 +743,13 @@ sub remove_waste_fleet {
 
 
 sub push_items {
-    my ($self, $args) = @_;
+    my ($self, %args) = @_;
 
-    if (ref($args) ne "HASH") {
-        confess [1000,"Must call push_items with a hash ref"];
-    }
-
-    my $session  = $self->get_session($args);
+    my $session  = $self->get_session(\%args);
     my $empire   = $session->current_empire;
-    my $building    = $self->get_building($empire, $args->{building_id});
+    my $building    = $session->current_building;
     my $building_id = $building->id;
-    my $items       = $args->{items};
+    my $items       = $args{items};
 
     if (not defined $building) {
         confess [1002, "You must specify a building."];
@@ -772,10 +759,10 @@ sub push_items {
     }
 
     # Target
-    my $target = $self->find_target($args->{target});
+    my $target = $self->find_target($args{target});
 
     my $cache = Lacuna->cache;
-    if (! $cache->add('trade_add_lock', $building_id, 1, 5)) {
+    if (! $cache->set('trade_add_lock', $building_id, 1, 5)) {
         confess [1013, 'You have a trade setup in progress.  Please wait a few moments and try again.'];
     }
     my $guard = guard {
@@ -808,7 +795,7 @@ sub push_items {
         }
     }
 
-    my $fleet = $building->push_items($target, $items, $args->{fleet});
+    my $fleet = $building->push_items($target, $items, $args{fleet});
 
     return {
         status      => $self->format_status($empire, $building->body),
@@ -822,7 +809,7 @@ sub withdraw_from_market {
         confess [1002, 'You have not specified a trade to withdraw.'];
     }
     my $cache = Lacuna->cache;
-    if (! $cache->add('trade_lock', $trade_id, 1, 5)) {
+    if (! $cache->set('trade_lock', $trade_id, 1, 5)) {
         confess [1013, 'A buyer has placed an offer on this trade. Please wait a few moments and try again.'];
     }
     my $session  = $self->get_session({session_id => $session_id, building_id => $building_id });

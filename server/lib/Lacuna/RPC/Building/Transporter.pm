@@ -80,7 +80,7 @@ sub push_items {
     my $building = $session->current_building;
     confess [1013, 'You cannot use a transporter that has not yet been built.'] unless $building->effective_level > 0;
     my $cache = Lacuna->cache;
-    if (! $cache->add('trade_add_lock', $building_id, 1, 5)) {
+    if (! $cache->set('trade_add_lock', $building_id, 1, 5)) {
         confess [1013, 'You have a trade setup in progress.  Please wait a few moments and try again.'];
     }
     my $guard = guard {
@@ -121,7 +121,7 @@ sub add_to_market {
     my $building = $session->current_building;
     confess [1013, 'You cannot use a transporter that has not yet been built.'] unless $building->effective_level > 0;
     my $cache = Lacuna->cache;
-    if (! $cache->add('trade_add_lock', $building_id, 1, 5)) {
+    if (! $cache->set('trade_add_lock', $building_id, 1, 5)) {
         confess [1013, 'You have a trade setup in progress.  Please wait a few moments and try again.'];
     }
     my $guard = guard {
@@ -148,7 +148,7 @@ sub withdraw_from_market {
         confess [1002, 'You have not specified a trade to withdraw.'];
     }
     my $cache = Lacuna->cache;
-    if (! $cache->add('trade_lock', $trade_id, 1, 5)) {
+    if (! $cache->set('trade_lock', $trade_id, 1, 5)) {
         confess [1013, 'A buyer has placed an offer on this trade. Please wait a few moments and try again.'];
     }
     my $session  = $self->get_session({session_id => $session_id, building_id => $building_id });
@@ -170,7 +170,7 @@ sub accept_from_market {
         confess [1002, 'You have not specified a trade to accept.'];
     }
     my $cache = Lacuna->cache;
-    if (! $cache->add('trade_lock', $trade_id, 1, 5)) {
+    if (! $cache->set('trade_lock', $trade_id, 1, 5)) {
         confess [1013, 'Another buyer has placed an offer on this trade. Please wait a few moments and try again.'];
     }
     my $guard = guard {
