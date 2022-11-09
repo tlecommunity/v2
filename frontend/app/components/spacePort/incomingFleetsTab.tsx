@@ -36,7 +36,7 @@ class IncomingFleetsTab extends React.Component<Props, State> {
     return (
       <div>
         {_.map(this.state.fleets, (fleet) => (
-          <FleetItem fleet={fleet} />
+          <FleetItem fleet={fleet} key={fleet.id} />
         ))}
       </div>
     );
