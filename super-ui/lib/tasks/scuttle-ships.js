@@ -40,7 +40,7 @@ class ScuttleShips {
           this.getFilter(),
         ])
         .then((result) => {
-          let hitlist = _.pluck(result.ships, 'id');
+          let hitlist = _.map(result.ships, 'id');
           let num = hitlist.length;
           let noun = this.options.type === 'all' ? 'ship' : this.options.type;
           let shipPlural = util.handlePlurality(num, noun);

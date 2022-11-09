@@ -89,7 +89,7 @@ class SpyTrainer {
 
   isMaxed(spy, maxSkillLevels) {
     let maxSkillLevelTotal = _.sum(_.values(maxSkillLevels));
-    let currentSkillLevelTotal = _.sum(_.values(_.pluck(spy, SKILLS)));
+    let currentSkillLevelTotal = _.sum(_.values(_.map(spy, SKILLS)));
 
     return currentSkillLevelTotal === maxSkillLevelTotal;
   }

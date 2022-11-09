@@ -2,42 +2,24 @@
 // If you want to display the "current empire" DO NOT use listen to this store!
 // Instead, listen to the empire store.
 
-import Reflux from 'reflux';
 import store from 'store';
 
-import ConfigActions from '../actions/config';
+class ConfigStore {
+  config = store.get('empire') || {};
 
-let ConfigStore = Reflux.createStore({
-  listenables: [ConfigActions],
+  get() {
+    return this.config;
+  }
 
-  init() {
-    this.data = this.getInitialState();
-  },
+  set(config) {
+    this.config = config;
+    store.set('empire', this.config);
+  }
 
-  getInitialState() {
-    if (this.data) {
-      return this.data;
-    } else {
-      let storedConfig = store.get('empire');
-      return storedConfig || {};
-    }
-  },
+  clear() {
+    this.config = {};
+    store.set('empire', this.config);
+  }
+}
 
-  getData() {
-    return this.data;
-  },
-
-  onSet(data) {
-    this.data = data;
-    store.set('empire', this.data);
-    this.trigger(this.data);
-  },
-
-  onClear() {
-    this.data = {};
-    store.set('empire', this.data);
-    this.trigger(this.data);
-  },
-});
-
-export default ConfigStore;
+export default new ConfigStore();

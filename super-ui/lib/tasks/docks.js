@@ -58,8 +58,8 @@ class Docks {
 
           table.push([
             'GRAND TOTAL',
-            util.commify(_.sum(_.pluck(this.totals, 'ships'))),
-            util.commify(_.sum(_.pluck(this.totals, 'docks'))),
+            util.commify(_.sum(_.map(this.totals, 'ships'))),
+            util.commify(_.sum(_.map(this.totals, 'docks'))),
           ]);
 
           log.newline();

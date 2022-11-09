@@ -98,7 +98,7 @@ class Empire extends Module {
         return;
       }
 
-      if (_.include(arr, 'all')) {
+      if (_.includes(arr, 'all')) {
         lacuna.empire.colonies().then(resolve).catch(reject);
       } else {
         this.getStatus({}).then(({ status }) => {
@@ -127,7 +127,7 @@ class Empire extends Module {
       .then((bodies) => {
         // Handle skipping of bodies.
         return _.filter(bodies, (body) => {
-          return !_.include(toSkip, body.name);
+          return !_.includes(toSkip, body.name);
         });
       })
       .then((result) => {

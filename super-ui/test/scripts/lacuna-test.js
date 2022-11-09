@@ -37,7 +37,7 @@ lacuna
     return lacuna.empire.colonies();
   })
   .then((result) => {
-    let colonies = _.pluck(result, 'name').join(', ');
+    let colonies = _.map(result, 'name').join(', ');
     log.info(`These are my colonies: ${colonies}`);
   })
   .then(() => {

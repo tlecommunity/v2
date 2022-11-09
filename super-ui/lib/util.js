@@ -1,8 +1,6 @@
 import _ from 'lodash';
 
 import moment from 'moment';
-import 'moment-range';
-import 'moment-duration-format';
 
 import pluralize from 'pluralize';
 
@@ -59,7 +57,9 @@ const util = {
       return '';
     }
 
-    return moment.duration(ms, 'milliseconds').format();
+    console.log('TODO: duration blah blah');
+    return '00:00';
+    // return moment.duration(ms, 'milliseconds').format();
   },
 
   /**
@@ -163,7 +163,7 @@ const util = {
       date = moment(date, constants.serverDateFormat);
     }
 
-    return moment.range(moment(), date).valueOf();
+    return date.valueOf() - moment().valueOf();
   },
 
   /**

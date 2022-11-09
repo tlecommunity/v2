@@ -295,20 +295,18 @@ const tasks = _.map(taskDefinitions, (task) => {
   return task;
 });
 
-let tasksArrayToObject = (array) => {
-  return _.object(_.pluck(array, 'name'), array);
-};
-
 let getTasksForPlatform = (platform) => {
-  let filtered = _.filter(tasks, (task) => {
-    return _.include(task.platforms, platform);
+  return _.filter(tasks, (task) => {
+    return _.includes(task.platforms, platform);
   });
-
-  return tasksArrayToObject(filtered);
 };
 
 let getAllTasks = () => {
-  return tasksArrayToObject(tasks);
+  return tasks;
 };
 
-export { getAllTasks, getTasksForPlatform };
+let getTaskByName = (name) => {
+  return _.filter(tasks, (task) => name === task.name)[0];
+};
+
+export { getAllTasks, getTasksForPlatform, getTaskByName };

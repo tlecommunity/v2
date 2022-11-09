@@ -1,39 +1,24 @@
-import Reflux from 'reflux';
+import { reactive } from '@vue/reactivity';
 import store from 'store';
 
-import SessionActions from '../actions/session';
+class SessionStore {
+  data = reactive({
+    sessionId: store.get('session') || '',
+  });
 
-let SessionStore = Reflux.createStore({
-  listenables: [SessionActions],
+  set(session) {
+    this.sessionId = session;
+    store.set('session', this.sessionId);
+  }
 
-  init() {
-    this.data = this.getInitialState();
-  },
+  get() {
+    return this.sessionId;
+  }
 
-  getInitialState() {
-    if (this.data) {
-      return this.data;
-    } else {
-      let storedSession = store.get('session');
-      return storedSession || '';
-    }
-  },
-
-  getData() {
-    return this.data;
-  },
-
-  onSet(data) {
-    this.data = data;
+  clear() {
+    this.sessionId = '';
     store.set('session', this.data);
-    this.trigger(this.data);
-  },
+  }
+}
 
-  onClear() {
-    this.data = '';
-    store.set('session', this.data);
-    this.trigger(this.data);
-  },
-});
-
-export default SessionStore;
+export default new SessionStore();

@@ -40,7 +40,7 @@ class BuildingLevels {
         log.newline();
 
         let total = buildings.length;
-        let mean = util.mean(_.pluck(buildings, 'level'));
+        let mean = util.mean(_.map(buildings, 'level'));
 
         log.info(`Average building level is ${mean}`);
         log.info(`There are ${total} buildings`);

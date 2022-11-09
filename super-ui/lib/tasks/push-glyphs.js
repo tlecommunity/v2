@@ -52,7 +52,7 @@ class PushGlyphs {
               return;
             }
 
-            let total = _.sum(_.pluck(summary.glyphs, 'quantity'));
+            let total = _.sum(_.map(summary.glyphs, 'quantity'));
             let requiredCargo = total * summary.cargo_space_used_each;
 
             let ship = this.getBestShip(requiredCargo, ships.ships);

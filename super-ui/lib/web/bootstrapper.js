@@ -1,7 +1,7 @@
 import lacuna from '../lacuna';
+import * as App from './app';
 
-import EmpireActions from './actions/empire';
-import WindowActions from './actions/window';
+import EmpireStore from './stores/empire';
 
 import ConfigStore from './stores/config';
 import SessionStore from './stores/session';
@@ -9,27 +9,27 @@ import SessionStore from './stores/session';
 let freshLogin = (config, session) => {
   if (!session) {
     if (!config.empire) {
-      WindowActions.error('Please enter an empire');
+      App.error('Please enter an empire');
       return;
     } else if (!config.password) {
-      WindowActions.error('Please enter a password');
+      App.error('Please enter a password');
       return;
     } else if (!config.server) {
-      WindowActions.error('Please select a server to play on');
+      App.error('Please select a server to play on');
       return;
     }
   }
 
   lacuna.init(config, session);
-  EmpireActions.login();
+  EmpireStore.login();
 };
 
 let handleInitialLogin = () => {
-  let config = ConfigStore.getData();
-  let session = SessionStore.getData();
+  let config = ConfigStore.get();
+  let session = SessionStore.get();
 
   if (!config || !config.empire || !config.password) {
-    WindowActions.navigate('/login');
+    App.navigate('/login');
     return;
   }
 

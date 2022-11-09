@@ -13,9 +13,9 @@ class HallsCost {
     this.options.end = util.int(this.options.end);
 
     return new Promise((resolve, reject) => {
-      if (!_.include(_.range(0, 31), this.options.start)) {
+      if (!_.includes(_.range(0, 31), this.options.start)) {
         reject('start must be between 1 and 30');
-      } else if (!_.include(_.range(0, 31), this.options.end)) {
+      } else if (!_.includes(_.range(0, 31), this.options.end)) {
         reject('end must be between 1 and 30');
       } else {
         resolve(true);
