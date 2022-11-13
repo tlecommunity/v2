@@ -1,10 +1,9 @@
 ---
 title: 'Inbox'
+summary: Methods for managing your empire's messages.
 date: 2022-10-31
 type: 'page'
 ---
-
-# Inbox Methods
 
 These methods are accessible via the `/inbox` URL.
 

@@ -14,12 +14,3 @@ Modules can only be built, repaired, upgraded, downgraded, and demolished via ac
 # Module Types
 
 Below is a list of the different types of structures that can be built on space stations in Lacuna.
-
-- [Art Museum](/api/art-museum)
-- [Culinary Institute](/api/culinary-institute)
-- [IBS](/api/ibs)
-- [Opera House](/api/opera-house)
-- [Parliament](/api/parliament)
-- [Police Station](/api/police-station)
-- [Station Command](/api/station-command)
-- [Warehouse](/api/warehouse)
