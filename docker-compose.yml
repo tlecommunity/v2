@@ -64,6 +64,9 @@ services:
     container_name: 'mysql-server'
     environment:
       - 'MYSQL_ROOT_PASSWORD=lacuna'
+      - 'MYSQL_DATABASE=lacuna'
+      - 'MYSQL_USER=lacuna'
+      - 'MYSQL_PASSWORD=lacuna'
     image: 'mysql:5.5'
     volumes:
       - './mysql-data:/var/lib/mysql'
@@ -243,12 +246,10 @@ services:
   ##########
 
   site:
-    build:
-      context: .
-      dockerfile: ./site.dockerfile
+    image: klakegg/hugo:0.105.0
     container_name: 'site'
-    command: 'hugo server --bind 0.0.0.0 --port 2000 --buildDrafts --poll 1000'
+    command: 'server --bind 0.0.0.0 --port 2000 --buildDrafts --poll 1000 --debug'
     ports:
       - '2000:2000'
     volumes:
-      - './site:/usr/src/site'
+      - './site:/src'

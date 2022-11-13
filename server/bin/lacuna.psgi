@@ -44,11 +44,14 @@ my $gameover = [ 500,
 
 # Compare the current DB Version with the SQL patch files
 my $db = Lacuna->db;
-my $db_version = `./dbupdate.pl database_version 2> /dev/null`;
-my $schema_version = `./dbupdate.pl schema_version 2> /dev/null`;
+my $db_version = `perl ./dbupdate.pl database_version`;
+my $schema_version = `perl ./dbupdate.pl schema_version`;
 
 if ($db_version =~ /^\s*$/)
 {
+    say "Debug info:";
+    say "db_version = $db_version";
+    say "schema_version = $schema_version\n";
     die "Please run the 'init-lacuna.pl' script to create your initial database (1)\n";
 }
 elsif ($db_version != $schema_version)
