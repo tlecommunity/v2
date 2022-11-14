@@ -1,6 +1,6 @@
 import Promise from 'bluebird';
 import _ from 'lodash';
-// import Table from 'cli-table'
+import Table from 'cli-table3';
 
 import lacuna from '../lacuna';
 import log from '../log';

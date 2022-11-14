@@ -1,5 +1,5 @@
 import _ from 'lodash';
-// import Table from 'cli-table'
+import Table from 'cli-table3';
 import Promise from 'bluebird';
 
 import lacuna from '../lacuna';
