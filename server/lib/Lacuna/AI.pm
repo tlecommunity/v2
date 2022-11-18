@@ -286,14 +286,10 @@ sub demolish_bleeders {
 sub pod_check {
   my ($self, $colony, $pod_level) = @_;
   return if (Lacuna->cache->get('supply_pod_sent',$colony->id));
-  my $food_stored = 0; my $ore_stored = 0;
-  my @food = map { $_.'_stored' } FOOD_TYPES;
-  my @ore  = map { $_.'_stored' } ORE_TYPES;
-  my $attrib;
-  for $attrib (@food) { $food_stored += $colony->$attrib; }
-  for $attrib (@ore)  { $ore_stored  += $colony->$attrib; }
-  if ($food_stored <= 0 or $ore_stored <= 0 or
-      $colony->water_stored <= 0 or $colony->energy_stored <= 0) {
+  my $food = $colony->get_stored('food');
+  my $ore = $colony->get_stored('ore');
+  if ($food <= 0 or $ore <= 0 or
+      $colony->get_stored('water') <= 0 or $colony->get_stored('energy') <= 0) {
     say 'DEPLOY SUPPLY POD';
     my ($x, $y) = eval{ $colony->find_free_space };
 # Check to see if spot found, if not, clear off a crater if found.
@@ -320,15 +316,15 @@ sub pod_check {
       }
     }
     $colony->recalc_stats;
-    my $add_it = $colony->water_capacity  - $colony->water_stored;
+    my $add_it = $colony->get_capacity('water') - $colony->get_stored('water');
     say "Adding Water: $add_it";
     $colony->add_stored_limit("water",  $add_it);
-    $add_it = $colony->energy_capacity  - $colony->energy_stored;
+    $add_it = $colony->get_capacity('energy') - $colony->get_stored('energy');
     say "Adding Energy: $add_it";
     $colony->add_stored_limit("energy", $add_it);
-    my $food_room = $colony->food_capacity - $food_stored;
+    my $food_room = $colony->get_capacity('food') - $food;
     say "Adding Food: $food_room";
-    my $ore_room = $colony->ore_capacity - $ore_stored;
+    my $ore_room = $colony->get_capacity('ore') - $ore;
     say "Adding Ore: $ore_room";
     my @foods = shuffle FOOD_TYPES;
     my @ores  = shuffle ORE_TYPES;

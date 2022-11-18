@@ -2037,7 +2037,7 @@ sub bhg_resource {
         for my $type (FOOD_TYPES) {
             $food_stored += $body->get_stored($type);
         }
-        my $food_room = $body->food_capacity - $food_stored;
+        my $food_room = $body->get_capacity('food') - $food_stored;
         for (0..(scalar FOOD_TYPES - 1)) {
             my $type = (FOOD_TYPES)[$_];
             $body->set_stored($type, randint(0, int($food_room * $arr->[$_]/100) ));
@@ -2047,7 +2047,7 @@ sub bhg_resource {
         for my $type (ORE_TYPES) {
             $ore_stored += $body->get_stored($type);
         }
-        my $ore_room = $body->ore_capacity - $ore_stored;
+        my $ore_room = $body->get_capacity('ore') - $ore_stored;
         for (0..(scalar ORE_TYPES - 1)) {
             my $type = (ORE_TYPES)[$_];
             $body->set_stored($type, randint(0, int($ore_room * $arr->[$_]/100) ));
@@ -2069,12 +2069,12 @@ sub bhg_resource {
         my $arr = rand_perc(scalar FOOD_TYPES);
         for (0..(scalar FOOD_TYPES - 1)) {
             my $type = (FOOD_TYPES)[$_];
-            $body->set_stored($type, randint(0, int($body->food_capacity * $arr->[$_]/100) ));
+            $body->set_stored($type, randint(0, int($body->get_capacity('food') * $arr->[$_]/100) ));
         }
         $arr = rand_perc(scalar ORE_TYPES);
         for (0..(scalar ORE_TYPES - 1)) {
             my $type = (ORE_TYPES)[$_];
-            $body->set_stored($type, randint(0, int($body->ore_capacity * $arr->[$_]/100) ));
+            $body->set_stored($type, randint(0, int($body->get_capacity('ore') * $arr->[$_]/100) ));
         }
         $resource_msg = "randomized our resources. We may need to do a full inventory";
     }

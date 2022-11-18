@@ -3518,12 +3518,12 @@ sub economic_report {
     my ($self, $defender) = @_;
     my @resources = (
         ['Resource', 'Per Hour', 'Stored'],
-        [ 'Food',      commify($self->on_body->food_hour),      commify($self->on_body->food_stored) ],
-        [ 'Water',     commify($self->on_body->water_hour),     commify($self->on_body->water_stored) ],
-        [ 'Energy',    commify($self->on_body->energy_hour),    commify($self->on_body->energy_stored) ],
-        [ 'Ore',       commify($self->on_body->ore_hour),       commify($self->on_body->ore_stored) ],
-        [ 'Waste',     commify($self->on_body->waste_hour),     commify($self->on_body->waste_stored) ],
-        [ 'Happiness', commify($self->on_body->happiness_hour), commify($self->on_body->happiness) ],
+        [ 'Food',      commify($self->on_body->food_hour),      commify($self->on_body->get_stored('food')) ],
+        [ 'Water',     commify($self->on_body->water_hour),     commify($self->on_body->get_stored('water')) ],
+        [ 'Energy',    commify($self->on_body->energy_hour),    commify($self->on_body->get_stored('energy')) ],
+        [ 'Ore',       commify($self->on_body->ore_hour),       commify($self->on_body->get_stored('ore')) ],
+        [ 'Waste',     commify($self->on_body->waste_hour),     commify($self->on_body->get_stored('waste')) ],
+        [ 'Happiness', commify($self->on_body->happiness_hour), commify($self->on_body->get_stored('happiness')) ],
     );
     return $self->empire->send_predefined_message(
         tags        => ['Intelligence'],

@@ -1191,20 +1191,20 @@ sub can_repair {
     my $body = $self->body;
     my $damage = 100 - $self->efficiency;
     my $fix = $damage;
-    if ($body->food_stored-50 < $costs->{food} and $costs->{food} > 0) {
-        my $teff = int(($body->food_stored-50) * $damage / $costs->{food});
+    if ($body->get_stored('food')-50 < $costs->{food} and $costs->{food} > 0) {
+        my $teff = int(($body->get_stored('food')-50) * $damage / $costs->{food});
         $fix = $teff if ($teff < $fix);
     }
-    if ($body->water_stored < $costs->{water} and $costs->{water} > 0) {
-        my $teff = int($body->water_stored * $damage / $costs->{water});
+    if ($body->get_stored('water') < $costs->{water} and $costs->{water} > 0) {
+        my $teff = int($body->get_stored('water') * $damage / $costs->{water});
         $fix = $teff if ($teff < $fix);
     }
-    if ($body->ore_stored-50 < $costs->{ore} and $costs->{ore} > 0) {
-        my $teff = int(($body->ore_stored-50) * $damage / $costs->{ore});
+    if ($body->get_stored('ore')-50 < $costs->{ore} and $costs->{ore} > 0) {
+        my $teff = int(($body->get_stored('ore')-50) * $damage / $costs->{ore});
         $fix = $teff if ($teff < $fix);
     }
-    if ($body->energy_stored < $costs->{energy} and $costs->{energy} > 0) {
-        my $teff = int($body->energy_stored * $damage / $costs->{energy});
+    if ($body->get_stored('energy') < $costs->{energy} and $costs->{energy} > 0) {
+        my $teff = int($body->get_stored('energy') * $damage / $costs->{energy});
         $fix = $teff if ($teff < $fix);
     }
     if ($damage && $fix <= 0) {
@@ -1222,20 +1222,20 @@ sub repair {
         return 0;
     }
     my $fix = $damage;
-    if ($body->food_stored-50 < $costs->{food} and $costs->{food} > 0) {
-        my $teff = int(($body->food_stored-50) * $damage / $costs->{food});
+    if ($body->get_stored('food')-50 < $costs->{food} and $costs->{food} > 0) {
+        my $teff = int(($body->get_stored('food')-50) * $damage / $costs->{food});
         $fix = $teff if ($teff < $fix);
     }
-    if ($body->water_stored < $costs->{water} and $costs->{water} > 0) {
-        my $teff = int($body->water_stored * $damage / $costs->{water});
+    if ($body->get_stored('water') < $costs->{water} and $costs->{water} > 0) {
+        my $teff = int($body->get_stored('water') * $damage / $costs->{water});
         $fix = $teff if ($teff < $fix);
     }
-    if ($body->ore_stored-50 < $costs->{ore} and $costs->{ore} > 0) {
-        my $teff = int(($body->ore_stored-50) * $damage / $costs->{ore});
+    if ($body->get_stored('ore')-50 < $costs->{ore} and $costs->{ore} > 0) {
+        my $teff = int(($body->get_stored('ore')-50) * $damage / $costs->{ore});
         $fix = $teff if ($teff < $fix);
     }
-    if ($body->energy_stored < $costs->{energy} and $costs->{energy} > 0) {
-        my $teff = int($body->energy_stored * $damage / $costs->{energy});
+    if ($body->get_stored('energy') < $costs->{energy} and $costs->{energy} > 0) {
+        my $teff = int($body->get_stored('energy') * $damage / $costs->{energy});
         $fix = $teff if ($teff < $fix);
     }
     if ($fix <= 0) {
