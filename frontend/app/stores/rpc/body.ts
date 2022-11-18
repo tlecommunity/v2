@@ -209,39 +209,48 @@ class BodyRPCStore {
     // represent this yet in TypeScript without duplicating info.. still too new to TS to know!
     //
 
-    if (body.needs_surface_refresh) this.needs_surface_refresh = body.needs_surface_refresh;
-    if (body.building_count) this.building_count = int(body.building_count);
-    if (body.build_queue_size) this.build_queue_size = body.build_queue_size;
-    if (body.build_queue_len) this.build_queue_len = body.build_queue_len;
-    if (body.plots_available) this.plots_available = int(body.plots_available);
-    if (body.happiness) this.happiness = body.happiness;
-    if (body.happiness_hour) this.happiness_hour = body.happiness_hour;
-    if (body.unhappy_date) this.unhappy_date = body.unhappy_date;
-    if (body.neutral_entry) this.neutral_entry = body.neutral_entry;
-    if (body.propaganda_boost) this.propaganda_boost = body.propaganda_boost;
-    if (body.food_stored) this.food_stored = body.food_stored;
-    if (body.food_capacity) this.food_capacity = body.food_capacity;
-    if (body.food_hour) this.food_hour = body.food_hour;
-    if (body.energy_stored) this.energy_stored = body.energy_stored;
-    if (body.energy_capacity) this.energy_capacity = body.energy_capacity;
-    if (body.energy_hour) this.energy_hour = body.energy_hour;
-    if (body.ore_hour) this.ore_hour = body.ore_hour;
-    if (body.ore_capacity) this.ore_capacity = body.ore_capacity;
-    if (body.ore_stored) this.ore_stored = body.ore_stored;
-    if (body.population) this.population = body.population;
-    if (body.waste_hour) this.waste_hour = body.waste_hour;
-    if (body.waste_stored) this.waste_stored = body.waste_stored;
-    if (body.waste_capacity) this.waste_capacity = body.waste_capacity;
-    if (body.water_stored) this.water_stored = body.water_stored;
-    if (body.water_hour) this.water_hour = body.water_hour;
-    if (body.water_capacity) this.water_capacity = body.water_capacity;
-    if (body.skip_incoming_ships) this.skip_incoming_ships = body.skip_incoming_ships;
-    if (body.num_incoming_own) this.num_incoming_own = int(body.num_incoming_own);
-    if (body.num_incoming_ally) this.num_incoming_ally = int(body.num_incoming_ally);
-    if (body.num_incoming_enemy) this.num_incoming_enemy = int(body.num_incoming_enemy);
-    if (body.incoming_enemy_ships) this.incoming_enemy_ships = body.incoming_enemy_ships;
-    if (body.incoming_ally_ships) this.incoming_ally_ships = body.incoming_ally_ships;
-    if (body.incoming_own_ships) this.incoming_own_ships = body.incoming_own_ships;
+    if (typeof body.needs_surface_refresh !== 'undefined')
+      this.needs_surface_refresh = body.needs_surface_refresh;
+    if (typeof body.building_count !== 'undefined') this.building_count = int(body.building_count);
+    if (typeof body.build_queue_size !== 'undefined') this.build_queue_size = body.build_queue_size;
+    if (typeof body.build_queue_len !== 'undefined') this.build_queue_len = body.build_queue_len;
+    if (typeof body.plots_available !== 'undefined')
+      this.plots_available = int(body.plots_available);
+    if (typeof body.happiness !== 'undefined') this.happiness = body.happiness;
+    if (typeof body.happiness_hour !== 'undefined') this.happiness_hour = body.happiness_hour;
+    if (typeof body.unhappy_date !== 'undefined') this.unhappy_date = body.unhappy_date;
+    if (typeof body.neutral_entry !== 'undefined') this.neutral_entry = body.neutral_entry;
+    if (typeof body.propaganda_boost !== 'undefined') this.propaganda_boost = body.propaganda_boost;
+    if (typeof body.food_stored !== 'undefined') this.food_stored = body.food_stored;
+    if (typeof body.food_capacity !== 'undefined') this.food_capacity = body.food_capacity;
+    if (typeof body.food_hour !== 'undefined') this.food_hour = body.food_hour;
+    if (typeof body.energy_stored !== 'undefined') this.energy_stored = body.energy_stored;
+    if (typeof body.energy_capacity !== 'undefined') this.energy_capacity = body.energy_capacity;
+    if (typeof body.energy_hour !== 'undefined') this.energy_hour = body.energy_hour;
+    if (typeof body.ore_hour !== 'undefined') this.ore_hour = body.ore_hour;
+    if (typeof body.ore_capacity !== 'undefined') this.ore_capacity = body.ore_capacity;
+    if (typeof body.ore_stored !== 'undefined') this.ore_stored = body.ore_stored;
+    if (typeof body.population !== 'undefined') this.population = body.population;
+    if (typeof body.waste_hour !== 'undefined') this.waste_hour = body.waste_hour;
+    if (typeof body.waste_stored !== 'undefined') this.waste_stored = body.waste_stored;
+    if (typeof body.waste_capacity !== 'undefined') this.waste_capacity = body.waste_capacity;
+    if (typeof body.water_stored !== 'undefined') this.water_stored = body.water_stored;
+    if (typeof body.water_hour !== 'undefined') this.water_hour = body.water_hour;
+    if (typeof body.water_capacity !== 'undefined') this.water_capacity = body.water_capacity;
+    if (typeof body.skip_incoming_ships !== 'undefined')
+      this.skip_incoming_ships = body.skip_incoming_ships;
+    if (typeof body.num_incoming_own !== 'undefined')
+      this.num_incoming_own = int(body.num_incoming_own);
+    if (typeof body.num_incoming_ally !== 'undefined')
+      this.num_incoming_ally = int(body.num_incoming_ally);
+    if (typeof body.num_incoming_enemy !== 'undefined')
+      this.num_incoming_enemy = int(body.num_incoming_enemy);
+    if (typeof body.incoming_enemy_ships !== 'undefined')
+      this.incoming_enemy_ships = body.incoming_enemy_ships;
+    if (typeof body.incoming_ally_ships !== 'undefined')
+      this.incoming_ally_ships = body.incoming_ally_ships;
+    if (typeof body.incoming_own_ships !== 'undefined')
+      this.incoming_own_ships = body.incoming_own_ships;
 
     if (body.alliance) {
       this.alliance = body.alliance;
