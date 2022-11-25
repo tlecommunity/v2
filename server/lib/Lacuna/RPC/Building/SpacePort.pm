@@ -974,21 +974,13 @@ sub view_battle_logs {
 }
 
 around 'view' => sub {
-    my $orig = shift;
-    my $self = shift;
-    my $args = shift;
+    my ($orig, $self, %args) = @_;
 
-    if (ref($args) ne "HASH") {
-        $args = {
-            session_id      => $args,
-            building_id     => shift,
-        };
-    }
-    my $session     = $self->get_session($args);
+    my $session     = $self->get_session(\%args);
     my $empire      = $session->current_empire;
     my $building    = $session->current_building;
 
-    my $out         = $orig->($self, $args->{session_id}, $args->{building_id});
+    my $out         = $orig->($self, (%args));
 
     return $out unless $building->level > 0;
 

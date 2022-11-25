@@ -18,24 +18,16 @@ sub model_class {
 
 
 around 'view' => sub {
-    my $orig = shift;
-    my $self = shift;
-    my $args = shift;
+    my ($orig, $self, %args) = @_;
 
-    if (ref($args) ne "HASH") {
-        $args = {
-            session_id      => $args,
-            building_id     => shift,
-        };
-    }
-    if ($args->{no_status}) {
+    if ($args{no_status}) {
         return {};
     }
-    my $session     = $self->get_session($args);
+    my $session     = $self->get_session(\%args);
     my $empire      = $session->current_empire;
     my $building    = $session->current_building;
 
-    my $out = $orig->($self, $empire, $building);
+    my $out = $orig->($self, (%args));
     if ($building->is_working) {
         $out->{building}{work}{searching} = $building->work->{ore_type};
     }

@@ -236,18 +236,16 @@ if (typeof YAHOO.lacuna.SMD == 'undefined' || !YAHOO.lacuna.SMD) {
             },
             view: {
               description: 'Retrieves the properties of the building.',
-              parameters: [
-                {
-                  name: 'session_id',
+              parameters: {
+                session_id: {
                   type: 'string',
                   optional: false,
                 },
-                {
-                  name: 'building_id',
+                building_id: {
                   type: 'string',
                   optional: false,
                 },
-              ],
+              },
               returns: { type: 'object' },
             },
             upgrade: {

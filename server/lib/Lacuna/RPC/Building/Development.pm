@@ -14,20 +14,11 @@ sub model_class {
 }
 
 around 'view' => sub {
-    my $orig = shift;
-    my $self = shift;
-    my $args = shift;
-
-    if (ref($args) ne "HASH") {
-        $args = {
-            session_id      => $args,
-            building_id     => shift,
-        };
-    }
-    my $session     = $self->get_session($args);
+    my ($orig, $self, %args) = @_;
+    my $session     = $self->get_session(\%args);
     my $empire      = $session->current_empire;
     my $building    = $session->current_building;
-    my $out         = $orig->($self, $empire, $building);
+    my $out         = $orig->($self, (%args));
     $out->{build_queue}     = $building->format_build_queue;
     $out->{subsidy_cost}    = $building->calculate_subsidy;
     return $out;

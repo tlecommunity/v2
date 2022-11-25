@@ -92,7 +92,7 @@ function withBuildingData<Type extends Building>(
       server.call({
         module: this.props.options.url.replace(/^\//, ''),
         method: 'view',
-        params: [this.props.options.id],
+        params: { building_id: this.props.options.id },
         addSession: true,
         success: (result: BuildingsViewResponse) => {
           this.setState({ building: result.building });

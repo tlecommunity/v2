@@ -14,10 +14,10 @@ sub model_class {
 }
 
 around demolish => sub {
-    my ($orig, $self, $session_id, $building_id) = @_;
-    my $session  = $self->get_session({session_id => $session_id, building_id => $building_id });
+    my ($orig, $self, %args) = @_;
+    my $session  = $self->get_session({session_id => $args{session_id}, building_id => $args{building_id} });
     $session->check_captcha;
-    return $orig->($self, $session, $building_id);
+    return $orig->($self, (%args));
 };
 
 no Moose;
