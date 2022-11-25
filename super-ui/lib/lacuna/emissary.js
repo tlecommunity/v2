@@ -56,6 +56,7 @@ let emissary = {
 
     const res = await window.fetch(url, {
       method: 'POST',
+      mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
