@@ -67,7 +67,7 @@ export type Fleet = {
     type: string;
     build_tags: string[];
     can_recall: IntBool;
-    payload: any;
+    payload: string[];
     type_human: string;
     can_scuttle: IntBool;
   };

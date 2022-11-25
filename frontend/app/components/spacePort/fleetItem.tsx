@@ -73,6 +73,13 @@ class FleetItem extends React.Component<Props> {
 
             {fleet.reason ? <div className='mb-2 has-text-danger'>{fleet.reason[1]}</div> : ''}
             <div className='mb-2'>{this.props.children}</div>
+
+            {fleet.details.payload.length && (
+              <div className='mb-2'>
+                <span className='has-text-weight-bold'>Payload:</span>{' '}
+                {fleet.details.payload.join(', ')}
+              </div>
+            )}
           </div>
         </div>
 
