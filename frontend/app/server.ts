@@ -111,7 +111,7 @@ const sendRequest = function (
       MenuStore.hideLoader();
       const error: ServerError = jqXHR?.responseJSON?.error || {
         code: -1,
-        message: jqXHR.responseText,
+        message: jqXHR.responseText || 'Could not communicate with server',
       };
 
       if (error.code === 1016) {
