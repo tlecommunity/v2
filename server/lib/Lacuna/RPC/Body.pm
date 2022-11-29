@@ -190,7 +190,11 @@ sub repair_list {
 }
 
 sub rearrange_buildings {
-  my ($self, $session_id, $body_id, $arrangement) = @_;
+  my ($self, %args) = @_;
+  my $session_id = $args{session_id};
+  my $body_id = $args{body_id};
+  my $arrangement = $args{arrangement};
+
   confess [1002, "Arrangement must be an array reference of hashes" ]
       unless $arrangement &&
       ref $arrangement eq 'ARRAY' &&

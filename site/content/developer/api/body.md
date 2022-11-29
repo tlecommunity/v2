@@ -224,9 +224,9 @@ The id of the body you wish to retrieve the buildings on.
 
 An array reference to a list of building ids to be repaired.
 
-## rearrange_buildings ( session_id, body_id, arrangement)
+## rearrange_buildings ( { session_id, body_id, arrangement } )
 
-Rearranges all buildings to the coordinates supplied via the arrangment array of hashes.
+Rearranges all buildings to the coordinates supplied via the arrangement array of hashes.
 
 ```json
     {

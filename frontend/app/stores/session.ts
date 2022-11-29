@@ -1,4 +1,5 @@
 import { makeAutoObservable } from 'mobx';
+import lacuna from 'app/lacuna';
 
 class SessionStore {
   session = '';
@@ -9,6 +10,7 @@ class SessionStore {
 
   update(session: string) {
     this.session = session;
+    lacuna.session.set(session);
   }
 }
 
