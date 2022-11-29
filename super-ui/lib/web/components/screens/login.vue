@@ -19,8 +19,8 @@
         <div class="form-group">
           <label>Server</label>
           <select class="form-control" v-model="server">
-            <option value="us1">US1</option>
-            <option value="pt">Public Test</option>
+            <option value="https://us1.lacunaexpanse.com/">US1</option>
+            <option value="https://pt.lacunaexpanse.com/">Public Test</option>
             <option value="http://localhost:8080">Local Server</option>
           </select>
         </div>
