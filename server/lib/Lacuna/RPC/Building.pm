@@ -23,21 +23,9 @@ sub to_app_with_url {
 }
 
 sub upgrade {
-    my $self = shift;
-    my $args = shift;
+    my ($self, %args) = @_;
 
-    #
-    # TODO: passing a hash into this method call fails
-    #
-
-    if (ref($args) ne "HASH") {
-        $args = {
-            session_id  => $args,
-            building_id => shift,
-        };
-    }
-
-    my $session     = $self->get_session($args);
+    my $session     = $self->get_session(\%args);
     my $empire      = $session->current_empire;
     my $building    = $session->current_building;
 
@@ -278,17 +266,9 @@ sub build {
 }
 
 sub demolish {
-    my $self = shift;
-    my $args = shift;
+    my ($self, %args) = @_;
 
-    if (ref($args) ne "HASH") {
-        $args = {
-            session_id  => $args,
-            building_id => shift,
-        };
-    }
-
-    my $session = $self->get_session($args);
+    my $session = $self->get_session(\%args);
     my $empire      = $session->current_empire;
     my $building    = $session->current_building;
 
@@ -322,17 +302,9 @@ sub demolish {
 }
 
 sub downgrade {
-    my $self = shift;
-    my $args = shift;
+    my ($self, %args) = @_;
 
-    if (ref($args) ne "HASH") {
-        $args = {
-            session_id  => $args,
-            building_id => shift,
-        };
-    }
-
-    my $session     = $self->get_session($args);
+    my $session     = $self->get_session(\%args);
     my $empire      = $session->current_empire;
     my $building    = $session->current_building;
 
