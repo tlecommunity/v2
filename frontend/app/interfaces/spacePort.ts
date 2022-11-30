@@ -91,6 +91,8 @@ export interface SpacePortViewAllFleetsParams {
 export interface SpacePortViewAllFleetsResponse {
   fleets: Fleet[];
   number_of_fleets: number;
+  docks_available: number;
+  max_ships: number;
 }
 
 export interface SpacePortViewTravellingFleetsParams {

@@ -18,7 +18,10 @@ type State = {
   type: string;
   name: string;
   fleets: Fleet[];
-  count: number;
+  numberOfFleets: number;
+  docksAvailable: number;
+  maxShips: number;
+  currentShips: number;
 };
 
 class ViewFleetsTab extends React.Component<Props, State> {
@@ -30,16 +33,21 @@ class ViewFleetsTab extends React.Component<Props, State> {
       type: 'all',
       name: '',
       fleets: [],
-      count: 0,
+      numberOfFleets: 0,
+      docksAvailable: 0,
+      maxShips: 0,
+      currentShips: 0,
     };
   }
 
   async componentDidMount() {
-    console.log(this.props.building.id);
     const res = await SpacePortService.viewAllFleets({ building_id: this.props.building.id });
     this.setState({
       fleets: res.fleets,
-      count: res.number_of_fleets,
+      numberOfFleets: res.number_of_fleets,
+      docksAvailable: res.docks_available,
+      maxShips: res.max_ships,
+      currentShips: res.max_ships - res.docks_available,
     });
   }
 
@@ -69,7 +77,7 @@ class ViewFleetsTab extends React.Component<Props, State> {
     // }
 
     return (
-      <div>
+      <div className='bulma'>
         {/* <div className='equal width fields'>
           <div className='field'>
             <label>Task</label>
@@ -126,6 +134,11 @@ class ViewFleetsTab extends React.Component<Props, State> {
         </div>
 
         <div className='ui divider' /> */}
+
+        <div className='block'>
+          {this.state.docksAvailable} docks available. {this.state.currentShips} used out of{' '}
+          {this.state.maxShips} across {this.state.numberOfFleets} fleets.
+        </div>
 
         <div>
           {_.map(this.state.fleets, (fleet) => (

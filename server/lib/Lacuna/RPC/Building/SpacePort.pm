@@ -683,6 +683,8 @@ sub view_all_fleets {
     return {
         status              => $args{no_status} ? {} : $self->format_status($empire, $body),
         number_of_fleets    => defined $paging->{page_number} ? $fleets->pager->total_entries : $fleets->count,
+        max_ships           => $building->max_ships,
+        docks_available     => $building->docks_available,
         fleets              => \@fleet,
     };
 }
