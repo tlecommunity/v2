@@ -101,7 +101,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
                       function () {
                         if (Dom.getStyle('tradePushShipSummaryName', 'display') == 'none') {
                           Dom.setStyle('tradePushShipSummaryName', 'display', 'block');
-                          this.getShipSummary();
+                          this.getFleetSummary();
                         } else {
                           Dom.setStyle('tradePushShipSummaryName', 'display', 'none');
                         }
@@ -187,7 +187,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
                       function () {
                         if (Dom.getStyle('tradeAddShipSummaryName', 'display') == 'none') {
                           Dom.setStyle('tradeAddShipSummaryName', 'display', 'block');
-                          this.getShipSummary();
+                          this.getFleetSummary();
                         } else {
                           Dom.setStyle('tradeAddShipSummaryName', 'display', 'none');
                         }
@@ -634,8 +634,8 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
           );
         }
       },
-      getShipSummary: function (force) {
-        if (force || !this.ship_summary) {
+      getFleetSummary: function (force) {
+        if (force || !this.fleet_summary) {
           MenuStore.showLoader();
           this.service.get_fleet_summary(
             {
@@ -645,7 +645,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
             {
               success: function (o) {
                 this.rpcSuccess(o);
-                this.ship_summary = o.result.fleets;
+                this.fleet_summary = o.result.fleets;
                 this.shipSize = o.result.cargo_space_used_each;
                 this.fireEvent('onLoadShipSummary');
                 MenuStore.hideLoader();
@@ -1055,7 +1055,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
                 this.Self.getPlanSummary(true);
                 this.Self.getGlyphSummary(true);
                 this.Self.getPrisoners(true);
-                this.Self.getShipSummary(true);
+                this.Self.getFleetSummary(true);
               },
               scope: this,
             }
@@ -1205,9 +1205,9 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
 
         if (elm) {
           elm.innerHTML = '';
-          if (this.ship_summary.length > 0) {
-            for (var x = 0; x < this.ship_summary.length; x++) {
-              var obj = this.ship_summary[x];
+          if (this.fleet_summary.length > 0) {
+            for (var x = 0; x < this.fleet_summary.length; x++) {
+              var obj = this.fleet_summary[x];
               nLi = li.cloneNode(false);
               nLi.ShipSummary = obj;
               nLi.innerHTML = [
@@ -1265,7 +1265,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
       getAddShips: function () {
         MenuStore.showLoader();
 
-        this.service.get_trade_ships(
+        this.service.get_trade_fleets(
           {
             session_id: Game.GetSession(''),
             building_id: this.building.id,
@@ -1571,6 +1571,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
             item.Object = {
               quantity: quantity,
               type: 'fleet',
+              fleet_id: li.ShipSummary.id,
               name: sName,
               ship_type: sType,
               hold_size: sSize,
@@ -1745,7 +1746,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
               this.getPrisoners(true);
             }
             if (hasShips) {
-              this.getShipSummary(true);
+              this.getFleetSummary(true);
             }
             for (var i = 0; i < lis.length; i++) {
               if (lis[i].Object) {
@@ -1905,9 +1906,9 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
 
         if (elm) {
           elm.innerHTML = '';
-          if (this.ship_summary.length > 0) {
-            for (var x = 0; x < this.ship_summary.length; x++) {
-              var obj = this.ship_summary[x];
+          if (this.fleet_summary.length > 0) {
+            for (var x = 0; x < this.fleet_summary.length; x++) {
+              var obj = this.fleet_summary[x];
               nLi = li.cloneNode(false);
               nLi.ShipSummary = obj;
               nLi.innerHTML = [
@@ -1966,11 +1967,11 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
         var targetId = Lib.getSelectedOptionValue('tradePushColony');
         if (targetId) {
           MenuStore.showLoader();
-          this.service.get_trade_ships(
+          this.service.get_trade_fleets(
             {
               session_id: Game.GetSession(''),
               building_id: this.building.id,
-              target_body_id: targetId,
+              target_id: targetId,
             },
             {
               success: function (o) {
@@ -1991,9 +1992,9 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
                     nOpt.innerHTML = [
                       obj.name,
                       ' (',
-                      obj.type_human,
+                      obj.details.type_human,
                       ' - Hold:',
-                      obj.hold_size,
+                      obj.details.hold_size,
                       ' - Estimated Travel Time:',
                       Lib.formatTime(obj.estimated_travel_time),
                       ')',
@@ -2243,6 +2244,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
         var quantity = matchedEl.previousSibling.value * 1,
           li = matchedEl.parentNode,
           c = Dom.get('tradePushItems');
+        debugger;
         if (li && c) {
           var sName = li.ShipSummary.name,
             sType = li.ShipSummary.type,
@@ -2276,6 +2278,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
             item.Object = {
               quantity: quantity,
               type: 'fleet',
+              fleet_id: li.ShipSummary.id,
               name: sName,
               ship_type: sType,
               hold_size: sSize,
@@ -2387,10 +2390,11 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
         var data = {
             session_id: Game.GetSession(''),
             building_id: this.building.id,
-            target_id: Lib.getSelectedOptionValue(Dom.get('tradePushColony')),
-            options: {
-              ship_id: Lib.getSelectedOptionValue(Dom.get('tradePushShip')),
+            target: { body_id: Lib.getSelectedOptionValue(Dom.get('tradePushColony')) },
+            fleet: {
+              id: Lib.getSelectedOptionValue(Dom.get('tradePushShip')),
               stay: Dom.get('tradePushStay').checked ? 1 : 0,
+              quantity: 1,
             },
           },
           lis = Sel.query('li', 'tradePushItems'),
@@ -2398,8 +2402,10 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
           hasResources,
           hasPlans,
           hasGlyphs,
-          hasShips,
+          hasFleets,
           hasPrisoners;
+
+        debugger;
 
         for (var n = 0; n < lis.length; n++) {
           if (lis[n].Object) {
@@ -2415,7 +2421,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
                 hasPrisoners = true;
                 break;
               case 'fleet':
-                hasShips = true;
+                hasFleets = true;
                 break;
               default:
                 hasResources = true;
@@ -2455,8 +2461,8 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
               if (hasPrisoners) {
                 this.getPrisoners(true);
               }
-              if (hasShips) {
-                this.getShipSummary(true);
+              if (hasFleets) {
+                this.getFleetSummary(true);
               }
 
               var msg = Dom.get('tradePushMessage');

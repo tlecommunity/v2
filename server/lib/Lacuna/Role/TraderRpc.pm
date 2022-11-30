@@ -137,35 +137,33 @@ sub get_fleet_summary {
     my $session  = $self->get_session({session_id => $session_id, building_id => $building_id });
     my $empire   = $session->current_empire;
     my $building = $session->current_building;
-    my $ships = Lacuna->db->resultset('Fleet')->search(
+    my $fleets = Lacuna->db->resultset('Fleet')->search(
         {body_id => $building->body_id, task => 'docked'},
         {order_by => [ 'type', 'hold_size', 'speed']}
         );
-    my $ship_summary = {};
-    while (my $ship = $ships->next) {
-        my $key = sprintf("%s~%s~%02u~%02u~%02u", $ship->name, $ship->type, $ship->hold_size, $ship->berth_level, $ship->speed);
-        $ship_summary->{$key}++;
+
+    my @fleet_summary;
+    while (my $fleet = $fleets->next) {
+        my $key = sprintf("%s~%s~%02u~%02u~%02u~%02u~%02u", $fleet->name, $fleet->type, $fleet->hold_size, $fleet->berth_level, $fleet->speed, $fleet->quantity, $fleet->id);
+        push @fleet_summary, $key;
     }
 
-    # Sort
-    my @ships = map { {$_ => $ship_summary->{$_}} } sort {$a cmp $b} keys %$ship_summary;
-
     my @out;
-    for my $ship (@ships) {
-        my ($key,$quantity) = %$ship;
-        my ($name,$type,$hold_size,$berth_level,$speed) = split /~/, $key;
+    for my $key (sort {$a cmp $b} @fleet_summary) {
+        my ($name,$type,$hold_size,$berth_level,$speed,$quantity,$id) = split /~/, $key;
 
         push @out, {
+            id          => int($id),
             name        => $name,
             type        => $type,
             hold_size   => int($hold_size),
             berth_level => int($berth_level),
             speed       => int($speed),
-            quantity    => $quantity,
+            quantity    => int($quantity),
         };
     }
     return {
-        ships                   => \@out,
+        fleets                  => \@out,
         cargo_space_used_each   => 50_000,
         status                  => $self->format_status($empire, $building->body),
     };

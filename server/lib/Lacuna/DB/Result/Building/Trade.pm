@@ -426,6 +426,7 @@ sub push_items {
     ($space_used, $items) = $self->check_payload($items, $fleet->hold_size, undef, $fleet);
     $self->check_payload_fleet_size($items, $target, $fleet_options->{stay});
 
+    # TODO: should we return $meta to the user?
     my ($payload, $meta) = $self->structure_payload($items, $space_used);
     foreach my $item (@{$items}) {
         if ( $item->{type} eq 'fleet' ) {

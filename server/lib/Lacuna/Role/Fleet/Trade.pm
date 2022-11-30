@@ -33,7 +33,7 @@ sub check_payload_fleet_size {
         if (not defined $spaceport) {
             confess $no_spaceport_exception;
         }
-        if ($spaceport->docs_available < $ship_count) {
+        if ($spaceport->docks_available < $ship_count) {
             confess $no_docks_exception;
         }
     }

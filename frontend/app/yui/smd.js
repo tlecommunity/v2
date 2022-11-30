@@ -4141,23 +4141,23 @@ if (typeof YAHOO.lacuna.SMD == 'undefined' || !YAHOO.lacuna.SMD) {
             },
             get_trade_fleets: {
               description: '',
-              parameters: [
-                {
+              parameters: {
+                session_id: {
                   name: 'session_id',
                   type: 'string',
                   optional: false,
                 },
-                {
+                building_id: {
                   name: 'building_id',
                   type: 'string',
                   optional: false,
                 },
-                {
-                  name: 'target_body_id',
+                target_id: {
+                  name: 'tartarget_id:get_body_id',
                   type: 'string',
                   optional: true,
                 },
-              ],
+              },
               returns: { type: 'object' },
             },
             get_waste_fleets: {
@@ -4459,33 +4459,33 @@ if (typeof YAHOO.lacuna.SMD == 'undefined' || !YAHOO.lacuna.SMD) {
             },
             push_items: {
               description: '',
-              parameters: [
-                {
+              parameters: {
+                session_id: {
                   name: 'session_id',
                   type: 'string',
                   optional: false,
                 },
-                {
+                building_id: {
                   name: 'building_id',
                   type: 'string',
                   optional: false,
                 },
-                {
+                target: {
                   name: 'target_id',
                   type: 'string',
                   optional: false,
                 },
-                {
+                items: {
                   name: 'items',
                   type: 'object',
                   optional: false,
                 },
-                {
-                  name: 'options',
+                fleet: {
+                  name: 'fleet',
                   type: 'object',
-                  optional: true,
+                  optional: false,
                 },
-              ],
+              },
               /*
                             items array of objects
                                 resouce format = {

@@ -49,15 +49,16 @@ sub unload {
         $spy->update;
         delete $payload->{mercenary};
     }
-    if (exists $payload->{ships}) {
-        foreach my $id (@{$payload->{ships}}) {
+    # TOOO: this doesn't seem to get called
+    if (exists $payload->{fleets}) {
+        foreach my $id (@{$payload->{fleets}}) {
             my $fleet = Lacuna->db->resultset('Fleet')->find($id);
             next unless defined $fleet;
             $fleet->body_id($body->id);
             $fleet->task('Docked');
             $fleet->land->update;
         }
-        delete $payload->{ships};
+        delete $payload->{fleets};
     }
     if (exists $payload->{essentia}) {
         $body->empire->add_essentia({
@@ -117,9 +118,10 @@ sub format_description_of_payload {
     foreach my $id (@{$payload->{fleets}}) {
         my $fleet = $fleets->find($id);
         next unless defined $fleet;
-        my $pattern = '%s (speed: %s, stealth: %s, hold size: %s, berth: %s, combat: %s)' ;
+        my $pattern = '%s x %s (speed: %s, stealth: %s, hold size: %s, berth: %s, combat: %s)' ;
         push @{$item_arr},
             sprintf($pattern,
+                $fleet->quantity,
                 $fleet->type_formatted,
                 commify($fleet->speed),
                 commify($fleet->stealth),

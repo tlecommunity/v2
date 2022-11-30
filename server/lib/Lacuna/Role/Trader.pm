@@ -109,40 +109,18 @@ sub check_payload {
         push @expanded_items, $item;
         $space_used += 350;
       }
-      when ('ship') {
-        if ($item->{ship_id}) {
-          my $ship = Lacuna->db->resultset('Fleet')->find($item->{ship_id});
-          confess $have_exception unless (defined $ship && $self->body_id eq $ship->body_id && $ship->task eq 'Docked');
+      when ('fleet') {
+        if ($item->{fleet_id}) {
+          my $fleet = Lacuna->db->resultset('Fleet')->find($item->{fleet_id});
+          confess $have_exception unless (defined $fleet && $self->body_id eq $fleet->body_id && $fleet->task eq 'Docked');
+          my $quantity = $item->{quantity} || $fleet->quantity;
+          confess [1002, "You don't have ".$quantity." ships in your fleet of type ".$fleet->type_human] unless $fleet->quantity >= $quantity;
           push @expanded_items, $item;
-          $space_used += 50000;
-        }
-        elsif ($item->{quantity}) {
-          confess $offer_nothing_exception unless ($item->{quantity} > 0);
-          confess $fractional_offer_exception if ($item->{quantity} != int($item->{quantity}));
-          confess [1002, 'you must specify a name if you specify a quantity.'] unless $item->{name};
-          confess [1002, 'you must specify a ship_type if you specify a quantity.'] unless $item->{ship_type};
-          confess [1002, 'you must specify a hold_size if you specify a quantity.'] unless defined $item->{hold_size};
-          confess [1002, 'you must specify a speed if you specify a quantity.'] unless defined $item->{speed};
-          my $ships_rs = Lacuna->db->resultset('Fleet')->search({
-                           name        => $item->{name},
-                           body_id     => $self->body_id,
-                           type        => $item->{ship_type},
-                           hold_size   => $item->{hold_size},
-                           speed       => $item->{speed},
-                           task        => 'Docked',
-               });
-          if (defined $transfer_ship) {
-            $ships_rs = $ships_rs->search({
-                          id      => {'!=' => $transfer_ship->id},
-                       });
-          }
-          my @ships = $ships_rs->search->all;
-          confess [1002, "You don't have ".$item->{quantity}." ships of type ".$item->{ship_type}." you only have ".scalar(@ships)] unless @ships && scalar(@ships) >= $item->{quantity};
-          push @expanded_items, map { {type => "ship", ship_id => $_->id} } splice @ships, 0, $item->{quantity};
-          $space_used += 50000 * $item->{quantity};
+          # TODO: do we need to check if the fleet sending the trade is NOT part of the cargo?
+          $space_used += 50000 * $quantity;
         }
         else {
-          confess [1002, 'You must specify a ship_id or a quantity if you are pushing a ship.'];
+          confess [1002, 'You must specify a fleet_id or a quantity if you are pushing a fleet.'];
         }
       }
     }
@@ -211,13 +189,13 @@ sub structure_payload {
                 push @{$payload->{prisoners}}, $prisoner->id;
                 $meta{has_prisoner} = 1;
             }
-            when ('ship') { # TODO: change this to 'fleet'
-                if ($item->{ship_id}) {
-                    my $ship = Lacuna->db->resultset('Fleet')->find($item->{ship_id});
-                    $ship->task('Waiting On Trade');
-                    $ship->update;
-                    push @{$payload->{ships}}, $ship->id;
-                    $meta{has_ship} = 1;
+            when ('fleet') {
+                if ($item->{fleet_id}) {
+                    my $fleet = Lacuna->db->resultset('Fleet')->find($item->{fleet_id});
+                    $fleet->task('Waiting On Trade');
+                    $fleet->update;
+                    push @{$payload->{fleets}}, $fleet->id;
+                    $meta{has_fleet} = 1;
                 }
             }
         }
