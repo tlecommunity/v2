@@ -3,6 +3,7 @@ YAHOO.namespace('lacuna.buildings');
 import BodyRPCStore from 'app/stores/rpc/body';
 import MenuStore from 'app/stores/menu';
 import * as util from 'app/util';
+import lacuna from 'app/lacuna';
 
 if (typeof YAHOO.lacuna.buildings.Building == 'undefined' || !YAHOO.lacuna.buildings.Building) {
   (function () {
@@ -499,29 +500,25 @@ if (typeof YAHOO.lacuna.buildings.Building == 'undefined' || !YAHOO.lacuna.build
         var building = this.building;
 
         MenuStore.showLoader();
-        var BuildingServ = Game.Services.Buildings.Generic,
-          data = {
-            session_id: Game.GetSession(''),
-            building_id: building.id,
-          };
 
-        BuildingServ.upgrade(data, {
-          success: function (o) {
-            YAHOO.log(o, 'info', 'Building.Upgrade.success');
+        lacuna
+          .buildingFromUrl(building.url)
+          .upgrade({
+            building_id: building.id,
+          })
+          .then((result) => {
+            YAHOO.log(result, 'info', 'Building.Upgrade.success');
             MenuStore.hideLoader();
-            this.fireEvent('onMapRpc', o.result);
+            this.fireEvent('onMapRpc', result);
 
             var b = building; //originally passed in building data from currentBuilding
-            b.id = o.result.building.id;
-            b.level = o.result.building.level;
-            b.pending_build = o.result.building.pending_build;
+            b.id = result.building.id;
+            b.level = result.building.level;
+            b.pending_build = result.building.pending_build;
             YAHOO.log(b, 'info', 'Building.Upgrade.success.building');
             this.updateBuildingTile(b);
             this.fireEvent('onHide');
-          },
-          scope: this,
-          target: building.url,
-        });
+          });
       },
 
       _getIncomingSupplyChainsTab: function () {
