@@ -269,7 +269,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
             '<ul style="margin-top:5px;">',
             '    <li style=""><label>Total Cargo:</label><span id="tradePushCargo">0</span></li>',
             '    <li style="margin-bottom:5px;"><label>To Colony:</label><select id="tradePushColony"><option value="" selected>&nbsp;</option></select></li>',
-            '    <li style="margin-bottom:5px;"><label>With Ship:</label><select id="tradePushShip"></select></li>',
+            '    <li style="margin-bottom:5px;"><label>With Fleet:</label><select id="tradePushShip"></select></li>',
             '    <li style="margin-bottom:5px;"><label>Stay at Colony:</label><input type="checkbox" id="tradePushStay" /></li>',
             '    <li id="tradePushMessage" class="alert"></li>',
             '</ul></div><button id="tradePushSend">',
@@ -353,7 +353,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
             '<div>',
             '    <div style="border-bottom: 1px solid #52ACFF; padding-bottom: 5px; margin-bottom: 5px;"><label>Filter:</label><select id="tradeFilter"><option value="">All</option><option value="energy">Energy</option><option value="food">Food</option><option value="ore">Ore</option>',
             '    <option value="water">Water</option><option value="waste">Waste</option><option value="glyph">Glyph</option><option value="prisoner">Prisoner</option>',
-            '    <option value="ship">Ship</option><option value="plan">Plan</option></select></div>',
+            '    <option value="fleet">Fleet</option><option value="plan">Plan</option></select></div>',
             '    <ul class="tradeHeader tradeInfo clearafter">',
             '        <li class="tradeEmpire">Empire</li>',
             '        <li class="tradeOfferedDate">Travel Time</li>',
@@ -410,7 +410,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
             '            <div><div id="tradeAddResources" class="accordian">Resources</div><ul id="tradeAddResourceName"></ul></div>',
             '           <div><div id="tradeAddGlyphSummary" class="accordian">Glyph</div><ul id="tradeAddGlyphSummaryName" style="display:none;"></ul></div>',
             '           <div><div id="tradeAddPlanSummary" class="accordian">Plan</div><ul id="tradeAddPlanSummaryName" style="display:none;"></ul></div>',
-            '           <div><div id="tradeAddShipSummary" class="accordian">Ship</div><ul id="tradeAddShipSummaryName" style="display:none;"></ul></div>',
+            '           <div><div id="tradeAddShipSummary" class="accordian">Fleet</div><ul id="tradeAddShipSummaryName" style="display:none;"></ul></div>',
             '            <div><div id="tradeAddPrisoners" class="accordian">Prisoners</div><ul id="tradeAddPrisonerName" style="display:none;"></ul></div>',
             '        </div>',
             '    </div>',
@@ -422,7 +422,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
             '<ul style="margin-top:5px;">',
             '    <li style=""><label>Total Cargo:</label><span id="tradeAddCargo">0</span></li>',
             '    <li style="margin: 5px 0;"><label style="font-weight:bold">Asking Essentia:</label><input type="text" id="tradeAddAskingQuantity" /></li>',
-            '    <li style="margin-bottom:5px;"><label>With Ship:</label><select id="tradeAddShip"></select></li>',
+            '    <li style="margin-bottom:5px;"><label>With Fleet:</label><select id="tradeAddShip"></select></li>',
             '    <li id="tradeAddMessage" class="alert"></li>',
             '</ul></div><button id="tradeAdd">',
             this.addTradeText,
@@ -469,7 +469,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
         return this.add;
       },
       _getSupplyChainTab: function () {
-        var planets = EmpireRPCStore.colonies,
+        var planets = EmpireRPCStore.bodies.colonies,
           current_planet = BodyRPCStore,
           target_options = '';
 
@@ -530,6 +530,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
             '<div id="supplyChainShipsHeader">',
             '  <ul class="shipHeader shipInfo clearafter">',
             '    <li class="shipName">Name</li>',
+            '    <li class="shipQuantity">Quantity</li>',
             '    <li class="shipTask">Task</li>',
             '    <li class="shipSpeed">Speed</li>',
             '    <li class="shipHold">Hold</li>',
@@ -537,7 +538,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
             '  </ul>',
             '  <div><div id="supplyChainShipsDetails"></div></div>',
             '</div>',
-            '<div id="supplyChainShipsNone">There are no supply ships available.</div>',
+            '<div id="supplyChainShipsNone">There are no supply fleets available.</div>',
           ].join(''),
         });
 
@@ -636,7 +637,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
       getShipSummary: function (force) {
         if (force || !this.ship_summary) {
           MenuStore.showLoader();
-          this.service.get_ship_summary(
+          this.service.get_fleet_summary(
             {
               session_id: Game.GetSession(''),
               building_id: this.building.id,
@@ -644,7 +645,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
             {
               success: function (o) {
                 this.rpcSuccess(o);
-                this.ship_summary = o.result.ships;
+                this.ship_summary = o.result.fleets;
                 this.shipSize = o.result.cargo_space_used_each;
                 this.fireEvent('onLoadShipSummary');
                 MenuStore.hideLoader();
@@ -1275,14 +1276,14 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
 
               var elm = Dom.get('tradeAddShip'),
                 opt = document.createElement('option'),
-                ships = o.result.ships,
+                fleets = o.result.fleets,
                 nOpt;
 
-              if (elm && ships) {
+              if (elm && fleets) {
                 var selectedVal = Lib.getSelectedOptionValue(elm);
                 elm.options.length = 0;
-                for (var x = 0; x < ships.length; x++) {
-                  var obj = ships[x];
+                for (var x = 0; x < fleets.length; x++) {
+                  var obj = fleets[x];
                   nOpt = opt.cloneNode(false);
                   nOpt.value = obj.id;
                   nOpt.innerHTML = [
@@ -1569,7 +1570,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
             );
             item.Object = {
               quantity: quantity,
-              type: 'ship',
+              type: 'fleet',
               name: sName,
               ship_type: sType,
               hold_size: sSize,
@@ -1717,7 +1718,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
               case 'prisoner':
                 hasPrisoners = true;
                 break;
-              case 'ship':
+              case 'fleet':
                 hasShips = true;
                 break;
               default:
@@ -1977,14 +1978,14 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
 
                 var elm = Dom.get('tradePushShip'),
                   opt = document.createElement('option'),
-                  ships = o.result.ships,
+                  fleets = o.result.fleets,
                   nOpt;
 
-                if (elm && ships) {
+                if (elm && fleets) {
                   var selectedVal = Lib.getSelectedOptionValue(elm);
                   elm.options.length = 0;
-                  for (var x = 0; x < ships.length; x++) {
-                    var obj = ships[x];
+                  for (var x = 0; x < fleets.length; x++) {
+                    var obj = fleets[x];
                     nOpt = opt.cloneNode(false);
                     nOpt.value = obj.id;
                     nOpt.innerHTML = [
@@ -2274,7 +2275,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
             );
             item.Object = {
               quantity: quantity,
-              type: 'ship',
+              type: 'fleet',
               name: sName,
               ship_type: sType,
               hold_size: sSize,
@@ -2413,7 +2414,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
               case 'prisoner':
                 hasPrisoners = true;
                 break;
-              case 'ship':
+              case 'fleet':
                 hasShips = true;
                 break;
               default:
@@ -2466,7 +2467,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
               ].join('');
               Lib.fadeOutElm('tradePushMessage');
               MenuStore.hideLoader();
-              //get new ships since we just sent one
+              //get new fleets since we just sent one
               this.getPushShips();
             },
             scope: this,
@@ -2483,7 +2484,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
 
               for (var x = 0; x < resource.length; x++) {
                 name = resource[x];
-                option = document.createElement('option');
+                var option = document.createElement('option');
                 option.setAttribute('value', name);
                 option.innerHTML = name.titleCaps();
 
@@ -2494,7 +2495,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
               }
               selectElement.appendChild(optGroup);
             } else if (resource) {
-              option = document.createElement('option');
+              var option = document.createElement('option');
               option.setAttribute('value', r);
               option.innerHTML = r.titleCaps();
 
@@ -2602,7 +2603,9 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
           supply_chains = this.supply_chains;
 
         // chains metric text
-        metric.innerHTML = this.SupplyMetricDescription(supply_chains[0].percent_transferred);
+        if (supply_chains.length) {
+          metric.innerHTML = this.SupplyMetricDescription(supply_chains[0].percent_transferred);
+        }
 
         // chains list
         Event.purgeElement(details, true); //clear any events before we remove
@@ -2619,7 +2622,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
           Dom.addClass(nUl, 'supplyChainInfo');
           Dom.addClass(nUl, 'clearafter');
 
-          nLi = li.cloneNode(false);
+          var nLi = li.cloneNode(false);
           Dom.addClass(nLi, 'supplyChainBody');
           if (chain.stalled == 1) {
             Dom.addClass(nUl, 'supplyChainStalled');
@@ -2631,14 +2634,14 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
 
           nLi = li.cloneNode(false);
           Dom.addClass(nLi, 'supplyChainResource');
-          nSel = document.createElement('select');
+          var nSel = document.createElement('select');
           this.addResourceOptions(nSel, chain.resource_type);
           nLi.appendChild(nSel);
           nUl.appendChild(nLi);
 
           nLi = li.cloneNode(false);
           Dom.addClass(nLi, 'supplyChainHour');
-          nText = document.createElement('input');
+          var nText = document.createElement('input');
           nText.type = 'text';
           nText.size = 10;
           nText.value = chain.resource_hour;
@@ -2694,14 +2697,14 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
       SupplyMetricDescription: function (percent_transferred) {
         var output = ['Current supply capacity is ', percent_transferred, '&#37;. '];
         if (percent_transferred == 0) {
-          output.push('You have no ships servicing your supply chains.');
+          output.push('You have no fleets servicing your supply chains.');
         } else if (percent_transferred > 100) {
           output.push(
-            'You have excess ships servicing your supply chains. You can increase your chain hourly rate, or you may be able to remove some ships to get closer to 100&#37;.'
+            'You have excess fleets servicing your supply chains. You can increase your chain hourly rate, or you may be able to remove some fleets to get closer to 100&#37;.'
           );
         } else if (percent_transferred < 100) {
           output.push(
-            'You have insufficient ships servicing your supply chains. You should reduce your chain hourly rate or add more supply ships.'
+            'You have insufficient fleets servicing your supply chains. You should reduce your chain hourly rate or add more supply fleets.'
           );
         } else if (percent_transferred == 100) {
           output.push('Your shipping capacity and supply chains requirements are exactly in sync.');
@@ -2828,11 +2831,11 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
           this.SupplyChainShipsInfo();
         }
 
-        if (!this.supply_chain_ships) {
+        if (!this.supply_chain_fleets) {
           MenuStore.showLoader();
           request_count++;
 
-          this.service.get_supply_ships(
+          this.service.get_supply_fleets(
             {
               session_id: Game.GetSession(),
               building_id: this.building.id,
@@ -2845,29 +2848,33 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
                   MenuStore.hideLoader();
                 }
                 this.rpcSuccess(o);
-                this.supply_chain_ships = o.result.ships;
+                this.supply_chain_fleets = o.result.fleets;
 
-                this.SupplyChainShipsPopulate();
+                this.SupplyChainFleetsPopulate();
               },
               scope: this,
             }
           );
         } else {
-          this.SupplyChainShipsPopulate();
+          this.SupplyChainFleetsPopulate();
         }
       },
       SupplyChainShipsInfo: function () {
         var metric = Dom.get('supplyChainShipsInfo');
 
-        metric.innerHTML = this.SupplyMetricDescription(this.supply_chains[0].percent_transferred);
+        if (this.supply_chains.length) {
+          metric.innerHTML = this.SupplyMetricDescription(
+            this.supply_chains[0].percent_transferred
+          );
+        }
       },
-      SupplyChainShipsPopulate: function () {
-        var ships = this.supply_chain_ships,
+      SupplyChainFleetsPopulate: function () {
+        var fleets = this.supply_chain_fleets,
           no_ships = Dom.get('supplyChainShipsNone'),
           details = Dom.get('supplyChainShipsDetails'),
           detailsParent = details.parentNode;
 
-        if (ships.length == 0) {
+        if (fleets.length == 0) {
           Dom.setStyle(details, 'display', 'none');
           Dom.setStyle(no_ships, 'display', '');
           return;
@@ -2892,63 +2899,68 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
           Event.purgeElement(details);
           details.innerHTML = '';
 
-          for (var i = 0; i < ships.length; i++) {
-            var ship = ships[i],
+          for (var i = 0; i < fleets.length; i++) {
+            var fleet = fleets[i],
               nUl = ul.cloneNode(false),
               nLi = li.cloneNode(false);
 
-            if (ship.task == 'Docked') {
-              availShips.push(ship);
+            if (fleet.task == 'Docked') {
+              availShips.push(fleet);
             } else {
-              workingShips.push(ship);
+              workingShips.push(fleet);
             }
 
-            nUl.Ship = ship;
+            nUl.Fleet = fleet;
             Dom.addClass(nUl, 'shipInfo');
             Dom.addClass(nUl, 'clearafter');
 
             nLi = li.cloneNode(false);
             Dom.addClass(nLi, 'shipName');
-            nLi.innerHTML = ship.name;
+            nLi.innerHTML = fleet.details.name;
+            nUl.appendChild(nLi);
+
+            nLi = li.cloneNode(false);
+            Dom.addClass(nLi, 'shipQuantity');
+            nLi.innerHTML = fleet.quantity;
             nUl.appendChild(nLi);
 
             nLi = li.cloneNode(false);
             Dom.addClass(nLi, 'shipTask');
-            nLi.innerHTML = ship.task;
+            nLi.innerHTML = fleet.task;
             nUl.appendChild(nLi);
 
             nLi = li.cloneNode(false);
             Dom.addClass(nLi, 'shipSpeed');
-            nLi.innerHTML = ship.speed;
+            nLi.innerHTML = fleet.details.speed;
             nUl.appendChild(nLi);
 
             nLi = li.cloneNode(false);
             Dom.addClass(nLi, 'shipHold');
-            nLi.innerHTML = Lib.formatNumber(ship.hold_size);
+            nLi.innerHTML = Lib.formatNumber(fleet.details.hold_size);
             nUl.appendChild(nLi);
 
             nLi = li.cloneNode(false);
             Dom.addClass(nLi, 'shipAction');
             var bbtn = document.createElement('button');
             bbtn.setAttribute('type', 'button');
-            bbtn.innerHTML = ship.task == 'Docked' ? 'Add to Chain' : 'Remove from Chain';
+            bbtn.innerHTML = fleet.task == 'Docked' ? 'Add to Chain' : 'Remove from Chain';
             bbtn = nLi.appendChild(bbtn);
             nUl.appendChild(nLi);
 
-            if (ship.task == 'Docked') {
+            if (fleet.task == 'Docked') {
               Event.on(
                 bbtn,
                 'click',
-                this.SupplyChainShipAdd,
-                { Self: this, Ship: ship, Line: nUl },
+                this.SupplyChainFleetAdd,
+                { Self: this, Fleet: fleet, Line: nUl },
                 true
               );
             } else {
               Event.on(
                 bbtn,
                 'click',
-                this.SupplyChainShipRemove,
-                { Self: this, Ship: ship, Line: nUl },
+                this.SupplyChainFleetRemove,
+                { Self: this, Fleet: fleet, Line: nUl },
                 true
               );
             }
@@ -2967,24 +2979,25 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
           }, 10);
         }
       },
-      SupplyChainShipAdd: function () {
+      SupplyChainFleetAdd: function () {
         MenuStore.showLoader();
 
-        this.Self.service.add_supply_ship_to_fleet(
+        this.Self.service.add_fleet_to_supply_duty(
           {
             session_id: Game.GetSession(),
             building_id: this.Self.building.id,
-            ship_id: this.Ship.id,
+            fleet_id: this.Fleet.id,
+            // quantity: 1, // TODO: add the UI for this
           },
           {
             success: function (o) {
-              YAHOO.log(o, 'info', 'Trade.SupplyChainShipAdd.success');
+              YAHOO.log(o, 'info', 'Trade.SupplyChainFleetAdd.success');
               MenuStore.hideLoader();
               this.Self.rpcSuccess(o);
-              var ships = this.Self.supply_chain_ships;
-              for (var i = 0; i < ships.length; i++) {
-                if (ships[i].id == this.Ship.id) {
-                  ships.splice(i, 1);
+              var fleets = this.Self.supply_chain_fleets;
+              for (var i = 0; i < fleets.length; i++) {
+                if (fleets[i].id == this.Fleet.id) {
+                  fleets.splice(i, 1);
                   break;
                 }
               }
@@ -2996,24 +3009,24 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
           }
         );
       },
-      SupplyChainShipRemove: function () {
+      SupplyChainFleetRemove: function () {
         MenuStore.showLoader();
 
-        this.Self.service.remove_supply_ship_from_fleet(
+        this.Self.service.remove_supply_fleet(
           {
             session_id: Game.GetSession(),
             building_id: this.Self.building.id,
-            ship_id: this.Ship.id,
+            ship_id: this.Fleet.id,
           },
           {
             success: function (o) {
-              YAHOO.log(o, 'info', 'Trade.SupplyChainShipRemove.success');
+              YAHOO.log(o, 'info', 'Trade.SupplyChainFleetRemove.success');
               MenuStore.hideLoader();
               this.Self.rpcSuccess(o);
-              var ships = this.Self.supply_chain_ships;
-              for (var i = 0; i < ships.length; i++) {
-                if (ships[i].id == this.Ship.id) {
-                  ships.splice(i, 1);
+              var fleets = this.Self.supply_chain_fleets;
+              for (var i = 0; i < fleets.length; i++) {
+                if (fleets[i].id == this.Fleet.id) {
+                  fleets.splice(i, 1);
                   break;
                 }
               }
@@ -3029,7 +3042,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
         if (e.newValue) {
           this.WasteChainDetails();
 
-          if (!this.waste_chain_ships) {
+          if (!this.waste_chain_fleets) {
             this.WasteChainShipsView();
           } else {
             this.WasteChainShipsPopulate();
@@ -3135,7 +3148,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
       },
       WasteChainShipsView: function () {
         MenuStore.showLoader();
-        this.service.get_waste_ships(
+        this.service.get_waste_fleets(
           {
             session_id: Game.GetSession(),
             building_id: this.building.id,
@@ -3145,7 +3158,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
               YAHOO.log(o, 'info', 'Trade.WasteChainShipsView.success');
               MenuStore.hideLoader();
               this.rpcSuccess(o);
-              this.waste_chain_ships = o.result.ships;
+              this.waste_chain_fleets = o.result.fleets;
 
               this.WasteChainShipsPopulate();
             },
@@ -3154,11 +3167,11 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
         );
       },
       WasteChainShipsPopulate: function () {
-        var ships = this.waste_chain_ships,
+        var fleets = this.waste_chain_fleets,
           no_ships = Dom.get('wasteChainShipsNone'),
           details = Dom.get('wasteChainShipsDetails');
 
-        if (ships.length == 0) {
+        if (fleets.length == 0) {
           Dom.setStyle(details, 'display', 'none');
           Dom.setStyle(no_ships, 'display', '');
           return;
@@ -3176,55 +3189,60 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
           Event.purgeElement(details);
           details.innerHTML = '';
 
-          for (var i = 0; i < ships.length; i++) {
-            var ship = ships[i],
+          for (var i = 0; i < fleets.length; i++) {
+            var fleet = fleets[i],
               nUl = ul.cloneNode(false),
               nLi = li.cloneNode(false);
 
-            if (ship.task == 'Docked') {
-              availShips.push(ship);
+            if (fleet.task == 'Docked') {
+              availShips.push(fleet);
             } else {
-              workingShips.push(ship);
+              workingShips.push(fleet);
             }
 
-            nUl.Ship = ship;
+            nUl.Fleet = fleet;
             Dom.addClass(nUl, 'shipInfo');
             Dom.addClass(nUl, 'clearafter');
 
             nLi = li.cloneNode(false);
             Dom.addClass(nLi, 'shipName');
-            nLi.innerHTML = ship.name;
+            nLi.innerHTML = fleet.details.name;
+            nUl.appendChild(nLi);
+
+            nLi = li.cloneNode(false);
+            Dom.addClass(nLi, 'shipQuantity');
+            nLi.innerHTML = fleet.quantity;
             nUl.appendChild(nLi);
 
             nLi = li.cloneNode(false);
             Dom.addClass(nLi, 'shipTask');
-            nLi.innerHTML = ship.task;
+            nLi.innerHTML = fleet.task;
             nUl.appendChild(nLi);
 
             nLi = li.cloneNode(false);
             Dom.addClass(nLi, 'shipSpeed');
-            nLi.innerHTML = ship.speed;
+            nLi.innerHTML = fleet.details.speed;
             nUl.appendChild(nLi);
 
             nLi = li.cloneNode(false);
             Dom.addClass(nLi, 'shipHold');
-            nLi.innerHTML = Lib.formatNumber(ship.hold_size);
+            nLi.innerHTML = Lib.formatNumber(fleet.details.hold_size);
             nUl.appendChild(nLi);
 
             nLi = li.cloneNode(false);
             Dom.addClass(nLi, 'shipAction');
             var bbtn = document.createElement('button');
             bbtn.setAttribute('type', 'button');
-            bbtn.innerHTML = ship.task == 'Docked' ? 'Add to Chain' : 'Remove from Chain';
+            bbtn.innerHTML = fleet.task == 'Docked' ? 'Add to Chain' : 'Remove from Chain';
             bbtn = nLi.appendChild(bbtn);
             nUl.appendChild(nLi);
 
-            if (ship.task == 'Docked') {
+            if (fleet.task == 'Docked') {
               Event.on(
                 bbtn,
                 'click',
                 this.WasteChainShipAdd,
-                { Self: this, Ship: ship, Line: nUl },
+                { Self: this, Fleet: fleet, Line: nUl },
                 true
               );
             } else {
@@ -3232,7 +3250,7 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
                 bbtn,
                 'click',
                 this.WasteChainShipRemove,
-                { Self: this, Ship: ship, Line: nUl },
+                { Self: this, Fleet: fleet, Line: nUl },
                 true
               );
             }
@@ -3254,21 +3272,22 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
       WasteChainShipAdd: function () {
         MenuStore.showLoader();
 
-        this.Self.service.add_waste_ship_to_fleet(
+        this.Self.service.add_fleet_to_waste_duty(
           {
             session_id: Game.GetSession(),
             building_id: this.Self.building.id,
-            ship_id: this.Ship.id,
+            fleet_id: this.Fleet.id,
+            // TODO: quantity
           },
           {
             success: function (o) {
               YAHOO.log(o, 'info', 'Trade.WasteChainShipAdd.success');
               MenuStore.hideLoader();
               this.Self.rpcSuccess(o);
-              var ships = this.Self.waste_chain_ships;
-              for (var i = 0; i < ships.length; i++) {
-                if (ships[i].id == this.Ship.id) {
-                  ships.splice(i, 1);
+              var fleets = this.Self.waste_chain_fleets;
+              for (var i = 0; i < fleets.length; i++) {
+                if (fleets[i].id == this.Fleet.id) {
+                  fleets.splice(i, 1);
                   break;
                 }
               }
@@ -3283,21 +3302,21 @@ if (typeof YAHOO.lacuna.buildings.Trade == 'undefined' || !YAHOO.lacuna.building
       WasteChainShipRemove: function () {
         MenuStore.showLoader();
 
-        this.Self.service.remove_waste_ship_from_fleet(
+        this.Self.service.remove_waste_fleet(
           {
             session_id: Game.GetSession(),
             building_id: this.Self.building.id,
-            ship_id: this.Ship.id,
+            ship_id: this.Fleet.id,
           },
           {
             success: function (o) {
               YAHOO.log(o, 'info', 'Trade.WasteChainShipRemove.success');
               MenuStore.hideLoader();
               this.Self.rpcSuccess(o);
-              var ships = this.Self.waste_chain_ships;
-              for (var i = 0; i < ships.length; i++) {
-                if (ships[i].id == this.Ship.id) {
-                  ships.splice(i, 1);
+              var fleets = this.Self.waste_chain_fleets;
+              for (var i = 0; i < fleets.length; i++) {
+                if (fleets[i].id == this.Fleet.id) {
+                  fleets.splice(i, 1);
                   break;
                 }
               }

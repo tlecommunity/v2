@@ -142,26 +142,17 @@ sub accept_from_market {
 
 
 sub add_fleet_to_supply_duty {
-    my $self = shift;
-    my $args = shift;
+    my ($self, %args) = @_;
 
-    if (ref($args) ne "HASH") {
-        $args = {
-            session_id      => $args,
-            building_id     => shift,
-            fleet_id        => shift,
-        };
-    }
-
-    my $session  = $self->get_session($args);
+    my $session  = $self->get_session(\%args);
     my $empire   = $session->current_empire;
     my $building    = $session->current_building;
-    my $fleet_id    = $args->{fleet_id};
+    my $fleet_id    = $args{fleet_id};
 
     if (not defined $building) {
         confess [1002, "Building not found."];
     }
-    my $fleet = Lacune->db->resultset('Fleet')->find($fleet_id);
+    my $fleet = Lacuna->db->resultset('Fleet')->find($fleet_id);
     if (not defined $fleet) {
         confess [1002, "Fleet not found."];
     }
@@ -175,9 +166,9 @@ sub add_fleet_to_supply_duty {
         confess [1013, "You can't manage a fleet that is not yours."];
     }
     if (not first {$fleet->type eq $_} (SHIP_TRADE_TYPES)) {
-        confess [1009, 'You can only add transport ships to a supply chain.'];
+        confess [1009, 'You can only add transport fleets to a supply chain.'];
     }
-    my $quantity = $args->{quantity} || $fleet->quantity;
+    my $quantity = $args{quantity} || $fleet->quantity;
 
     my $max_berth = $building->body->max_berth;
 
@@ -193,27 +184,18 @@ sub add_fleet_to_supply_duty {
 }
 
 sub add_fleet_to_waste_duty {
-    my $self = shift;
-    my $args = shift;
+    my ($self, %args) = @_;
 
-    if (ref($args) ne "HASH") {
-        $args = {
-            session_id      => $args,
-            building_id     => shift,
-            fleet_id        => shift,
-        };
-    }
-
-    my $session  = $self->get_session($args);
+    my $session  = $self->get_session(\%args);
     my $empire   = $session->current_empire;
     my $building    = $session->current_building;
 
-    my $fleet_id    = $args->{fleet_id};
+    my $fleet_id    = $args{fleet_id};
 
     if (not defined $building) {
         confess [1002, "Building not found."];
     }
-    my $fleet = Lacune->db->resultset('Fleet')->find($fleet_id);
+    my $fleet = Lacuna->db->resultset('Fleet')->find($fleet_id);
     if (not defined $fleet) {
         confess [1002, "Fleet not found."];
     }
@@ -229,7 +211,7 @@ sub add_fleet_to_waste_duty {
     if ($fleet->type !~ m/^scow/) {
         confess [1009, 'You can only add scows to a supply chain.'];
     }
-    my $quantity = $args->{quantity} || $fleet->quantity;
+    my $quantity = $args{quantity} || $fleet->quantity;
 
     my $max_berth = $building->body->max_berth;
 
@@ -402,7 +384,7 @@ sub get_waste_fleets {
     # get the local star
     my $target      = Lacuna->db->resultset('Map::Star')->find($building->body->star_id);
     my @fleets;
-    my $fleets      = $building->all_waste_ships;
+    my $fleets      = $building->all_waste_fleets;
     while (my $fleet = $fleets->next) {
         push @fleets, $fleet->get_status($target);
     }
@@ -826,16 +808,16 @@ sub withdraw_from_market {
 }
 
 __PACKAGE__->register_rpc_method_names(qw(
-    get_supply_fleetss
+    get_supply_fleets
     view_supply_chains
-    add_supply_fleet
+    add_fleet_to_supply_duty
     remove_supply_fleet
     create_supply_chain
     delete_supply_chain
     update_supply_chain
     get_waste_fleets
     view_waste_chains
-    add_waste_fleet
+    add_fleet_to_waste_duty
     remove_waste_fleet
     update_waste_chain
     report_abuse

@@ -211,7 +211,7 @@ sub structure_payload {
                 push @{$payload->{prisoners}}, $prisoner->id;
                 $meta{has_prisoner} = 1;
             }
-            when ('ship') {
+            when ('ship') { # TODO: change this to 'fleet'
                 if ($item->{ship_id}) {
                     my $ship = Lacuna->db->resultset('Fleet')->find($item->{ship_id});
                     $ship->task('Waiting On Trade');

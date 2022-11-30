@@ -3871,7 +3871,7 @@ if (typeof YAHOO.lacuna.SMD == 'undefined' || !YAHOO.lacuna.SMD) {
               ],
               returns: { type: 'object' },
             },
-            get_ship_summary: {
+            get_fleet_summary: {
               description:
                 'Returns a list of ships that may be traded. Used with the add_trade method.',
               parameters: [
@@ -3888,7 +3888,7 @@ if (typeof YAHOO.lacuna.SMD == 'undefined' || !YAHOO.lacuna.SMD) {
               ],
               returns: { type: 'object' },
             },
-            get_ships: {
+            get_fleets: {
               description:
                 'Returns a list of ships that may be traded. Used with the add_trade method.',
               parameters: [
@@ -4139,7 +4139,7 @@ if (typeof YAHOO.lacuna.SMD == 'undefined' || !YAHOO.lacuna.SMD) {
               ],
               returns: { type: 'object' },
             },
-            get_trade_ships: {
+            get_trade_fleets: {
               description: '',
               parameters: [
                 {
@@ -4160,7 +4160,7 @@ if (typeof YAHOO.lacuna.SMD == 'undefined' || !YAHOO.lacuna.SMD) {
               ],
               returns: { type: 'object' },
             },
-            get_waste_ships: {
+            get_waste_fleets: {
               description: '',
               parameters: [
                 {
@@ -4176,7 +4176,7 @@ if (typeof YAHOO.lacuna.SMD == 'undefined' || !YAHOO.lacuna.SMD) {
               ],
               returns: { type: 'object' },
             },
-            get_supply_ships: {
+            get_supply_fleets: {
               description: '',
               parameters: [
                 {
@@ -4333,7 +4333,59 @@ if (typeof YAHOO.lacuna.SMD == 'undefined' || !YAHOO.lacuna.SMD) {
               ],
               returns: { type: 'object' },
             },
-            add_supply_ship_to_fleet: {
+            add_fleet_to_supply_duty: {
+              description: '',
+              parameters: {
+                session_id: {
+                  name: 'session_id',
+                  type: 'string',
+                  optional: false,
+                },
+                building_id: {
+                  name: 'building_id',
+                  type: 'string',
+                  optional: false,
+                },
+                fleet_id: {
+                  name: 'fleet_id',
+                  type: 'number',
+                  optional: false,
+                },
+                quantity: {
+                  name: 'quantity',
+                  type: 'number',
+                  optional: true,
+                },
+              },
+              returns: { type: 'object' },
+            },
+            add_fleet_to_waste_duty: {
+              description: '',
+              parameters: {
+                session_id: {
+                  name: 'session_id',
+                  type: 'string',
+                  optional: false,
+                },
+                building_id: {
+                  name: 'building_id',
+                  type: 'string',
+                  optional: false,
+                },
+                fleet_id: {
+                  name: 'fleet_id',
+                  type: 'number',
+                  optional: false,
+                },
+                quantity: {
+                  name: 'quantity',
+                  type: 'number',
+                  optional: true,
+                },
+              },
+              returns: { type: 'object' },
+            },
+            remove_supply_fleet: {
               description: '',
               parameters: [
                 {
@@ -4354,49 +4406,7 @@ if (typeof YAHOO.lacuna.SMD == 'undefined' || !YAHOO.lacuna.SMD) {
               ],
               returns: { type: 'object' },
             },
-            add_waste_ship_to_fleet: {
-              description: '',
-              parameters: [
-                {
-                  name: 'session_id',
-                  type: 'string',
-                  optional: false,
-                },
-                {
-                  name: 'building_id',
-                  type: 'string',
-                  optional: false,
-                },
-                {
-                  name: 'ship_id',
-                  type: 'number',
-                  optional: false,
-                },
-              ],
-              returns: { type: 'object' },
-            },
-            remove_supply_ship_from_fleet: {
-              description: '',
-              parameters: [
-                {
-                  name: 'session_id',
-                  type: 'string',
-                  optional: false,
-                },
-                {
-                  name: 'building_id',
-                  type: 'string',
-                  optional: false,
-                },
-                {
-                  name: 'ship_id',
-                  type: 'number',
-                  optional: false,
-                },
-              ],
-              returns: { type: 'object' },
-            },
-            remove_waste_ship_from_fleet: {
+            remove_waste_fleet: {
               description: '',
               parameters: [
                 {

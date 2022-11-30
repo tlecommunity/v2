@@ -1583,6 +1583,9 @@ div.archaeologyGlyphContainer div.archaeologyGlyphHeader {
 .shipInfo .shipHold {
   width: 75px;
 }
+.shipInfo .shipQuantity {
+  width: 75px;
+}
 .shipInfo .shipAction {
   width: 100px;
 }

@@ -104,7 +104,7 @@ sub view_market {
 }
 
 
-sub get_ships {
+sub get_fleets {
     my ($self, $session_id, $building_id) = @_;
     my $session  = $self->get_session({session_id => $session_id, building_id => $building_id });
     my $empire   = $session->current_empire;
@@ -131,7 +131,7 @@ sub get_ships {
     };
 }
 
-sub get_ship_summary {
+sub get_fleet_summary {
     my ($self, $session_id, $building_id) = @_;
 
     my $session  = $self->get_session({session_id => $session_id, building_id => $building_id });

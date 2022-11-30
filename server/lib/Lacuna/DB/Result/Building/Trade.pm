@@ -86,7 +86,7 @@ sub supply_fleets {
 }
 
 # Fleets that are currently in a waste chain
-sub waste_fleetss {
+sub waste_fleets {
     my ($self) = @_;
 
     return Lacuna->db->resultset('Fleet')->search({
@@ -169,9 +169,9 @@ sub remove_waste_fleet {
     return $self;
 }
 
-sub send_supply_ship_home {
-    my ($self, $planet, $ship) = @_;
-    $ship->send(
+sub send_supply_fleet_home {
+    my ($self, $planet, $fleet) = @_;
+    $fleet->send(
         target      => $planet,
         direction   => 'in',
         task        => 'Travelling',
@@ -194,9 +194,9 @@ sub add_waste_chain {
 sub remove_waste_chain {
     my ($self, $waste_chain) = @_;
     if ($self->waste_chains->count == 1) {
-        my $ships = $self->waste_ships;
-        while (my $ship = $ships->next) {
-            $self->send_waste_ship_home($waste_chain->star, $ship);
+        my $fleets = $self->waste_fleets;
+        while (my $fleet = $fleets->next) {
+            $self->send_waste_fleet_home($waste_chain->star, $fleet);
         }
     }
     $waste_chain->delete;
@@ -207,9 +207,9 @@ sub remove_waste_chain {
 sub remove_supply_chain {
     my ($self, $supply_chain) = @_;
     if ($self->supply_chains->count == 1) {
-        my $ships = $self->supply_ships;
-        while (my $ship = $ships->next) {
-            $self->send_supply_ship_home($supply_chain->target, $ship);
+        my $fleets = $self->supply_fleets;
+        while (my $fleet = $fleets->next) {
+            $self->send_supply_fleet_home($supply_chain->target, $fleet);
         }
     }
     my $target = $supply_chain->target;
@@ -226,9 +226,9 @@ sub recalc_supply_production {
 
     # Determine the resource/hour/distance for the ship
     my $ship_rphpd = 0;
-    my $ships = $self->supply_ships;
-    while (my $ship = $ships->next) {
-        $ship_rphpd += $ship->hold_size * $ship->speed;
+    my $fleets = $self->supply_fleets;
+    while (my $fleet = $fleets->next) {
+        $ship_rphpd += $fleet->hold_size * $fleet->speed;
     }
     # Determine the resource/hour for supply chains
     my $chain_rphpd = 0;
@@ -258,11 +258,11 @@ sub recalc_waste_production {
     my ($self) = @_;
     my $body = $self->body;
 
-    # Determine the waste/hour/distance for ship
-    my $ship_wphpd = 0;
-    my $ships = $self->waste_ships;
-    while (my $ship = $ships->next) {
-        $ship_wphpd += $ship->hold_size * $ship->speed;
+    # Determine the waste/hour/distance for fleet
+    my $fleet_wphpd = 0;
+    my $fleets = $self->waste_fleets;
+    while (my $fleet = $fleets->next) {
+        $fleet_wphpd += $fleet->hold_size * $fleet->speed;
     }
 
     # Determine the waste/hour for waste chains
@@ -271,7 +271,7 @@ sub recalc_waste_production {
     while (my $waste_chain = $waste_chains->next) {
         $chain_wphpd += $body->calculate_distance_to_target($waste_chain->star) * 2 * $waste_chain->waste_hour;
     }
-    my $shipping_capacity = $chain_wphpd ? int(100 * $ship_wphpd / $chain_wphpd) : 0;
+    my $shipping_capacity = $chain_wphpd ? int(100 * $fleet_wphpd / $chain_wphpd) : 0;
 
     $waste_chains->reset;
     while (my $waste_chain = $waste_chains->next) {
@@ -300,7 +300,7 @@ before delete => sub {
         );
         $trade->withdraw;
     }
-    $self->waste_ships->update({task=>'Docked'});
+    $self->waste_fleets->update({task=>'Docked'});
     $self->waste_chains->delete_all;
     $self->body->needs_recalc(1);
     $self->body->update;
