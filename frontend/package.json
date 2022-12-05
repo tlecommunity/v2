@@ -5,7 +5,7 @@
   "private": true,
   "author": "Lacuna Expanse Corp, Lacuna Expanse Community & Open Source Contributors",
   "contributors": [
-    "Nathan McCallum <hey@nathan-mccallum.com> (https://github.com/1vasari)",
+    "Natalie McCallum <natalie@omg.lol> (https://github.com/1vasari)",
     "Darin McBride <dmcbride@cpan.org> (https://github.com/dmcbride)"
   ],
   "scripts": {
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/tlecommunity/v2",
   "dependencies": {
-    "@tlecommunity/client": "^0.2.0",
+    "@tlecommunity/client": "^0.3.0",
     "bulma": "^0.9.4",
     "classnames": "^2.3.1",
     "create-react-class": "^15.6.3",

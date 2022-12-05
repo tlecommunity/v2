@@ -4,7 +4,7 @@
   "description": "",
   "priate": true,
   "main": "index.js",
-  "author": "Nathan McCallum <hey@nathan-mccallum.com>",
+  "author": "Natalie McCallum <natalie@omg.lol> (https://github.com/1vasari)",
   "license": "MIT",
   "scripts": {
     "serve": "http-server --port 3500"

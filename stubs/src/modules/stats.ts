@@ -56,7 +56,7 @@ const Stats: Route = {
           'vaelxon (Spy Training GUI)',
         ],
       },
-      { 'Web Client redesign': ['Nathan McCallum (1vasari)', 'Iain C Docherty (icydee)'] },
+      { 'Web Client redesign': ['Natalie McCallum (1vasari)', 'Iain C Docherty (icydee)'] },
       { 'iPhone Client': ['Kevin Runde', 'RedOrion'] },
       {
         'Game Server': [

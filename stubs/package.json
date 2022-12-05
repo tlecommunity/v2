@@ -6,7 +6,7 @@
   "description": "Web client for the open source game Lacuna Expanse.",
   "author": "Lacuna Expanse Corp, Lacuna Expanse Community & Open Source Contributors",
   "contributors": [
-    "Nathan McCallum <hey@nathan-mccallum.com> (https://github.com/1vasari)"
+    "Natalie McCallum <natalie@omg.lol> (https://github.com/1vasari)"
   ],
   "scripts": {
     "serve": "nodemon --config nodemon.json"

@@ -1,6 +1,6 @@
 # Frontend Code
 
-Copyright 2016 Nathan McCallum, Darin McBride, and others. Forked from
+Copyright 2016 Natalie McCallum, Darin McBride, and others. Forked from
 Lacuna Expanse Corp code.
 
 Any modifications in the fork are hereby distributed under the MIT license:
