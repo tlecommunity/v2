@@ -1,17 +1,5 @@
 import server from 'app/server';
 import {
-  BodyGetBuildingsParams,
-  BodyGetBuildingsResponse,
-  BodyGetStatusParams,
-  BodyGetStatusResponse,
-  BodyGetBodyStatusParams,
-  BodyGetBodyStatusResponse,
-  BodyRearrangeBuildingsParams,
-  BodyRearrangeBuildingsResponse,
-  CaptchaFetchParams,
-  CaptchaFetchResponse,
-  CaptchaSolveParams,
-  CaptchaSolveResponse,
   EmpireCreateParams,
   EmpireCreateResponse,
   EmpireFetchCaptchaParams,
@@ -22,83 +10,9 @@ import {
   EmpireLoginResponse,
   EmpireLogoutParams,
   EmpireLogoutResponse,
-  EssentiaVeinDrainParams,
-  EssentiaVeinDrainResponse,
-  StatsCreditsParams,
-  StatsCreditsResult,
 } from 'app/interfaces';
 
-import {
-  SpacePortViewAllFleetsParams,
-  SpacePortViewAllFleetsResponse,
-  SpacePortViewTravellingFleetsParams,
-  SpacePortViewTravellingFleetsResponse,
-  SpacePortViewAvailableFleetsParams,
-  SpacePortViewAvailableFleetsResponse,
-  SpacePortViewUnavailableFleetsParams,
-  SpacePortViewUnavailableFleetsResponse,
-  SpacePortViewIncomingFleetsParams,
-  SpacePortViewIncomingFleetsResponse,
-  SpacePortViewOrbitingFleetsParams,
-  SpacePortViewOrbitingFleetsResponse,
-  SpacePortSendFleetParams,
-  SpacePortSendFleetResponse,
-} from 'app/interfaces/spacePort';
-
-import {
-  ShipyardViewBuildQueueParams,
-  ShipyardViewBuildQueueResponse,
-  ShipyardGetBuildableParams,
-  ShipyardGetBuildableResponse,
-  ShipyardBuildFleetParams,
-  ShipyardBuildFleetResponse,
-  ShipyardSubsidizeBuildQueueParams,
-  ShipyardSubsidizeBuildQueueResponse,
-} from 'app/interfaces/shipyard';
-
 class ServiceBase {
-  call(
-    module: 'body',
-    method: 'get_buildings',
-    params: BodyGetBuildingsParams,
-    addSession?: boolean
-  ): Promise<BodyGetBuildingsResponse>;
-
-  call(
-    module: 'body',
-    method: 'get_status',
-    params: BodyGetStatusParams,
-    addSession?: boolean
-  ): Promise<BodyGetStatusResponse>;
-
-  call(
-    module: 'body',
-    method: 'get_body_status',
-    params: BodyGetBodyStatusParams,
-    addSession?: boolean
-  ): Promise<BodyGetBodyStatusResponse>;
-
-  call(
-    module: 'body',
-    method: 'rearrange_buildings',
-    params: BodyRearrangeBuildingsParams,
-    addSession?: boolean
-  ): Promise<BodyRearrangeBuildingsResponse>;
-
-  call(
-    module: 'captcha',
-    method: 'fetch',
-    params: CaptchaFetchParams,
-    addSession?: boolean
-  ): Promise<CaptchaFetchResponse>;
-
-  call(
-    module: 'captcha',
-    method: 'solve',
-    params: CaptchaSolveParams,
-    addSession?: boolean
-  ): Promise<CaptchaSolveResponse>;
-
   call(
     module: 'empire',
     method: 'create',
@@ -133,97 +47,6 @@ class ServiceBase {
     params: EmpireLogoutParams,
     addSession?: boolean
   ): Promise<EmpireLogoutResponse>;
-
-  call(
-    module: 'essentiavein',
-    method: 'drain',
-    params: EssentiaVeinDrainParams,
-    addSession?: boolean
-  ): Promise<EssentiaVeinDrainResponse>;
-
-  call(
-    module: 'shipyard',
-    method: 'view_build_queue',
-    params: ShipyardViewBuildQueueParams,
-    addSession?: boolean
-  ): Promise<ShipyardViewBuildQueueResponse>;
-
-  call(
-    module: 'shipyard',
-    method: 'build_fleet',
-    params: ShipyardBuildFleetParams,
-    addSession?: boolean
-  ): Promise<ShipyardBuildFleetResponse>;
-
-  call(
-    module: 'shipyard',
-    method: 'get_buildable',
-    params: ShipyardGetBuildableParams,
-    addSession?: boolean
-  ): Promise<ShipyardGetBuildableResponse>;
-
-  call(
-    module: 'shipyard',
-    method: 'subsidize_build_queue',
-    params: ShipyardSubsidizeBuildQueueParams,
-    addSession?: boolean
-  ): Promise<ShipyardSubsidizeBuildQueueResponse>;
-
-  call(
-    module: 'spaceport',
-    method: 'send_fleet',
-    params: SpacePortSendFleetParams,
-    addSession?: boolean
-  ): Promise<SpacePortSendFleetResponse>;
-
-  call(
-    module: 'spaceport',
-    method: 'view_all_fleets',
-    params: SpacePortViewAllFleetsParams,
-    addSession?: boolean
-  ): Promise<SpacePortViewAllFleetsResponse>;
-
-  call(
-    module: 'spaceport',
-    method: 'view_available_fleets',
-    params: SpacePortViewAvailableFleetsParams,
-    addSession?: boolean
-  ): Promise<SpacePortViewAvailableFleetsResponse>;
-
-  call(
-    module: 'spaceport',
-    method: 'view_travelling_fleets',
-    params: SpacePortViewTravellingFleetsParams,
-    addSession?: boolean
-  ): Promise<SpacePortViewTravellingFleetsResponse>;
-
-  call(
-    module: 'spaceport',
-    method: 'view_orbiting_fleets',
-    params: SpacePortViewOrbitingFleetsParams,
-    addSession?: boolean
-  ): Promise<SpacePortViewOrbitingFleetsResponse>;
-
-  call(
-    module: 'spaceport',
-    method: 'view_incoming_fleets',
-    params: SpacePortViewIncomingFleetsParams,
-    addSession?: boolean
-  ): Promise<SpacePortViewIncomingFleetsResponse>;
-
-  call(
-    module: 'spaceport',
-    method: 'view_unavailable_fleets',
-    params: SpacePortViewUnavailableFleetsParams,
-    addSession?: boolean
-  ): Promise<SpacePortViewUnavailableFleetsResponse>;
-
-  call(
-    module: 'stats',
-    method: 'credits',
-    params: StatsCreditsParams,
-    addSession?: boolean
-  ): Promise<StatsCreditsResult>;
 
   call(module: string, method: string, params: any, addSession = true): Promise<any> {
     return new Promise((resolve, reject) => {

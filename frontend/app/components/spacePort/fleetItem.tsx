@@ -1,5 +1,6 @@
 import React from 'react';
-import { Fleet } from 'app/interfaces/spacePort';
+import { types } from '@tlecommunity/client';
+type Fleet = types.SpacePort.Fleet;
 import { reduceNumber, commify } from 'app/util';
 import CountdownTimer from '../countdownTimer';
 import ShipImage from 'app/components/menu/shipImage';

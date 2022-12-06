@@ -2,13 +2,12 @@ import React from 'react';
 import CountdownTimer from 'app/components/countdownTimer';
 import ShipImage from 'app/components/menu/shipImage';
 import Icon from 'app/components/menu/icon';
-import { FleetBeingWorkedOn } from 'app/interfaces/shipyard';
-import { Building } from 'app/interfaces/building';
 import { commify, reduceNumber } from 'app/util';
+import { types } from '@tlecommunity/client';
 
 type Props = {
-  fleet: FleetBeingWorkedOn;
-  building: Building;
+  fleet: types.Shipyard.FleetBeingWorkedOn;
+  building: types.Building.Building;
 };
 
 const BuildQueueItem: React.FC<Props> = ({ fleet, building }) => (

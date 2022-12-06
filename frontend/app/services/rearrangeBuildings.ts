@@ -2,11 +2,10 @@ import lacuna from 'app/lacuna';
 import _ from 'lodash';
 import { Matrix } from 'app/interfaces/rearrangeBuildings';
 import { int } from 'app/util';
-import {
-  BodyGetBuildingsResponse,
-  BodyRearrangeBuildingsParams,
-  BodyRearrangeBuildingsResponse,
-} from 'app/interfaces';
+import { types } from '@tlecommunity/client';
+
+type Buildings = types.Body.GetBuildingsResponse['buildings'];
+type Arrangement = types.Body.RearrangeBuildingsParams['arrangement'];
 
 class RearrangeBuildingsService {
   async fetchBuildingsMatrix(bodyId: number): Promise<Matrix> {
@@ -14,7 +13,7 @@ class RearrangeBuildingsService {
     return this.buildingsToMatrix(res.buildings);
   }
 
-  buildingsToMatrix(buildings: BodyGetBuildingsResponse['buildings']): Matrix {
+  buildingsToMatrix(buildings: Buildings): Matrix {
     const matrix: Matrix = [];
 
     _.each(buildings, (building, id) => {
@@ -28,15 +27,15 @@ class RearrangeBuildingsService {
   rearrangeBuildingsFromMatrix(
     bodyId: number,
     matrix: Matrix
-  ): Promise<BodyRearrangeBuildingsResponse> {
+  ): Promise<types.Body.RearrangeBuildingsResponse> {
     return lacuna.body.rearrangeBuildings({
       body_id: bodyId,
       arrangement: this.matrixToRearrangeCall(matrix),
     });
   }
 
-  matrixToRearrangeCall(matrix: Matrix): BodyRearrangeBuildingsParams['1'] {
-    const buildings: BodyRearrangeBuildingsParams['1'] = [];
+  matrixToRearrangeCall(matrix: Matrix): Arrangement {
+    const buildings: Arrangement = [];
 
     for (let x = -5; x <= 5; x++) {
       if (!matrix[x]) continue;

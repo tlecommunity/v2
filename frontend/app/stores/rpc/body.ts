@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import ServerRPCStore from 'app/stores/rpc/server';
 import _ from 'lodash';
 import * as util from 'app/util';
-import { BodyGetStatusResponse } from 'app/interfaces';
+import { types } from '@tlecommunity/client';
 import YAHOO from 'app/shims/yahoo';
 import LegacyHooks from 'app/legacyHooks';
 
@@ -152,7 +152,7 @@ class BodyRPCStore {
 
   clear() {}
 
-  update(body: BodyGetStatusResponse['body']) {
+  update(body: types.Status.BodyBlock['body']) {
     this.id = body.id;
     this.x = int(body.x);
     this.y = int(body.y);

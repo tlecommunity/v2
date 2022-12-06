@@ -1,6 +1,6 @@
 import { Building } from 'app/interfaces/building';
 import React from 'react';
-import Shipyard from 'app/services/shipyard';
+import lacuna from 'app/lacuna';
 import { int } from 'app/util';
 
 type Props = {
@@ -26,7 +26,7 @@ class BuildButton extends React.Component<Props, State> {
 
   async buildFleet() {
     console.log(`Building ${this.state.quantity} of ${this.props.type}`);
-    const res = await Shipyard.buildFleet({
+    const res = await lacuna.shipyard.buildFleet({
       building_ids: [this.props.building.id],
       quantity: int(this.state.quantity),
       type: this.props.type,

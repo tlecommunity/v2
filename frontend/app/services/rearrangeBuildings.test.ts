@@ -1,10 +1,10 @@
 import RearrangeBuildingsService from 'app/services/rearrangeBuildings';
 import { Matrix } from 'app/interfaces/rearrangeBuildings';
-import { BodyGetBuildingsResponse, BodyRearrangeBuildingsParams } from 'app/interfaces';
+import { types } from '@tlecommunity/client';
 import { int } from 'app/util';
 
 test('buildingsToMatrix', () => {
-  const buildings: BodyGetBuildingsResponse['buildings'] = {};
+  const buildings: types.Body.GetBuildingsResponse['buildings'] = {};
   const matrix: Matrix = [];
 
   for (let x = -5; x < 5; x++) {
@@ -65,7 +65,7 @@ test('buildingsToMatrix', () => {
 });
 
 test('matrixToRearrangeCall', () => {
-  const buildings: BodyRearrangeBuildingsParams['1'] = [];
+  const buildings: types.Body.RearrangeBuildingsParams['arrangement'] = [];
   const matrix: Matrix = [];
 
   for (let x = -5; x < 5; x++) {

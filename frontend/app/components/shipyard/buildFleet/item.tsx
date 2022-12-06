@@ -2,14 +2,13 @@ import React from 'react';
 import Icon from 'app/components/menu/icon';
 import ShipImage from 'app/components/menu/shipImage';
 import BuildFleetButton from 'app/components/shipyard/buildFleet/button';
-import { BuildableFleet } from 'app/interfaces/shipyard';
+import { types } from '@tlecommunity/client';
 import { commify, reduceNumber, formatTime } from 'app/util';
-import { Building } from 'app/interfaces/building';
 
 type Props = {
-  building: Building;
+  building: types.Building.Building;
   type: string;
-  fleet: BuildableFleet;
+  fleet: types.Shipyard.BuildableFleet;
 };
 
 const BuildFleetItem: React.FC<Props> = ({ type, fleet, building }) => (

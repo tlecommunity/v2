@@ -2,15 +2,15 @@ import React from 'react';
 import _ from 'lodash';
 import BuildQueueItem from 'app/components/shipyard/buildQueue/item';
 import { Building } from 'app/interfaces/building';
-import { ShipyardViewBuildQueueResponse } from 'app/interfaces/shipyard';
-import Shipyard from 'app/services/shipyard';
+import { types } from '@tlecommunity/client';
+import lacuna from 'app/lacuna';
 
 type Props = {
   building: Building;
 };
 
 type State = {
-  data: ShipyardViewBuildQueueResponse;
+  data: types.Shipyard.ViewBuildQueueResponse;
 };
 
 class BuildQueueTab extends React.Component<Props, State> {
@@ -18,7 +18,8 @@ class BuildQueueTab extends React.Component<Props, State> {
     super(props);
     this.state = {
       data: {
-        number_of_fleets: 0,
+        number_of_fleets_building: 0,
+        number_of_ships_building: 0,
         cost_to_subsidize: 0,
         fleets_building: [],
       },
@@ -26,10 +27,11 @@ class BuildQueueTab extends React.Component<Props, State> {
   }
 
   async componentDidMount() {
-    const data = await Shipyard.viewBuildQueue({ building_id: this.props.building.id });
+    const data = await lacuna.shipyard.viewBuildQueue({ building_id: this.props.building.id });
     this.setState({
       data: {
-        number_of_fleets: data.number_of_fleets,
+        number_of_fleets_building: data.number_of_fleets_building,
+        number_of_ships_building: data.number_of_ships_building,
         cost_to_subsidize: data.cost_to_subsidize,
         fleets_building: data.fleets_building,
       },
@@ -37,10 +39,11 @@ class BuildQueueTab extends React.Component<Props, State> {
   }
 
   async onSubsidizeClick() {
-    const res = await Shipyard.subsidizeBuildQueue({ building_id: this.props.building.id });
+    const res = await lacuna.shipyard.subsidizeBuildQueue({ building_id: this.props.building.id });
     this.setState({
       data: {
-        number_of_fleets: res.number_of_fleets,
+        number_of_fleets_building: res.number_of_fleets_building,
+        number_of_ships_building: res.number_of_ships_building,
         cost_to_subsidize: res.cost_to_subsidize,
         fleets_building: res.fleets_building,
       },

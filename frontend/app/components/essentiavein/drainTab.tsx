@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import $ from 'app/shims/jquery';
 import { Building } from 'app/interfaces';
-import EssentiaVein from 'app/services/essentiaVein';
+import lacuna from 'app/lacuna';
 import * as vex from 'app/vex';
 
 type Props = {
@@ -22,7 +22,7 @@ class DrainTab extends React.Component<Props> {
 
     console.assert(typeof times === 'number', 'times should be a number');
 
-    const res = await EssentiaVein.drain(id, times);
+    const res = await lacuna.essentiaVein.drain([id, times]);
     if (res) {
       vex.alert('Drain successful');
     }

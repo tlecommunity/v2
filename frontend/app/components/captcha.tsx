@@ -1,5 +1,5 @@
 import React from 'react';
-import CaptchaService from 'app/services/captcha';
+import lacuna from 'app/lacuna';
 import { CaptchaWindowOptions } from 'app/interfaces';
 import WindowsStore from 'app/stores/windows';
 
@@ -24,7 +24,7 @@ class Captcha extends React.Component<Props, State> {
   }
 
   async fetchCaptcha() {
-    const { guid, url } = await CaptchaService.fetch();
+    const { guid, url } = await lacuna.captcha.fetch();
     this.setState({ guid, url, solution: '' });
   }
 
@@ -44,7 +44,7 @@ class Captcha extends React.Component<Props, State> {
   }
 
   async onClickSolve() {
-    await CaptchaService.solve(this.state.guid, this.state.solution);
+    await lacuna.captcha.solve({ guid: this.state.guid, solution: this.state.solution });
     WindowsStore.close('captcha');
     this.props.options.onCaptchaComplete();
   }

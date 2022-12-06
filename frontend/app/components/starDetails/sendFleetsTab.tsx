@@ -1,9 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
-import SpacePort from 'app/services/spacePort';
+import lacuna from 'app/lacuna';
 import BodyRPCStore from 'app/stores/rpc/body';
 import { StarDetailsWindowOptions } from 'app/interfaces/window';
-import { Fleet } from 'app/interfaces/spacePort';
+import { types } from '@tlecommunity/client';
+type Fleet = types.SpacePort.Fleet;
 import FleetItem from 'app/components/spacePort/fleetItem';
 import { int } from 'app/util';
 
@@ -26,7 +27,7 @@ class SendFleetsTab extends React.Component<Props, State> {
   }
 
   async componentDidMount() {
-    const { available } = await SpacePort.viewAvailableFleets({
+    const { available } = await lacuna.spacePort.viewAvailableFleets({
       body_id: BodyRPCStore.id,
       target: { star_id: this.props.options.id },
     });
@@ -34,7 +35,7 @@ class SendFleetsTab extends React.Component<Props, State> {
   }
 
   async sendFleet(fleetId: number, quantity: number) {
-    const res = await SpacePort.sendFleet({
+    const res = await lacuna.spacePort.sendFleet({
       fleet_id: fleetId,
       target: { star_id: this.props.options.id },
       quantity,

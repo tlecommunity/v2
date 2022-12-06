@@ -2,8 +2,8 @@ import React from 'react';
 import _ from 'lodash';
 import { Building } from 'app/interfaces/building';
 import BuildFleetItem from 'app/components/shipyard/buildFleet/item';
-import Shipyard from 'app/services/shipyard';
-import { ShipyardGetBuildableResponse } from 'app/interfaces/shipyard';
+import lacuna from 'app/lacuna';
+import { types } from '@tlecommunity/client';
 
 type Props = {
   building: Building;
@@ -13,7 +13,7 @@ type State = {
   show: string; // TODO
   filter: string; // TODO
   autoSelect: string; // TODO
-  data: ShipyardGetBuildableResponse;
+  data: types.Shipyard.GetBuildableResponse;
 };
 
 class BuildFleetTab extends React.Component<Props, State> {
@@ -33,7 +33,7 @@ class BuildFleetTab extends React.Component<Props, State> {
   }
 
   async componentDidMount() {
-    const res = await Shipyard.getBuildable({ building_id: this.props.building.id });
+    const res = await lacuna.shipyard.getBuildable({ building_id: this.props.building.id });
     this.setState({ data: res });
   }
 
@@ -56,7 +56,6 @@ class BuildFleetTab extends React.Component<Props, State> {
   }
 
   render() {
-    const fleetItems = [];
     let fleetTypes = Object.keys(this.state.data.buildable).sort();
 
     // Filter based on buildable now or later.
@@ -81,10 +80,6 @@ class BuildFleetTab extends React.Component<Props, State> {
     // }
 
     fleetTypes.sort();
-
-    for (let i = 0; i < fleetTypes.length; i++) {
-      fleetItems.push();
-    }
 
     return (
       <div className='bulma'>

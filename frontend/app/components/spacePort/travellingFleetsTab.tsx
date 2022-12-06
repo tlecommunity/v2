@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import { Building, Fleet } from 'app/interfaces';
 import FleetItem from 'app/components/spacePort/fleetItem';
-import SpacePortService from 'app/services/spacePort';
+import lacuna from 'app/lacuna';
 
 type Props = {
   building: Building;
@@ -21,7 +21,7 @@ class TravellingFleetsTab extends React.Component<Props, State> {
   }
 
   async componentDidMount() {
-    const res = await SpacePortService.viewTravellingFleets({
+    const res = await lacuna.spacePort.viewTravellingFleets({
       building_id: this.props.building.id,
     });
     this.setState({

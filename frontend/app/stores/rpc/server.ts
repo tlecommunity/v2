@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import _ from 'lodash';
 import { serverDateToMoment, formatMomentLong } from 'app/util';
 import constants from 'app/constants';
-import { EmpireGetStatusResponse } from 'app/interfaces';
+import { types } from '@tlecommunity/client';
 
 class ServerRPCStore {
   time = '01 31 2010 13:09:05 +0600';
@@ -13,7 +13,7 @@ class ServerRPCStore {
 
   rpc_limit = 10000;
 
-  star_map_size = {
+  star_map_size: types.Status.ServerBlock['star_map_size'] = {
     x: [-15, 15],
     y: [-15, 15],
     z: [-15, 15],
@@ -23,7 +23,7 @@ class ServerRPCStore {
     makeAutoObservable(this);
   }
 
-  update(server: EmpireGetStatusResponse['server']) {
+  update(server: types.Status.ServerBlock) {
     // TODO: show announcement window if needed.
 
     this.time = server.time;

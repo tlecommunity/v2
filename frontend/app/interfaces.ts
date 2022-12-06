@@ -1,13 +1,8 @@
 import { EmpireGetStatusResponse } from 'app/interfaces/empire';
-import { BodyGetStatusResponse } from 'app/interfaces/body';
+import { types } from '@tlecommunity/client';
 
-export * from 'app/interfaces/body';
 export * from 'app/interfaces/building';
-export * from 'app/interfaces/captcha';
 export * from 'app/interfaces/empire';
-export * from 'app/interfaces/essentiaVein';
-export * from 'app/interfaces/spacePort';
-export * from 'app/interfaces/stats';
 export * from 'app/interfaces/window';
 
 //
@@ -19,6 +14,6 @@ export type IntBool = 0 | 1;
 
 export interface StatusBlock {
   empire?: EmpireGetStatusResponse['empire'];
-  body?: BodyGetStatusResponse['body'];
+  body?: types.Status.BodyBlock;
   server?: EmpireGetStatusResponse['server'];
 }

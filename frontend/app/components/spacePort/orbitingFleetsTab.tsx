@@ -1,7 +1,8 @@
 import React from 'react';
-import SpacePortService from 'app/services/spacePort';
+import lacuna from 'app/lacuna';
 import { Building } from 'app/interfaces';
-import { Fleet } from 'app/interfaces/spacePort';
+import { types } from '@tlecommunity/client';
+type Fleet = types.SpacePort.Fleet;
 import _ from 'lodash';
 import FleetItem from 'app/components/spacePort/fleetItem';
 import BodyRPCStore from 'app/stores/rpc/body';
@@ -24,7 +25,7 @@ class OrbitingFleetsTab extends React.Component<Props, State> {
 
   async componentDidMount() {
     console.log(this.props.building.id);
-    const res = await SpacePortService.viewOrbitingFleets({
+    const res = await lacuna.spacePort.viewOrbitingFleets({
       target: { body_id: BodyRPCStore.id },
     });
     this.setState({

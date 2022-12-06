@@ -1,9 +1,10 @@
 import React from 'react';
 
 import constants from 'app/constants';
-import SpacePortService from 'app/services/spacePort';
+import lacuna from 'app/lacuna';
 import { Building } from 'app/interfaces';
-import { Fleet } from 'app/interfaces/spacePort';
+import { types } from '@tlecommunity/client';
+type Fleet = types.SpacePort.Fleet;
 import _ from 'lodash';
 
 import FleetItem from 'app/components/spacePort/fleetItem';
@@ -41,7 +42,7 @@ class ViewFleetsTab extends React.Component<Props, State> {
   }
 
   async componentDidMount() {
-    const res = await SpacePortService.viewAllFleets({ building_id: this.props.building.id });
+    const res = await lacuna.spacePort.viewAllFleets({ building_id: this.props.building.id });
     this.setState({
       fleets: res.fleets,
       numberOfFleets: res.number_of_fleets,
@@ -51,89 +52,96 @@ class ViewFleetsTab extends React.Component<Props, State> {
     });
   }
 
-  // handleFilterChange(e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) {
-  //   // TODO: why do we need ...this.state for typescript to accept this?
-  //   this.setState({ ...this.state, ...{ [e.target.name]: e.target.value } });
-  // }
-
   render() {
-    // // Filter based on Task
-    // if (this.state.task !== 'all') {
-    //   fleetItems = $.grep(fleetItems, function (item, index) {
-    //     return item.task === this.state.task;
-    //   });
-    // }
+    let fleets = this.state.fleets;
 
-    // // Filter based on Type
-    // if (this.state.type !== 'all') {
-    //   fleetItems = $.grep(fleetItems, function (item, index) {
-    //     return item.details.type === this.state.type;
-    //   });
-    // }
+    if (this.state.task !== 'all') {
+      fleets = _.filter(fleets, (fleet) => fleet.task === this.state.task);
+    }
 
-    // // Filter based on Tag
-    // if (this.state.tag !== 'all') {
-    //   fleetItems = $.grep(fleetItems, (item, index) => 1);
-    // }
+    if (this.state.type !== 'all') {
+      fleets = _.filter(fleets, (fleet) => fleet.details.type_human === this.state.type);
+    }
+
+    if (this.state.tag !== 'all') {
+      fleets = _.filter(fleets, (fleet) => fleet.details.build_tags.includes(this.state.tag));
+    }
 
     return (
       <div className='bulma'>
-        {/* <div className='equal width fields'>
-          <div className='field'>
-            <label>Task</label>
-            <select
-              className='ui small dropdown'
-              name='task'
-              onChange={(e) => this.handleFilterChange(e)}
-            >
-              <option value='All'>All</option>
-              {_.map(constants.FLEET_TASKS, (task, key) => (
-                <option value={key} key={key}>
-                  {task}
-                </option>
-              ))}
-            </select>
+        <div className='columns'>
+          <div className='column'>
+            <div className='field'>
+              <label className='label'>Task</label>
+              <div className='control'>
+                <div className='select is-small'>
+                  <select onChange={(e) => this.setState({ task: e.target.value })}>
+                    <option value='all'>All</option>
+                    {_.map(constants.FLEET_TASKS, (task) => (
+                      <option value={task} key={task}>
+                        {task}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className='field'>
-            <label>Tag</label>
-            <select
-              className='ui small dropdown'
-              name='tag'
-              onChange={(e) => this.handleFilterChange(e)}
-            >
-              <option value='All'>All</option>
-              {_.map(constants.FLEET_TAGS, (tag, key) => (
-                <option value={key} key={key}>
-                  {tag}
-                </option>
-              ))}
-            </select>
+          <div className='column'>
+            <div className='field'>
+              <label className='label'>Tag</label>
+              <div className='control'>
+                <div className='select is-small'>
+                  <select onChange={(e) => this.setState({ tag: e.target.value })}>
+                    <option value='all'>All</option>
+                    {_.map(constants.FLEET_TAGS, (tag) => (
+                      <option value={tag} key={tag}>
+                        {tag}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className='field'>
-            <label>Type</label>
-            <select
-              className='ui small dropdown'
-              name='type'
-              onChange={(e) => this.handleFilterChange(e)}
-            >
-              <option value='all'>All</option>
-              {_.map(constants.FLEET_TYPES, (type, key) => (
-                <option value={key} key={key}>
-                  {type}
-                </option>
-              ))}
-            </select>
+          <div className='column'>
+            <div className='field'>
+              <label className='label'>Type</label>
+              <div className='control'>
+                <div className='select is-small'>
+                  <select onChange={(e) => this.setState({ type: e.target.value })}>
+                    <option value='all'>All</option>
+                    {_.map(constants.FLEET_TYPES, (type) => (
+                      <option value={type} key={type}>
+                        {type}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className='field'>
-            <label>Name</label>
-            <input type='text' name='name' onChange={(e) => this.handleFilterChange(e)} />
+          <div className='column'>
+            <div className='field'>
+              <label className='label' htmlFor='name'>
+                Name
+              </label>
+              <div className='control'>
+                <input
+                  type='text'
+                  name='name'
+                  onChange={(e) => this.setState({ name: e.target.value })}
+                  className='input is-small'
+                />
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className='ui divider' /> */}
+        <hr />
 
         <div className='block'>
           {this.state.docksAvailable} docks available. {this.state.currentShips} used out of{' '}
@@ -141,7 +149,7 @@ class ViewFleetsTab extends React.Component<Props, State> {
         </div>
 
         <div>
-          {_.map(this.state.fleets, (fleet) => (
+          {_.map(fleets, (fleet) => (
             <FleetItem fleet={fleet} key={fleet.id} />
           ))}
         </div>
